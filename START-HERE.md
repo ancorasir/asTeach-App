@@ -1,7 +1,8 @@
 # Start here — App v0.1
 
-This release candidate pairs with asTeach Docs v0.1.1. The external cohort
-RELEASE-MANIFEST.json binds the exact committed sources and archive hashes.
+This release candidate includes [asTeach Docs v0.1.1](docs/user/README.md).
+The external cohort RELEASE-MANIFEST.json binds the exact integrated App commit
+and archive hash.
 Native acceptance and publication remain pending; no published release or tag is
 claimed. Keep the original App package and its checksum for recovery.
 
@@ -44,7 +45,7 @@ Use your own new private repository for the workspace. In a new restricted
 GitBook Space, select that repository and its intended branch, set the project
 directory to `course/`, and use the repository as the initial source. Account,
 repository and GitBook setup are separate user-controlled steps. Follow the
-matched Docs guide for the walkthrough and verify the actual mapping before use.
+matched [Docs guide](docs/user/setup-gitbook.md) for the walkthrough and verify the actual mapping before use.
 The App package itself is never the course mapping.
 
 Check the course title, plain term description, all thirteen headings and twelve
@@ -53,7 +54,7 @@ in Home and its SUMMARY navigation label together; change `Year Season` in the
 description. Learning Outcomes is reusable; Co-Requisite Courses is ordinary
 page content. Both now contain brief replaceable guidance and a bullet placeholder.
 Replace the visible guidance
-with your own course information. See [the section contract](docs/one-page-course.md).
+with your own course information. See [the section contract](docs/technical/one-page-course.md).
 
 The calendar link resolves from its include to the workbook inside the course
 folder. Download a local copy, customize it, insert your own approved screenshots
@@ -71,13 +72,14 @@ After editing, `check` reports changed, missing or additional files as authored
 drift. It does not validate teaching content or repair anything. Keep your course's
 own backups/history. If initialization is interrupted, preserve that partial
 workspace and use the original verified App to plan a different fresh destination.
-Compare and recover authored content manually. See [initializer limits](docs/initializer.md).
+Compare and recover authored content manually. See [initializer limits](docs/technical/initializer.md).
 
 To verify the local product itself:
 
 ```bash
 python3 -B -m unittest discover -s tests -p 'test_*.py'
+python3 -B scripts/check_docs.py
 ```
 
-The developer [release packaging guide](docs/release-packaging.md) explains the
+The developer [release packaging guide](docs/technical/release-packaging.md) explains the
 separate offline builder and portable bundle verification.

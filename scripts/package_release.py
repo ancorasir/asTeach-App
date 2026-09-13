@@ -19,28 +19,16 @@ SPEC = importlib.util.spec_from_file_location("asteach_initializer", Path(__file
 init = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(init)
 ReleaseError = init.InitError
-CREATOR = "SONG Chaoyang (songcy@ieee.org) @ Design and Learning Research Group (https://AncoraSIR.com)"
-DOCS_MANIFEST = "DOCS-MANIFEST.json"
-DOCS_FILES = tuple(sorted((
-    "AGENTS.md", "CHANGELOG.md", "LICENSE.md", "LICENSES/CC-BY-4.0.txt", "README.md",
-    "VERSION.json", "docs/.gitbook.yaml", "docs/README.md", "docs/SUMMARY.md",
-    "docs/assets/01-course-overview.svg", "docs/assets/02-setup-mapping.svg",
-    "docs/assets/03-resource-ownership.svg", "docs/assets/04-title-description.svg",
-    "docs/assets/05-calendar-alt.svg", "docs/assets/06-save-review.svg",
-    "docs/assets/manifest.json", "docs/calendar-and-files.md", "docs/course-home-reference.md",
-    "docs/getting-started.md", "docs/one-page-course.md", "docs/review-and-sharing.md",
-    "docs/schedule-and-deadlines.md", "docs/setup-gitbook.md", "docs/troubleshooting.md",
-    "docs/version-and-scope.md", "scripts/check_docs.py",
-)))
 COMPONENTS = {
     "app": ("asTeach-App", "v0.1", init.MANIFEST, init.APP_FILES),
-    "docs": ("asTeach-Docs", "v0.1.1", DOCS_MANIFEST, DOCS_FILES),
 }
 ARCHIVES = {key: name + "-" + version + ".zip" for key, (name, version, _, _) in COMPONENTS.items()}
 ASSETS = tuple(sorted((*ARCHIVES.values(), "START-HERE.md")))
 BUNDLE_FILES = tuple(sorted((*ASSETS, "RELEASE-MANIFEST.json", "SHA256SUMS.txt")))
 ZIP_DATE = (1980, 1, 1, 0, 0, 0)
 MAX_ARCHIVE_BYTES = 16 * 1024 * 1024
+LEGACY_MESSAGE = ("Legacy asteach-release/v1 bundle: verify it with the trusted "
+                  "scripts/package_release.py inside its original App ZIP; retain all five original files.")
 
 
 def json_bytes(value):
@@ -65,24 +53,7 @@ def check_values(value, expected, context):
 
 
 def app_metadata():
-    return {"schema": "asteach-app-source/v2", "app_version": "v0.1", "docs_version": "v0.1.1",
-            "status": "release-candidate", "commit_binding": "external-release-manifest",
-            "manifest_self_exclusion": init.MANIFEST, "license": "MIT"}
-
-
-def docs_metadata():
-    return {"schema_version": 2, "component": "asTeach-Docs", "status": "release-candidate",
-            "docs_version": "v0.1.1", "app_version": "v0.1", "commit_binding": "external-release-manifest",
-            "mapped_root": "docs/", "license": "CC-BY-4.0", "creator": CREATOR,
-            "self_excluded": [DOCS_MANIFEST]}
-
-
-def docs_version():
-    return {"schema_version": 2, "component": "asTeach-Docs", "docs_version": "v0.1.1",
-            "for_app_version": "v0.1", "creator": CREATOR, "status": "release-candidate",
-            "commit_binding": "external-release-manifest", "native_acceptance": "pending",
-            "license": "CC-BY-4.0", "mapped_root": "docs/", "guide_page_count": 10,
-            "schematic_figure_count": 6}
+    return init.app_metadata()
 
 
 def verify_source_bytes(kind, payload):
@@ -90,29 +61,23 @@ def verify_source_bytes(kind, payload):
     if set(payload) != set(allowlist) | {manifest_name}:
         raise ReleaseError(kind + " inventory does not match the complete positive allowlist")
     metadata = parse_json(payload[manifest_name])
-    expected = app_metadata() if kind == "app" else docs_metadata()
+    expected = app_metadata()
     exact_fields(metadata, (*expected, "files"), kind + " source manifest")
     check_values(metadata, expected, kind + " source manifest")
     entries = metadata["files"]
     if not isinstance(entries, list):
         raise ReleaseError(kind + " manifest inventory must be a list")
     for entry in entries:
-        exact_fields(entry, ("path", "size", "sha256") if kind == "app" else ("path", "size", "sha256", "mode"), "file record")
+        exact_fields(entry, ("path", "size", "sha256"), "file record")
         init.safe_relative(entry["path"])
         if type(entry["size"]) is not int or entry["size"] < 0:
             raise ReleaseError("invalid file size")
     expected_entries = [init.record(name, payload[name]) for name in allowlist]
-    if kind == "docs":
-        expected_entries = [dict(entry, mode="0644") for entry in expected_entries]
     if entries != expected_entries:
         raise ReleaseError(kind + " source manifest inventory or checksum mismatch")
-    if kind == "app":
-        if payload["VERSION"] != b"v0.1\n":
-            raise ReleaseError("App VERSION mismatch")
-    else:
-        version = parse_json(payload["VERSION.json"])
-        exact_fields(version, docs_version(), "Docs VERSION")
-        check_values(version, docs_version(), "Docs VERSION")
+    if payload["VERSION"] != b"v0.1\n":
+        raise ReleaseError("App VERSION mismatch")
+    init.verify_user_source(payload)
     return init.digest(payload[manifest_name])
 
 
@@ -149,13 +114,36 @@ def refresh_app_manifest(root):
     expected = set(init.APP_FILES) | {init.MANIFEST}
     if files != expected or directories != init.parent_paths(expected):
         raise ReleaseError("cannot refresh an incomplete or unknown App inventory")
+    snapshot = {name: read_source_file(root, name) for name in init.APP_FILES}
+    init.verify_user_source(snapshot)
     metadata = app_metadata()
-    metadata["files"] = [init.record(name, read_source_file(root, name)) for name in init.APP_FILES]
+    metadata["files"] = [init.record(name, snapshot[name]) for name in init.APP_FILES]
     path = init.inspect_path(root / init.MANIFEST)
     read_source_file(root, init.MANIFEST)
     with path.open("wb") as stream:
         stream.write(json_bytes(metadata))
     read_source(root, "app")
+    return {"status": "refreshed", "manifest": str(path), "sha256": init.digest(init.read_regular(path))}
+
+
+def refresh_user_manifest(root):
+    """Refresh only an explicitly reviewed, complete guide inventory."""
+    root = init.inspect_path(root)
+    guide = init.inspect_path(root / init.USER_ROOT)
+    files, directories = init.tree_inventory(guide)
+    expected = set(init.USER_FILES) | {init.USER_MANIFEST}
+    if files != expected or directories != init.parent_paths(expected):
+        raise ReleaseError("cannot refresh an incomplete or unknown user guide inventory")
+    version = parse_json(read_source_file(guide, "VERSION.json"))
+    if init.canonical(version) != init.canonical(init.user_version()):
+        raise ReleaseError("user guide version metadata mismatch")
+    metadata = init.user_metadata()
+    metadata["files"] = [dict(init.record(name, read_source_file(guide, name)), mode="0644")
+                         for name in init.USER_FILES]
+    path = init.inspect_path(guide / init.USER_MANIFEST)
+    read_source_file(guide, init.USER_MANIFEST)
+    with path.open("wb") as stream:
+        stream.write(json_bytes(metadata))
     return {"status": "refreshed", "manifest": str(path), "sha256": init.digest(init.read_regular(path))}
 
 
@@ -311,23 +299,23 @@ def read_archive(kind, data):
 
 def start_here(sources):
     return ("# asTeach private release candidate\n\n"
-            "App v0.1 and Docs v0.1.1 are paired in this bundle. Native GitBook\n"
+            "App v0.1 includes the Docs v0.1.1 user guide in one archive. Native GitBook\n"
             "acceptance and publication remain pending. No tag or hosted release is claimed.\n\n"
-            "- App source commit: `" + sources["app"]["commit"] + "`\n"
-            "- Docs source commit: `" + sources["docs"]["commit"] + "`\n\n"
+            "- App source commit: `" + sources["app"]["commit"] + "`\n\n"
             "Compare SHA256SUMS.txt with a trusted publisher record before running code.\n"
             "Checksums verify integrity; they do not authenticate the publisher.\n"
             "RELEASE-MANIFEST.json records exact source pins, tree hashes and asset hashes.\n\n"
             "Extract [App v0.1](asTeach-App-v0.1.zip) and follow asTeach-App/START-HERE.md.\n"
-            "Extract [Docs v0.1.1](asTeach-Docs-v0.1.1.zip) and follow asTeach-Docs/README.md.\n"
-            "Keep both ZIPs and these three handoff files together. The course mapping is\n"
-            "the fresh workspace's course/ directory, never the App or Docs source root.\n\n"
+            "The guide is asTeach-App/docs/user/README.md; technical notes are in docs/technical/.\n"
+            "Keep the ZIP and these three handoff files together. The course mapping is\n"
+            "the fresh workspace's course/ directory, never the App source or guide root.\n\n"
             "From the extracted App folder, verify this complete bundle with Python 3.9+:\n\n"
             "```bash\npython3 -B scripts/package_release.py verify --bundle /absolute/path/to/bundle\n```\n\n"
             "Verification uses temporary files and no Git, network or maintainer state.\n"
             "The optional course initializer needs Python; manual copying remains supported.\n"
             "Repository/Space creation, mappings, access and publication are separate\n"
-            "user-controlled steps. App is MIT; Docs is CC BY 4.0. Instructor and student\n"
+            "user-controlled steps. Original App code/template is MIT; docs/user/ and its adapted checker\n"
+            "are CC BY 4.0. Instructor and student\n"
             "content remains outside these product ownership claims.\n").encode()
 
 
@@ -338,7 +326,8 @@ def checksums(payload):
 def assemble(payloads, sources):
     payload = {ARCHIVES[kind]: archive_bytes(kind, payloads[kind]) for kind in COMPONENTS}
     payload["START-HERE.md"] = start_here(sources)
-    manifest = {"schema": "asteach-release/v1", "status": "private-release-candidate",
+    manifest = {"schema": "asteach-release/v2", "status": "private-release-candidate",
+                "app_version": init.VERSION, "docs_version": init.DOCS_VERSION,
                 "native_acceptance": "pending", "publication": "pending", "sources": sources,
                 "assets": [init.record(name, payload[name]) for name in ASSETS],
                 "self_excluded": ["RELEASE-MANIFEST.json", "SHA256SUMS.txt"]}
@@ -348,10 +337,15 @@ def assemble(payloads, sources):
 
 
 def verify_bundle_bytes(payload):
+    if "RELEASE-MANIFEST.json" in payload:
+        legacy = parse_json(payload["RELEASE-MANIFEST.json"])
+        if isinstance(legacy, dict) and legacy.get("schema") == "asteach-release/v1":
+            raise ReleaseError(LEGACY_MESSAGE)
     if set(payload) != set(BUNDLE_FILES):
-        raise ReleaseError("bundle must contain exactly the five release files")
+        raise ReleaseError("bundle must contain exactly the four release files")
     manifest = parse_json(payload["RELEASE-MANIFEST.json"])
-    fixed = {"schema": "asteach-release/v1", "status": "private-release-candidate",
+    fixed = {"schema": "asteach-release/v2", "status": "private-release-candidate",
+             "app_version": init.VERSION, "docs_version": init.DOCS_VERSION,
              "native_acceptance": "pending", "publication": "pending",
              "self_excluded": ["RELEASE-MANIFEST.json", "SHA256SUMS.txt"]}
     exact_fields(manifest, (*fixed, "sources", "assets"), "release manifest")
@@ -393,6 +387,10 @@ def smoke_initializer(exported):
                 raise ReleaseError("unpacked initializer failed: " + result.stderr.strip())
             return parse_json(result.stdout)
         run("verify")
+        docs_result = subprocess.run([sys.executable, "-B", str(app / "scripts/check_docs.py")],
+                                     cwd=base, env=environment, text=True, capture_output=True)
+        if docs_result.returncode or parse_json(docs_result.stdout).get("status") != "pass":
+            raise ReleaseError("unpacked user guide check failed: " + docs_result.stderr.strip())
         target = str(base / "fresh course")
         plan = run("plan", "--destination", target)
         applied = run("apply", "--destination", target, "--plan-id", plan["plan_id"])
@@ -405,8 +403,12 @@ def smoke_initializer(exported):
 def verify_bundle(bundle):
     bundle = init.inspect_path(bundle)
     files, directories = init.tree_inventory(bundle)
+    if "RELEASE-MANIFEST.json" in files:
+        metadata = parse_json(init.read_regular(bundle / "RELEASE-MANIFEST.json"))
+        if isinstance(metadata, dict) and metadata.get("schema") == "asteach-release/v1":
+            raise ReleaseError(LEGACY_MESSAGE)
     if files != set(BUNDLE_FILES) or directories:
-        raise ReleaseError("bundle must contain exactly five files and no directories")
+        raise ReleaseError("bundle must contain exactly four files and no directories")
     payload = {name: init.read_regular(bundle / name) for name in BUNDLE_FILES}
     exported, manifest = verify_bundle_bytes(payload)
     smoke_initializer(exported)
@@ -428,13 +430,11 @@ def output_path(parent, name, roots):
     return target
 
 
-def build(app_root, app_commit, docs_root, docs_commit, output_parent, output_name):
-    roots = {"app": init.inspect_path(app_root), "docs": init.inspect_path(docs_root)}
-    if roots["app"] == roots["docs"] or roots["app"] in roots["docs"].parents or roots["docs"] in roots["app"].parents:
-        raise ReleaseError("App and Docs must be two independent, non-overlapping Git roots")
+def build(app_root, app_commit, output_parent, output_name):
+    roots = {"app": init.inspect_path(app_root)}
     target = output_path(output_parent, output_name, roots.values())
     identity = {"device": target.parent.stat().st_dev, "inode": target.parent.stat().st_ino}
-    commits = {"app": app_commit, "docs": docs_commit}
+    commits = {"app": app_commit}
     payloads, sources = {}, {}
     for kind in COMPONENTS:
         payloads[kind], sources[kind] = pinned_source(roots[kind], commits[kind], kind)
@@ -454,18 +454,26 @@ def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     commands = parser.add_subparsers(dest="command", required=True)
     command = commands.add_parser("build", help="build exact clean source pins into a fresh directory")
-    for name in ("app-root", "app-commit", "docs-root", "docs-commit", "output-parent", "output-name"):
+    for name in ("app-root", "app-commit", "output-parent", "output-name"):
         command.add_argument("--" + name, required=True)
+    command.add_argument("--docs-root", help=argparse.SUPPRESS)
+    command.add_argument("--docs-commit", help=argparse.SUPPRESS)
     command = commands.add_parser("verify", help="verify a complete bundle and its unpacked initializer")
     command.add_argument("--bundle", required=True)
     command = commands.add_parser("refresh-app-manifest", help="refresh an explicitly edited positive App source inventory")
     command.add_argument("--app-root", required=True)
+    command = commands.add_parser("refresh-user-manifest", help="refresh the explicitly reviewed integrated guide inventory first")
+    command.add_argument("--app-root", required=True)
     args = parser.parse_args(argv)
     try:
         if args.command == "build":
-            result = build(args.app_root, args.app_commit, args.docs_root, args.docs_commit, args.output_parent, args.output_name)
+            if args.docs_root is not None or args.docs_commit is not None:
+                raise ReleaseError("Two-root builds are legacy v1. Use the original pinned v1 builder for old sources; v2 builds only the integrated App.")
+            result = build(args.app_root, args.app_commit, args.output_parent, args.output_name)
         elif args.command == "verify":
             result = verify_bundle(args.bundle)
+        elif args.command == "refresh-user-manifest":
+            result = refresh_user_manifest(args.app_root)
         else:
             result = refresh_app_manifest(args.app_root)
         print(json.dumps(result, indent=2, sort_keys=True))

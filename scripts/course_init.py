@@ -11,7 +11,24 @@ import stat
 import sys
 
 VERSION = "v0.1"
+DOCS_VERSION = "v0.1.1"
+CREATOR = "SONG Chaoyang (songcy@ieee.org) @ Design and Learning Research Group (https://AncoraSIR.com)"
 MANIFEST = "APP-MANIFEST.json"
+USER_ROOT = "docs/user"
+USER_MANIFEST = "DOCS-MANIFEST.json"
+USER_PAGES = (
+    "README.md", "getting-started.md", "setup-gitbook.md", "one-page-course.md",
+    "course-home-reference.md", "schedule-and-deadlines.md", "calendar-and-files.md",
+    "review-and-sharing.md", "troubleshooting.md", "version-and-scope.md",
+)
+USER_ASSETS = (
+    "01-course-overview.svg", "02-setup-mapping.svg", "03-resource-ownership.svg",
+    "04-title-description.svg", "05-calendar-alt.svg", "06-save-review.svg",
+)
+USER_FILES = tuple(sorted(USER_PAGES + (
+    ".gitbook.yaml", "SUMMARY.md", "assets/manifest.json", "LICENSE.md",
+    "LICENSES/CC-BY-4.0.txt", "VERSION.json", "CHANGELOG.md",
+) + tuple("assets/" + name for name in USER_ASSETS)))
 RESOURCES = (
     "course-description", "teaching-goals", "learning-outcomes", "content-summary",
     "assumed-knowledge", "teaching-team", "grading-policy", "academic-integrity",
@@ -26,8 +43,11 @@ APP_FILES = tuple(sorted((
     "VERSION", "CHANGELOG.md", "PROVENANCE.md", "course-template/README.md",
     "course-template/AGENTS.md", "docs/one-page-course.md", "docs/initializer.md",
     "scripts/course_init.py", "scripts/package_release.py", "docs/release-packaging.md",
+    "docs/technical/one-page-course.md", "docs/technical/initializer.md",
+    "docs/technical/release-packaging.md", "scripts/check_docs.py", "tests/test_docs.py",
     "tests/test_course_init.py", "tests/test_template.py", "tests/test_package_release.py",
-) + tuple("templates/one-page/" + path for path in TEMPLATE_FILES)))
+) + tuple("templates/one-page/" + path for path in TEMPLATE_FILES)
+  + tuple(USER_ROOT + "/" + path for path in USER_FILES + (USER_MANIFEST,))))
 
 
 class InitError(Exception):
@@ -44,6 +64,49 @@ def canonical(value):
 
 def record(path, data):
     return {"path": path, "size": len(data), "sha256": digest(data)}
+
+
+def app_metadata():
+    return {"schema": "asteach-app-source/v3", "app_version": VERSION,
+            "docs_version": DOCS_VERSION, "status": "release-candidate",
+            "commit_binding": "external-release-manifest", "manifest_self_exclusion": MANIFEST,
+            "license": "MIT", "license_overrides": {USER_ROOT + "/": "CC-BY-4.0",
+                                                       "scripts/check_docs.py": "CC-BY-4.0"}}
+
+
+def user_metadata():
+    return {"schema_version": 3, "component": "asTeach-User-Guide",
+            "status": "release-candidate", "docs_version": DOCS_VERSION,
+            "app_version": VERSION, "commit_binding": "external-release-manifest",
+            "content_root": USER_ROOT + "/", "license": "CC-BY-4.0", "creator": CREATOR,
+            "self_excluded": [USER_MANIFEST]}
+
+
+def user_version():
+    return {"schema_version": 3, "component": "asTeach-User-Guide", "docs_version": DOCS_VERSION,
+            "for_app_version": VERSION, "creator": CREATOR, "status": "release-candidate",
+            "commit_binding": "external-release-manifest", "native_acceptance": "pending",
+            "license": "CC-BY-4.0", "content_root": USER_ROOT + "/",
+            "guide_page_count": 10, "schematic_figure_count": 6}
+
+
+def verify_user_source(payload):
+    """Check the guide component independently within the positive App payload."""
+    prefix = USER_ROOT + "/"
+    guide = {name[len(prefix):]: data for name, data in payload.items() if name.startswith(prefix)}
+    if set(guide) != set(USER_FILES) | {USER_MANIFEST}:
+        raise InitError("user guide inventory mismatch")
+    try:
+        metadata = json.loads(guide[USER_MANIFEST], object_pairs_hook=reject_duplicates)
+        version = json.loads(guide["VERSION.json"], object_pairs_hook=reject_duplicates)
+    except (ValueError, UnicodeError) as error:
+        raise InitError("invalid user guide metadata: " + str(error))
+    expected = user_metadata()
+    expected["files"] = [dict(record(name, guide[name]), mode="0644") for name in USER_FILES]
+    # Canonical bytes distinguish booleans from numbers in nested metadata.
+    if canonical(metadata) != canonical(expected) or canonical(version) != canonical(user_version()):
+        raise InitError("user guide version, manifest or checksum mismatch")
+    return digest(guide[USER_MANIFEST])
 
 
 def reject_duplicates(pairs):
@@ -143,16 +206,10 @@ def verify_app(root):
         metadata = json.loads(manifest_bytes, object_pairs_hook=reject_duplicates)
     except (ValueError, UnicodeError) as error:
         raise InitError("invalid App manifest: " + str(error))
-    fields = {"schema", "app_version", "docs_version", "status", "commit_binding",
-              "manifest_self_exclusion", "license", "files"}
+    fields = set(app_metadata()) | {"files"}
     if not isinstance(metadata, dict) or set(metadata) != fields:
         raise InitError("unsupported App manifest fields")
-    expected_metadata = {
-        "schema": "asteach-app-source/v2", "app_version": VERSION,
-        "docs_version": "v0.1.1", "status": "release-candidate",
-        "commit_binding": "external-release-manifest",
-        "manifest_self_exclusion": MANIFEST, "license": "MIT",
-    }
+    expected_metadata = app_metadata()
     if any(metadata[key] != value for key, value in expected_metadata.items()):
         raise InitError("unsupported version, status or provenance metadata")
     entries = metadata["files"]
@@ -170,6 +227,7 @@ def verify_app(root):
     snapshot = {path: read_regular(root / path) for path in APP_FILES}
     if entries != [record(path, snapshot[path]) for path in APP_FILES]:
         raise InitError("App checksum mismatch; preserve source and obtain a verified package")
+    verify_user_source(snapshot)
     return snapshot, digest(manifest_bytes)
 
 

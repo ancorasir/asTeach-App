@@ -37,18 +37,6 @@ def fixture_commit(root):
     return fixture_git(root, "rev-parse", "HEAD").decode().strip()
 
 
-def fixture_docs(root):
-    root.mkdir()
-    for name in release.DOCS_FILES:
-        path = root / name
-        path.parent.mkdir(parents=True, exist_ok=True)
-        path.write_bytes(("Synthetic fixture: " + name + "\n").encode())
-    (root / "VERSION.json").write_bytes(release.json_bytes(release.docs_version()))
-    metadata = release.docs_metadata()
-    metadata["files"] = [dict(release.init.record(name, (root / name).read_bytes()), mode="0644") for name in release.DOCS_FILES]
-    (root / release.DOCS_MANIFEST).write_bytes(release.json_bytes(metadata))
-
-
 class PackagingTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
@@ -57,15 +45,16 @@ class PackagingTests(unittest.TestCase):
         cls.fixture_app = cls.fixture_root / "app"
         cls.fixture_docs = cls.fixture_root / "docs"
         shutil.copytree(ROOT, cls.fixture_app, ignore=shutil.ignore_patterns(".git"))
-        fixture_docs(cls.fixture_docs)
+        # A second disposable repository is an adversarial Git-redirection target,
+        # never a release input or a developer source dependency.
+        shutil.copytree(ROOT, cls.fixture_docs, ignore=shutil.ignore_patterns(".git"))
         for root in (cls.fixture_app, cls.fixture_docs):
             fixture_git(root, "init", "--quiet")
         cls.app_commit = fixture_commit(cls.fixture_app)
         cls.docs_commit = fixture_commit(cls.fixture_docs)
-        cls.payloads = {"app": release.read_source(cls.fixture_app, "app"),
-                        "docs": release.read_source(cls.fixture_docs, "docs")}
+        cls.payloads = {"app": release.read_source(cls.fixture_app, "app")}
         cls.sources = {kind: release.pinned_source(root, commit, kind)[1]
-                       for kind, root, commit in (("app", cls.fixture_app, cls.app_commit), ("docs", cls.fixture_docs, cls.docs_commit))}
+                       for kind, root, commit in (("app", cls.fixture_app, cls.app_commit),)}
         cls.bundle_bytes = release.assemble(cls.payloads, cls.sources)
 
     @classmethod
@@ -84,8 +73,8 @@ class PackagingTests(unittest.TestCase):
         self.temporary.cleanup()
 
     def build(self, **changes):
-        args = dict(app_root=self.app, app_commit=self.app_commit, docs_root=self.docs,
-                    docs_commit=self.docs_commit, output_parent=self.base, output_name="bundle")
+        args = dict(app_root=self.app, app_commit=self.app_commit,
+                    output_parent=self.base, output_name="bundle")
         args.update(changes)
         return release.build(**args)
 
@@ -105,18 +94,20 @@ class PackagingTests(unittest.TestCase):
         return fixture_commit(root)
 
     def test_real_git_tree_hash_and_exact_source_export(self):
-        for kind, root, commit in (("app", self.app, self.app_commit), ("docs", self.docs, self.docs_commit)):
+        for kind, root, commit in (("app", self.app, self.app_commit),):
             payload, source = release.pinned_source(root, commit, kind)
             self.assertEqual(source["commit"], commit)
             self.assertEqual(source["tree"], fixture_git(root, "rev-parse", "HEAD^{tree}").decode().strip())
             self.assertEqual(set(payload), set(release.COMPONENTS[kind][3]) | {release.COMPONENTS[kind][2]})
             self.assertFalse(any(".git" in Path(name).parts for name in payload))
 
-    def test_build_deterministic_five_files_and_native_pending(self):
+    def test_build_deterministic_four_files_and_native_pending(self):
         first = self.build()
         second = self.build(output_name="second")
         one, two = Path(first["destination"]), Path(second["destination"])
         self.assertEqual(sorted(p.name for p in one.iterdir()), list(release.BUNDLE_FILES))
+        self.assertEqual(len(release.BUNDLE_FILES), 4)
+        self.assertEqual(set(release.ARCHIVES), {"app"})
         for name in release.BUNDLE_FILES:
             self.assertEqual((one / name).read_bytes(), (two / name).read_bytes())
         checked = release.verify_bundle(one)
@@ -186,10 +177,10 @@ class PackagingTests(unittest.TestCase):
         with self.assertRaises(release.ReleaseError):
             self.build()
 
-    def test_same_nested_and_nonroot_sources_refused(self):
-        for root in (self.app, self.app / "docs", self.base):
+    def test_nested_and_nonroot_sources_refused(self):
+        for root in (self.app / "docs", self.app / "docs/user", self.base):
             with self.subTest(root=root), self.assertRaises(release.ReleaseError):
-                self.build(docs_root=root)
+                self.build(app_root=root)
 
     def test_worktree_metadata_file_and_alternate_objects_refused(self):
         metadata = self.app / ".git"
@@ -207,8 +198,7 @@ class PackagingTests(unittest.TestCase):
         objects = self.app / ".git/objects"
         preserved = self.base / "preserved-app-objects"
         objects.rename(preserved)
-        shutil.copytree(preserved, self.docs / ".git/objects", dirs_exist_ok=True)
-        objects.symlink_to(self.docs / ".git/objects", target_is_directory=True)
+        objects.symlink_to(preserved, target_is_directory=True)
         with mock.patch.object(release, "git", side_effect=AssertionError("must reject before Git")):
             with self.assertRaises(release.ReleaseError):
                 self.build()
@@ -249,11 +239,11 @@ class PackagingTests(unittest.TestCase):
         with self.assertRaisesRegex(release.ReleaseError, "index is dirty"):
             self.build()
 
-    def test_unstaged_mode_drift_in_both_sources_and_manifests_refused(self):
-        for root, kind in ((self.app, "app"), (self.docs, "docs")):
+    def test_unstaged_mode_drift_in_source_guide_and_manifests_refused(self):
+        for root, kind in ((self.app, "app"),):
             for filemode in ("true", "false"):
                 fixture_git(root, "config", "core.filemode", filemode)
-                for name in ("README.md", release.COMPONENTS[kind][2]):
+                for name in ("README.md", release.init.MANIFEST, "docs/user/README.md", "docs/user/DOCS-MANIFEST.json"):
                     path = root / name
                     original = path.read_bytes()
                     os.chmod(path, 0o755)
@@ -293,12 +283,12 @@ class PackagingTests(unittest.TestCase):
         os.chmod(self.docs / "README.md", 0o755)
         commit = fixture_commit(self.docs)
         with self.assertRaises(release.ReleaseError):
-            release.pinned_source(self.docs, commit, "docs")
+            release.pinned_source(self.docs, commit, "app")
 
     def test_source_manifest_version_commit_and_acceptance_mutations_refused(self):
         mutations = (("app", "status", "released"), ("app", "app_commit", "a" * 40),
-                     ("app", "docs_version", "v0.2"), ("docs", "schema_version", True),
-                     ("docs", "docs_version", "v0.1"), ("docs", "docs_commit", None))
+                     ("app", "docs_version", "v0.2"), ("app", "schema", True),
+                     ("app", "license_overrides", {}), ("app", "docs_commit", None))
         for kind, key, value in mutations:
             payload = dict(self.payloads[kind])
             name = release.COMPONENTS[kind][2]
@@ -309,15 +299,19 @@ class PackagingTests(unittest.TestCase):
                 release.verify_source_bytes(kind, payload)
 
     def test_docs_version_mismatch_even_with_refreshed_inventory_refused(self):
-        payload = dict(self.payloads["docs"])
-        version = json.loads(payload["VERSION.json"])
+        payload = dict(self.payloads["app"])
+        version = json.loads(payload["docs/user/VERSION.json"])
         version["native_acceptance"] = "accepted"
-        payload["VERSION.json"] = release.json_bytes(version)
-        metadata = release.docs_metadata()
-        metadata["files"] = [dict(release.init.record(name, payload[name]), mode="0644") for name in release.DOCS_FILES]
-        payload[release.DOCS_MANIFEST] = release.json_bytes(metadata)
+        payload["docs/user/VERSION.json"] = release.json_bytes(version)
+        metadata = release.init.user_metadata()
+        metadata["files"] = [dict(release.init.record(name, payload["docs/user/" + name]), mode="0644")
+                             for name in release.init.USER_FILES]
+        payload["docs/user/DOCS-MANIFEST.json"] = release.json_bytes(metadata)
+        metadata = release.app_metadata()
+        metadata["files"] = [release.init.record(name, payload[name]) for name in release.init.APP_FILES]
+        payload[release.init.MANIFEST] = release.json_bytes(metadata)
         with self.assertRaises(release.ReleaseError):
-            release.verify_source_bytes("docs", payload)
+            release.verify_source_bytes("app", payload)
 
     def test_output_collision_and_out_of_scope_names_refused(self):
         target = self.base / "bundle"
@@ -357,7 +351,7 @@ class PackagingTests(unittest.TestCase):
         real = release.smoke_initializer
         def changed(exported):
             real(exported)
-            (self.docs / "README.md").write_text("New concurrent edit")
+            (self.app / "README.md").write_text("New concurrent edit")
         with mock.patch.object(release, "smoke_initializer", side_effect=changed):
             with self.assertRaises(release.ReleaseError):
                 self.build()
@@ -443,13 +437,44 @@ class PackagingTests(unittest.TestCase):
         result = subprocess.run(command + ["verify", "--bundle", str(bundle)], capture_output=True, text=True)
         self.assertEqual(result.returncode, 0, result.stderr)
         result = subprocess.run(command + ["build", "--app-root", str(self.app), "--app-commit", self.app_commit,
-                                          "--docs-root", str(self.docs), "--docs-commit", self.docs_commit,
                                           "--output-parent", str(self.base), "--output-name", "cli-bundle"], capture_output=True, text=True)
         self.assertEqual(result.returncode, 0, result.stderr)
+        result = subprocess.run(command + ["build", "--app-root", str(self.app), "--app-commit", self.app_commit,
+                                          "--docs-root", str(self.docs), "--docs-commit", self.docs_commit,
+                                          "--output-parent", str(self.base), "--output-name", "legacy"], capture_output=True, text=True)
+        self.assertEqual(result.returncode, 2)
+        self.assertIn("Two-root builds are legacy v1", result.stderr)
+        self.assertFalse((self.base / "legacy").exists())
         result = subprocess.run(command + ["verify", "--bundle", str(self.base / "missing")], capture_output=True, text=True)
         self.assertEqual(result.returncode, 2)
         for mode in ("publish", "release", "accept", "tag"):
             self.assertEqual(subprocess.run(command + [mode], capture_output=True).returncode, 2)
+
+    def test_legacy_bundle_is_identified_before_inventory_failure(self):
+        payload = {"RELEASE-MANIFEST.json": b'{"schema":"asteach-release/v1"}',
+                   "asTeach-Docs-v0.1.1.zip": b"untrusted legacy placeholder"}
+        with self.assertRaisesRegex(release.ReleaseError, "trusted.*original App ZIP"):
+            release.verify_bundle_bytes(payload)
+        bundle = self.write_bundle(payload, name="legacy")
+        with self.assertRaisesRegex(release.ReleaseError, "trusted.*original App ZIP"):
+            release.verify_bundle(bundle)
+
+    def test_packaging_has_no_dependency_on_private_development_repository(self):
+        shutil.rmtree(self.docs)
+        self.assertEqual(self.build()["status"], "created")
+
+    def test_user_manifest_refresh_rejects_unknown_and_version_drift(self):
+        path = self.app / "docs/user/private-note.md"
+        path.write_text("Synthetic unapproved candidate")
+        with self.assertRaisesRegex(release.ReleaseError, "unknown user guide"):
+            release.refresh_user_manifest(self.app)
+        path.unlink()
+        path = self.app / "docs/user/VERSION.json"
+        value = json.loads(path.read_bytes())
+        value["docs_version"] = "v0.2"
+        path.write_bytes(release.json_bytes(value))
+        with self.assertRaisesRegex(release.ReleaseError, "version metadata mismatch"):
+            release.refresh_user_manifest(self.app)
 
 
 if __name__ == "__main__":

@@ -27,6 +27,15 @@ class TemplateTests(unittest.TestCase):
         self.assertEqual(len(files), 16)
         self.assertEqual(directories, init.parent_paths(files))
 
+    def test_initialized_workspace_preserves_original_v01_bytes(self):
+        # Canonical record digest from App a735bf349d14d146ae6936441ff1cde890ffee98.
+        snapshot, _ = init.verify_app(ROOT)
+        payload = init.workspace_payload(snapshot)
+        records = [init.record(name, payload[name]) for name in sorted(payload)]
+        self.assertEqual(len(records), 19)
+        self.assertEqual(init.digest(init.canonical(records)),
+                         "a415acb23e513e6a502ac1f73122153c5f4057d097b677cc3e7630b4361afcd4")
+
     def test_thirteen_sections_and_twelve_ordered_includes(self):
         home = (TEMPLATE / "README.md").read_text()
         self.assertEqual(tuple(re.findall(r"^## (.+)$", home, re.M)), HEADINGS)

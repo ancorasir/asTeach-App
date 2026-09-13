@@ -1,0 +1,154 @@
+{
+  "app_version": "v0.1",
+  "commit_binding": "external-release-manifest",
+  "component": "asTeach-User-Guide",
+  "content_root": "docs/user/",
+  "creator": "SONG Chaoyang (songcy@ieee.org) @ Design and Learning Research Group (https://AncoraSIR.com)",
+  "docs_version": "v0.1.1",
+  "files": [
+    {
+      "mode": "0644",
+      "path": ".gitbook.yaml",
+      "sha256": "8f449ea9886de4357193691e88ed8b92bd6aec464e1c78b0e9c29815c502f10f",
+      "size": 62
+    },
+    {
+      "mode": "0644",
+      "path": "CHANGELOG.md",
+      "sha256": "70c5e541f7a3f61d8de0512551c56e9be54e2867cd114e06e23b3c054518db34",
+      "size": 1915
+    },
+    {
+      "mode": "0644",
+      "path": "LICENSE.md",
+      "sha256": "5b98add67547ae72cddadd2b1bedc08798fa1089c39f1d6d6f72c69fef7d1d58",
+      "size": 2134
+    },
+    {
+      "mode": "0644",
+      "path": "LICENSES/CC-BY-4.0.txt",
+      "sha256": "9ba9550ad48438d0836ddab3da480b3b69ffa0aac7b7878b5a0039e7ab429411",
+      "size": 18657
+    },
+    {
+      "mode": "0644",
+      "path": "README.md",
+      "sha256": "99b37162520bfde53fc3257d3e63fa945a11cc1919d8e4ab1078981b928da63b",
+      "size": 2114
+    },
+    {
+      "mode": "0644",
+      "path": "SUMMARY.md",
+      "sha256": "c9b5390e44f24ac0d192e87bffb6051d796bdb0e1371d132c2a94e54d724b6b9",
+      "size": 443
+    },
+    {
+      "mode": "0644",
+      "path": "VERSION.json",
+      "sha256": "72627d1d8583510bc6c8024efa61328e812a212ed38d38956c9233b6141f8642",
+      "size": 460
+    },
+    {
+      "mode": "0644",
+      "path": "assets/01-course-overview.svg",
+      "sha256": "4da1b9c3f171cdc16714b6bf5e5f390f5645876c331452b20723fb01ae6bb324",
+      "size": 3009
+    },
+    {
+      "mode": "0644",
+      "path": "assets/02-setup-mapping.svg",
+      "sha256": "048133167fd92dd1b21b864d471b723c7f5e1a9c056e8fe28cbd3f4883f6f688",
+      "size": 3112
+    },
+    {
+      "mode": "0644",
+      "path": "assets/03-resource-ownership.svg",
+      "sha256": "4bbe488a40a5894b1f85e7eb849d8503c5a1ce9a6ec032a4b4919c214984f164",
+      "size": 3161
+    },
+    {
+      "mode": "0644",
+      "path": "assets/04-title-description.svg",
+      "sha256": "79e2e8a9066747780c35da6075939dd56ba06fef76cb22a42e80ffae6702dec6",
+      "size": 3035
+    },
+    {
+      "mode": "0644",
+      "path": "assets/05-calendar-alt.svg",
+      "sha256": "aa7e54da183c3cedc57d8f54932e388689fe63769823fc842b145017a54f3128",
+      "size": 3123
+    },
+    {
+      "mode": "0644",
+      "path": "assets/06-save-review.svg",
+      "sha256": "c168e093da61461a5b9873a2741ce33e1fc37b8e6e1d53ba7ef3675ef71876e2",
+      "size": 3102
+    },
+    {
+      "mode": "0644",
+      "path": "assets/manifest.json",
+      "sha256": "12a2ed0c579ccffdbba8c7a572c2f3164b279bd1b26cf9439db058bc6db6c14c",
+      "size": 5322
+    },
+    {
+      "mode": "0644",
+      "path": "calendar-and-files.md",
+      "sha256": "98edec3c650e70fdd3a079121fe6e4694076e29893e9ef586c880a69af31b901",
+      "size": 2869
+    },
+    {
+      "mode": "0644",
+      "path": "course-home-reference.md",
+      "sha256": "4fc47a75bda23e5f01f9131400b857e788a927e66b69751c37852555a95b55e2",
+      "size": 3097
+    },
+    {
+      "mode": "0644",
+      "path": "getting-started.md",
+      "sha256": "9877612e2f37029709f9536c3c412a5401d5fe83b0ad22d65f591fc5123e4db7",
+      "size": 2789
+    },
+    {
+      "mode": "0644",
+      "path": "one-page-course.md",
+      "sha256": "95d228f4a493eec8356f461bbf460f8253fa8e2bc1a9a455b3a44a03354b6c28",
+      "size": 3690
+    },
+    {
+      "mode": "0644",
+      "path": "review-and-sharing.md",
+      "sha256": "eb72c948b5fcbb114e6180814fde0eb329667394c95ef0604cf04c4224f0afd0",
+      "size": 2844
+    },
+    {
+      "mode": "0644",
+      "path": "schedule-and-deadlines.md",
+      "sha256": "d6388bb7b8a2e5f933e79db5effbf1816bfd06faf9f1aae4a6634f638a255dce",
+      "size": 2181
+    },
+    {
+      "mode": "0644",
+      "path": "setup-gitbook.md",
+      "sha256": "14457538d23efd9bb25891c75615e9e5ac04a7d3c170043b063a1f2b51e50b65",
+      "size": 6217
+    },
+    {
+      "mode": "0644",
+      "path": "troubleshooting.md",
+      "sha256": "f35227c712b1915c8b8c868fedd5bc7a406846ec20cdf26a4295d45531318a87",
+      "size": 3425
+    },
+    {
+      "mode": "0644",
+      "path": "version-and-scope.md",
+      "sha256": "db6b3fc7aef91c0ec63991925dba5201a1ae5a70343a2b6fe41b08c3dccc333a",
+      "size": 4281
+    }
+  ],
+  "license": "CC-BY-4.0",
+  "schema_version": 3,
+  "self_excluded": [
+    "DOCS-MANIFEST.json"
+  ],
+  "status": "release-candidate"
+}

@@ -1,13 +1,24 @@
 # Source provenance — App v0.1 candidate
 
 Creator: SONG Chaoyang ([songcy@ieee.org](mailto:songcy@ieee.org)) @ Design and Learning Research Group ([https://AncoraSIR.com](https://AncoraSIR.com)).
-Prepared 2026-09-13. App v0.1 pairs with asTeach Docs v0.1.1.
+Prepared 2026-09-13; integrated distribution revised 2026-09-14.
+App v0.1 includes asTeach Docs v0.1.1.
+
+The integration starts from App commit
+`a735bf349d14d146ae6936441ff1cde890ffee98` and the user guide from
+`667da2dc848774dda6aa556ad68740987b08c190`. These are historical origins, not
+the new source's own commit or a claim that changed files retain old hashes.
+The guide's pages, local schematics, attribution and full license have been
+integrated under `docs/user/`; paths, metadata and packaging prose were revised.
+Original schematic and legal-code bytes remain unchanged. App technical guides
+now live in `docs/technical/` with references at their previous paths. The course
+template and complete nineteen-file initialized workspace remain byte-identical.
 
 This release-candidate source was prepared without copied Git history.
 APP-MANIFEST.json records every source payload file's size and SHA-256 and
 explicitly excludes itself. It has no own-commit or baseline-commit requirement.
-An external RELEASE-MANIFEST.json records exact App/Docs commits, exported Git
-tree hashes and archive hashes after the source is committed. This avoids a
+An external RELEASE-MANIFEST.json records the exact integrated App commit, exported Git
+tree hash and archive hash after the source is committed. This avoids a
 circular requirement for a source commit to contain its own hash. Source changes
 require refreshed manifests and review before another pinned build. Native
 acceptance, tags and publication remain separate pending gates.
@@ -41,20 +52,24 @@ dates. The template's link is source-relative and self-contained; native GitBook
 download behavior remains a separate acceptance test.
 
 The initializer, focused tests, offline packager, metadata and concise instructions
-were written for this candidate. They contain no previous generator, publisher,
+were written for this candidate and revised for the integrated guide. They contain no previous generator, publisher,
 machine ownership database or future-feature runtime. The positive App inventory
 is fixed in scripts/course_init.py and APP-MANIFEST.json. Verification rejects
 extra files or directories except a checkout's opaque root `.git` metadata,
 which the initializer does not read or copy. The developer packager independently
-reads exact Git objects to validate clean source pins, then exports only the fixed
+reads exact Git objects to validate the clean App source pin, then exports only the fixed
 positive inventories. Archives contain no Git metadata or historical source.
-See [release packaging](docs/release-packaging.md) for portable verification.
+See [release packaging](docs/technical/release-packaging.md) for portable verification.
 
 The owner approved MIT for this App template, tooling and project-created
 workbook. The full terms are in LICENSE and are copied to each fresh workspace
 outside its mapped course directory. New instructor/student content is outside
-this source's ownership claim. The separate Docs guide uses its own stated
-license. Approval of these licenses does not assert that a release was published
+this source's ownership claim. The integrated [Docs user guide](docs/user/LICENSE.md)
+and its diagrams/supporting documentation use CC BY 4.0, including attribution
+and an integration change notice. The adapted `scripts/check_docs.py` retains
+the original Docs source's CC BY 4.0 license, with creator and changes in its
+header. Original App tooling and technical pages remain MIT. APP-MANIFEST
+explicitly records both exceptions. Approval of these licenses does not assert that a release was published
 or authorize a repository/Space visibility change.
 
 Local integrity, path and link checks cannot certify publisher authenticity,

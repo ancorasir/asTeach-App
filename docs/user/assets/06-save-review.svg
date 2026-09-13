@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 650" role="img" aria-labelledby="title description">
+  <title id="title">Check the saved result</title>
+  <desc id="description">Schematic: edit an owned reusable body, review changes, merge, reopen Home, and inspect the synchronized repository commit; audience settings determine who sees the result. This is a schematic, not a screenshot.</desc>
+  <rect width="680" height="650" fill="#f5f3ed"/>
+  <g font-family="Arial, Helvetica, sans-serif">
+    <text x="34" y="38" font-size="16" font-weight="700" letter-spacing="1.2" fill="#385a53">ASTEACH · SCHEMATIC</text>
+    <text x="34" y="83" font-size="31" font-weight="700" fill="#17372f">Check the saved result</text>
+    <rect x="34" y="115" width="612" height="88" rx="12" fill="#ffffff" stroke="#9dafaa" stroke-width="1.5"/>
+    <circle cx="66" cy="148" r="17" fill="#245e50"/>
+    <text x="66" y="154" text-anchor="middle" font-size="18" font-weight="700" fill="#ffffff">1</text>
+    <text x="100" y="150" font-size="24" font-weight="700" fill="#17372f">Edit the owned body</text>
+    <text x="100" y="180" font-size="21" fill="#314c45">Work in your course change request</text>
+    <path d="M 340 209 v 10 m -5 -4 l 5 5 l 5 -5" fill="none" stroke="#52766b" stroke-width="2"/>
+    <rect x="34" y="226" width="612" height="88" rx="12" fill="#ffffff" stroke="#9dafaa" stroke-width="1.5"/>
+    <circle cx="66" cy="259" r="17" fill="#245e50"/>
+    <text x="66" y="265" text-anchor="middle" font-size="18" font-weight="700" fill="#ffffff">2</text>
+    <text x="100" y="261" font-size="24" font-weight="700" fill="#17372f">Review, then merge</text>
+    <text x="100" y="291" font-size="21" fill="#314c45">Inspect the changed resources</text>
+    <path d="M 340 320 v 10 m -5 -4 l 5 5 l 5 -5" fill="none" stroke="#52766b" stroke-width="2"/>
+    <rect x="34" y="337" width="612" height="88" rx="12" fill="#ffffff" stroke="#9dafaa" stroke-width="1.5"/>
+    <circle cx="66" cy="370" r="17" fill="#245e50"/>
+    <text x="66" y="376" text-anchor="middle" font-size="18" font-weight="700" fill="#ffffff">3</text>
+    <text x="100" y="372" font-size="24" font-weight="700" fill="#17372f">Reopen Home</text>
+    <text x="100" y="402" font-size="21" fill="#314c45">Wait for content and images to load</text>
+    <path d="M 340 431 v 10 m -5 -4 l 5 5 l 5 -5" fill="none" stroke="#52766b" stroke-width="2"/>
+    <rect x="34" y="448" width="612" height="88" rx="12" fill="#ffffff" stroke="#9dafaa" stroke-width="1.5"/>
+    <circle cx="66" cy="481" r="17" fill="#245e50"/>
+    <text x="66" y="487" text-anchor="middle" font-size="18" font-weight="700" fill="#ffffff">4</text>
+    <text x="100" y="483" font-size="24" font-weight="700" fill="#17372f">Inspect the synced commit</text>
+    <text x="100" y="513" font-size="21" fill="#314c45">Confirm saved source and audience</text>
+    <text x="34" y="596" font-size="17" fill="#314c45">App v0.1 · Docs v0.1.1 · Local candidate</text>
+    <text x="34" y="623" font-size="17" fill="#314c45">Not a screenshot. Native acceptance is pending.</text>
+  </g>
+</svg>

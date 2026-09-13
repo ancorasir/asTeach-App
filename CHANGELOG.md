@@ -27,3 +27,12 @@ No published release, immutable tag or fresh hosted acceptance is claimed.
 - Offline deterministic paired ZIP assembly validates exact clean Git pins and
   complete positive inventories, with portable bundle/initializer verification.
 - Native acceptance and publication remain pending; no hosted action is performed.
+# Combined source distribution — 2026-09-14
+
+App v0.1 now includes the Docs v0.1.1 user guide and its six original schematics
+under `docs/user/`, with technical references under `docs/technical/`. Original
+technical URLs retain concise linked references. One App archive replaces the
+paired-source distribution, with source schema v3 and release schema v2, explicit
+MIT/CC BY 4.0 scope and portable nested-guide verification. The sixteen template
+files and nineteen generated course-workspace files remain unchanged. Prior
+candidate packages stay immutable; native acceptance and publication are pending.

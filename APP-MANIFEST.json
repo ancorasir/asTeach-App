@@ -10,13 +10,13 @@
     },
     {
       "path": "AGENTS.md",
-      "sha256": "90c45252d3441e8bf618d4aaf36dc9319afdd5675865d545e9f04f032a4c29c7",
-      "size": 1391
+      "sha256": "6de25aa4c2e0fa6839846d11028cb21ddc3635098375d43d322aa09c37f98456",
+      "size": 2221
     },
     {
       "path": "CHANGELOG.md",
-      "sha256": "e54dc19cb0e6841423c60d58fb935182b3a7593c20d5e38ea754a9a7545b4331",
-      "size": 1506
+      "sha256": "1f86828ac090ba53b36519eca51f08a636e5c486fc42cb9b16a1f755c5480370",
+      "size": 2113
     },
     {
       "path": "LICENSE",
@@ -25,18 +25,18 @@
     },
     {
       "path": "PROVENANCE.md",
-      "sha256": "1a17a03790b43b4bb3a3fe7fee6cbb64447856ffc47133279c1fd10dcbc39a01",
-      "size": 4012
+      "sha256": "db9b5a218944632a3af609438557e54ee0bb8d303e327e36be3eb921a92879f2",
+      "size": 5121
     },
     {
       "path": "README.md",
-      "sha256": "6474be29058403e7fdfe0a55c9a0684ebf88b46438745791c77953dedf01274e",
-      "size": 2188
+      "sha256": "bc1551229c2d9e51505214d810548fe56349bdcf81d1c34c08be96dd0b1461b1",
+      "size": 2611
     },
     {
       "path": "START-HERE.md",
-      "sha256": "38f01455aa12924af1d799096a1fd68ded703f9a39d3971481d6e8808f6962c6",
-      "size": 4260
+      "sha256": "517e4710e96df30aa730ff113faad558215af5b7eca023e1927a278282bb60c4",
+      "size": 4376
     },
     {
       "path": "VERSION",
@@ -55,28 +55,168 @@
     },
     {
       "path": "docs/initializer.md",
-      "sha256": "cc0b152edc89b6fde360d1ccc724ce84b29f3a6e04580c8f51d033470cfc8b0e",
-      "size": 3313
+      "sha256": "7d40b073456b2e2fe793d4328df01e328db56d1d8a2fc60240a4f8c0635cc422",
+      "size": 336
     },
     {
       "path": "docs/one-page-course.md",
-      "sha256": "de11077e015026631989537aa87a6c8e417bb36e17b25adb3b7c691972121f2b",
-      "size": 2641
+      "sha256": "32fd20551a4a64f676048a6cab3d79db7dde522ea2dd3af6e19d8a2e9c438199",
+      "size": 355
     },
     {
       "path": "docs/release-packaging.md",
-      "sha256": "c490f940e979c354b484c871f57d8a84f745f9cf978342b712a75ec39204c89b",
-      "size": 5948
+      "sha256": "ac0f965320c65688fe20aecb11059bb7aa19a695564f4c233f5ae821ea630cd1",
+      "size": 330
+    },
+    {
+      "path": "docs/technical/initializer.md",
+      "sha256": "a6b0035654f70a332e4a3e817850287b65a7cfdc978782ee14157763a7e4ecde",
+      "size": 3310
+    },
+    {
+      "path": "docs/technical/one-page-course.md",
+      "sha256": "9435f0291feaf41158695089e55aa34b832108b3b04e318f9069817af9a7337b",
+      "size": 2668
+    },
+    {
+      "path": "docs/technical/release-packaging.md",
+      "sha256": "616d16103ea096008d25d6ad855e88ae2946ded7b4f52a07b1582736a48133cd",
+      "size": 6282
+    },
+    {
+      "path": "docs/user/.gitbook.yaml",
+      "sha256": "8f449ea9886de4357193691e88ed8b92bd6aec464e1c78b0e9c29815c502f10f",
+      "size": 62
+    },
+    {
+      "path": "docs/user/CHANGELOG.md",
+      "sha256": "70c5e541f7a3f61d8de0512551c56e9be54e2867cd114e06e23b3c054518db34",
+      "size": 1915
+    },
+    {
+      "path": "docs/user/DOCS-MANIFEST.json",
+      "sha256": "a40cb03dc99037c2ba0c2bb845ecfe1512fbcebc2f89e9010995ae2d58c606d5",
+      "size": 4477
+    },
+    {
+      "path": "docs/user/LICENSE.md",
+      "sha256": "5b98add67547ae72cddadd2b1bedc08798fa1089c39f1d6d6f72c69fef7d1d58",
+      "size": 2134
+    },
+    {
+      "path": "docs/user/LICENSES/CC-BY-4.0.txt",
+      "sha256": "9ba9550ad48438d0836ddab3da480b3b69ffa0aac7b7878b5a0039e7ab429411",
+      "size": 18657
+    },
+    {
+      "path": "docs/user/README.md",
+      "sha256": "99b37162520bfde53fc3257d3e63fa945a11cc1919d8e4ab1078981b928da63b",
+      "size": 2114
+    },
+    {
+      "path": "docs/user/SUMMARY.md",
+      "sha256": "c9b5390e44f24ac0d192e87bffb6051d796bdb0e1371d132c2a94e54d724b6b9",
+      "size": 443
+    },
+    {
+      "path": "docs/user/VERSION.json",
+      "sha256": "72627d1d8583510bc6c8024efa61328e812a212ed38d38956c9233b6141f8642",
+      "size": 460
+    },
+    {
+      "path": "docs/user/assets/01-course-overview.svg",
+      "sha256": "4da1b9c3f171cdc16714b6bf5e5f390f5645876c331452b20723fb01ae6bb324",
+      "size": 3009
+    },
+    {
+      "path": "docs/user/assets/02-setup-mapping.svg",
+      "sha256": "048133167fd92dd1b21b864d471b723c7f5e1a9c056e8fe28cbd3f4883f6f688",
+      "size": 3112
+    },
+    {
+      "path": "docs/user/assets/03-resource-ownership.svg",
+      "sha256": "4bbe488a40a5894b1f85e7eb849d8503c5a1ce9a6ec032a4b4919c214984f164",
+      "size": 3161
+    },
+    {
+      "path": "docs/user/assets/04-title-description.svg",
+      "sha256": "79e2e8a9066747780c35da6075939dd56ba06fef76cb22a42e80ffae6702dec6",
+      "size": 3035
+    },
+    {
+      "path": "docs/user/assets/05-calendar-alt.svg",
+      "sha256": "aa7e54da183c3cedc57d8f54932e388689fe63769823fc842b145017a54f3128",
+      "size": 3123
+    },
+    {
+      "path": "docs/user/assets/06-save-review.svg",
+      "sha256": "c168e093da61461a5b9873a2741ce33e1fc37b8e6e1d53ba7ef3675ef71876e2",
+      "size": 3102
+    },
+    {
+      "path": "docs/user/assets/manifest.json",
+      "sha256": "12a2ed0c579ccffdbba8c7a572c2f3164b279bd1b26cf9439db058bc6db6c14c",
+      "size": 5322
+    },
+    {
+      "path": "docs/user/calendar-and-files.md",
+      "sha256": "98edec3c650e70fdd3a079121fe6e4694076e29893e9ef586c880a69af31b901",
+      "size": 2869
+    },
+    {
+      "path": "docs/user/course-home-reference.md",
+      "sha256": "4fc47a75bda23e5f01f9131400b857e788a927e66b69751c37852555a95b55e2",
+      "size": 3097
+    },
+    {
+      "path": "docs/user/getting-started.md",
+      "sha256": "9877612e2f37029709f9536c3c412a5401d5fe83b0ad22d65f591fc5123e4db7",
+      "size": 2789
+    },
+    {
+      "path": "docs/user/one-page-course.md",
+      "sha256": "95d228f4a493eec8356f461bbf460f8253fa8e2bc1a9a455b3a44a03354b6c28",
+      "size": 3690
+    },
+    {
+      "path": "docs/user/review-and-sharing.md",
+      "sha256": "eb72c948b5fcbb114e6180814fde0eb329667394c95ef0604cf04c4224f0afd0",
+      "size": 2844
+    },
+    {
+      "path": "docs/user/schedule-and-deadlines.md",
+      "sha256": "d6388bb7b8a2e5f933e79db5effbf1816bfd06faf9f1aae4a6634f638a255dce",
+      "size": 2181
+    },
+    {
+      "path": "docs/user/setup-gitbook.md",
+      "sha256": "14457538d23efd9bb25891c75615e9e5ac04a7d3c170043b063a1f2b51e50b65",
+      "size": 6217
+    },
+    {
+      "path": "docs/user/troubleshooting.md",
+      "sha256": "f35227c712b1915c8b8c868fedd5bc7a406846ec20cdf26a4295d45531318a87",
+      "size": 3425
+    },
+    {
+      "path": "docs/user/version-and-scope.md",
+      "sha256": "db6b3fc7aef91c0ec63991925dba5201a1ae5a70343a2b6fe41b08c3dccc333a",
+      "size": 4281
+    },
+    {
+      "path": "scripts/check_docs.py",
+      "sha256": "680965424ecd4584036194a2a1f59ac28773633e461cc6f47cf7497a9644a5b5",
+      "size": 10507
     },
     {
       "path": "scripts/course_init.py",
-      "sha256": "1e58ad843b30dbeb7b3ed734941c9f7f7623d0582dd2297297fc2e3467e580ea",
-      "size": 14185
+      "sha256": "bccc4438a728b57300a6bdc722bd0676747fbcd234e30903452135f2f90b7bff",
+      "size": 17314
     },
     {
       "path": "scripts/package_release.py",
-      "sha256": "561099844fe804bfda04980a723ba1fae18f2fb2d1a75f8f913775e6ca0f1a42",
-      "size": 24961
+      "sha256": "93cde7a57ae099344d040a18e83e56a0719c7a9452a3f7bd764d20b98ad05143",
+      "size": 25400
     },
     {
       "path": "templates/one-page/.gitbook.yaml",
@@ -160,22 +300,31 @@
     },
     {
       "path": "tests/test_course_init.py",
-      "sha256": "7aa8dc136c8cf872b0ecb4fb4045e6b05f5de00f967d2a3f6794170f624bda1a",
+      "sha256": "993c1f9e4a2428f97403713720880fbb4ce5477badaa37e39797e1c4c779cdb9",
       "size": 14511
     },
     {
+      "path": "tests/test_docs.py",
+      "sha256": "3fb1e769b0be2aaba66abe8763490e7317eb2a0c453ce007275e0b6efd184108",
+      "size": 5247
+    },
+    {
       "path": "tests/test_package_release.py",
-      "sha256": "e1a58a85fb5597b44d9fb5c8f1e33d227de809bf1a19bb47ffaf406495d2b9f0",
-      "size": 23703
+      "sha256": "58b7a7bb0f9433256324da802ea8b10a8ca49619c5e24850cbeda9626b251870",
+      "size": 25293
     },
     {
       "path": "tests/test_template.py",
-      "sha256": "930c35f37e29671e6a90a736f10c8803ba4e065967ea11a7979377af303aecf5",
-      "size": 7129
+      "sha256": "0f0e7caf11b57ec3c734fe81d2efa41bee1e3afe0fc98ef92dd480a505baca8b",
+      "size": 7661
     }
   ],
   "license": "MIT",
+  "license_overrides": {
+    "docs/user/": "CC-BY-4.0",
+    "scripts/check_docs.py": "CC-BY-4.0"
+  },
   "manifest_self_exclusion": "APP-MANIFEST.json",
-  "schema": "asteach-app-source/v2",
+  "schema": "asteach-app-source/v3",
   "status": "release-candidate"
 }

@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "app_version": "v0.1",
+  "docs_version": "v0.1.1",
+  "status": "release-candidate",
+  "native_captures": [],
+  "assets": [
+    {
+      "path": "assets/01-course-overview.svg",
+      "kind": "original-svg-schematic",
+      "alt": "Schematic: one Home has a course title and term, thirteen sections, and twelve reusable blocks; Co-Requisite Courses is ordinary content.",
+      "caption": "Course structure schematic for App v0.1; not a GitBook screenshot or native-import evidence.",
+      "creator": "SONG Chaoyang (songcy@ieee.org) @ Design and Learning Research Group (https://AncoraSIR.com)",
+      "created": "2026-09-13",
+      "source": "Original diagram authored for this guide from the App v0.1 candidate contract; revised for Year Season term order; no native UI capture or third-party media.",
+      "license": "CC-BY-4.0",
+      "app_version": "v0.1",
+      "docs_version": "v0.1.1",
+      "native_evidence": false
+    },
+    {
+      "path": "assets/02-setup-mapping.svg",
+      "kind": "original-svg-schematic",
+      "alt": "Schematic: your repository contains three root records outside course; only course with its configuration, Home, navigation, includes and assets maps to the new restricted course Space.",
+      "caption": "The course repository maps only course/ into one restricted Space; repository-root notices and instructions stay outside the content mapping.",
+      "creator": "SONG Chaoyang (songcy@ieee.org) @ Design and Learning Research Group (https://AncoraSIR.com)",
+      "created": "2026-09-13",
+      "source": "Original diagram authored for this guide from the App v0.1 candidate contract; no native UI capture or third-party media.",
+      "license": "CC-BY-4.0",
+      "app_version": "v0.1",
+      "docs_version": "v0.1.1",
+      "native_evidence": false
+    },
+    {
+      "path": "assets/03-resource-ownership.svg",
+      "kind": "original-svg-schematic",
+      "alt": "Schematic: Home references twelve resources owned by the same course Space; Learning Outcomes has replaceable guidance in its reusable resource, while Co-Requisite Courses has guidance in ordinary Home content.",
+      "caption": "Each reusable block must be owned by the course destination; this is a schematic acceptance criterion, not proof of native ownership.",
+      "creator": "SONG Chaoyang (songcy@ieee.org) @ Design and Learning Research Group (https://AncoraSIR.com)",
+      "created": "2026-09-13",
+      "source": "Original diagram authored for this guide from the App v0.1 candidate contract; revised for replaceable Learning Outcomes and Co-Requisite Courses guidance; no native UI capture or third-party media.",
+      "license": "CC-BY-4.0",
+      "app_version": "v0.1",
+      "docs_version": "v0.1.1",
+      "native_evidence": false
+    },
+    {
+      "path": "assets/04-title-description.svg",
+      "kind": "original-svg-schematic",
+      "alt": "Schematic: the page title contains course code and name; the separate plain description contains year and season; navigation should show the course title.",
+      "caption": "Intended title, description and navigation parity; separate native Home-container acceptance is required.",
+      "creator": "SONG Chaoyang (songcy@ieee.org) @ Design and Learning Research Group (https://AncoraSIR.com)",
+      "created": "2026-09-13",
+      "source": "Original diagram authored for this guide from the App v0.1 candidate contract; revised for Year Season term order; no native UI capture or third-party media.",
+      "license": "CC-BY-4.0",
+      "app_version": "v0.1",
+      "docs_version": "v0.1.1",
+      "native_evidence": false
+    },
+    {
+      "path": "assets/05-calendar-alt.svg",
+      "kind": "original-svg-schematic",
+      "alt": "Schematic: customize the generic workbook locally, create an authorized readable calendar image, then add the image, alt text and equivalent dates as text to the calendar block.",
+      "caption": "Calendar preparation and accessibility workflow using instructor-supplied information; no institutional calendar or native UI is depicted.",
+      "creator": "SONG Chaoyang (songcy@ieee.org) @ Design and Learning Research Group (https://AncoraSIR.com)",
+      "created": "2026-09-13",
+      "source": "Original diagram authored for this guide from the App v0.1 candidate contract; no native UI capture or third-party media.",
+      "license": "CC-BY-4.0",
+      "app_version": "v0.1",
+      "docs_version": "v0.1.1",
+      "native_evidence": false
+    },
+    {
+      "path": "assets/06-save-review.svg",
+      "kind": "original-svg-schematic",
+      "alt": "Schematic: edit an owned reusable body, review changes, merge, reopen Home, and inspect the synchronized repository commit; audience settings determine who sees the result.",
+      "caption": "The intended edit, review, merge and verification cycle; the candidate's native saved round trip is pending.",
+      "creator": "SONG Chaoyang (songcy@ieee.org) @ Design and Learning Research Group (https://AncoraSIR.com)",
+      "created": "2026-09-13",
+      "source": "Original diagram authored for this guide from the App v0.1 candidate contract; no native UI capture or third-party media.",
+      "license": "CC-BY-4.0",
+      "app_version": "v0.1",
+      "docs_version": "v0.1.1",
+      "native_evidence": false
+    }
+  ]
+}
