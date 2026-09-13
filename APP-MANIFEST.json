@@ -1,0 +1,181 @@
+{
+  "app_version": "v0.1",
+  "commit_binding": "external-release-manifest",
+  "docs_version": "v0.1.1",
+  "files": [
+    {
+      "path": ".gitignore",
+      "sha256": "fa5b2d4433b835933b22140e01833a4972a0ee8532d76951286e3dd071994af0",
+      "size": 33
+    },
+    {
+      "path": "AGENTS.md",
+      "sha256": "90c45252d3441e8bf618d4aaf36dc9319afdd5675865d545e9f04f032a4c29c7",
+      "size": 1391
+    },
+    {
+      "path": "CHANGELOG.md",
+      "sha256": "e54dc19cb0e6841423c60d58fb935182b3a7593c20d5e38ea754a9a7545b4331",
+      "size": 1506
+    },
+    {
+      "path": "LICENSE",
+      "sha256": "5fe1f602c15c55f2f82cf658713c9ab1d45094a82402b686245f6eab633fe46c",
+      "size": 1149
+    },
+    {
+      "path": "PROVENANCE.md",
+      "sha256": "1a17a03790b43b4bb3a3fe7fee6cbb64447856ffc47133279c1fd10dcbc39a01",
+      "size": 4012
+    },
+    {
+      "path": "README.md",
+      "sha256": "6474be29058403e7fdfe0a55c9a0684ebf88b46438745791c77953dedf01274e",
+      "size": 2188
+    },
+    {
+      "path": "START-HERE.md",
+      "sha256": "38f01455aa12924af1d799096a1fd68ded703f9a39d3971481d6e8808f6962c6",
+      "size": 4260
+    },
+    {
+      "path": "VERSION",
+      "sha256": "8e19628b3df49a71a7fad320d9bd3b4c7db2078613e8eace735f39d1d9a5b801",
+      "size": 5
+    },
+    {
+      "path": "course-template/AGENTS.md",
+      "sha256": "0d347d4a66b84fb56f5f224b67bc37c6a0e950fea99556249bab22285ef1c516",
+      "size": 715
+    },
+    {
+      "path": "course-template/README.md",
+      "sha256": "b854a615c7ced76709ad59a725dadd12671c9d3972bba5a5d9a9dd242f418b4f",
+      "size": 1406
+    },
+    {
+      "path": "docs/initializer.md",
+      "sha256": "cc0b152edc89b6fde360d1ccc724ce84b29f3a6e04580c8f51d033470cfc8b0e",
+      "size": 3313
+    },
+    {
+      "path": "docs/one-page-course.md",
+      "sha256": "de11077e015026631989537aa87a6c8e417bb36e17b25adb3b7c691972121f2b",
+      "size": 2641
+    },
+    {
+      "path": "docs/release-packaging.md",
+      "sha256": "c490f940e979c354b484c871f57d8a84f745f9cf978342b712a75ec39204c89b",
+      "size": 5948
+    },
+    {
+      "path": "scripts/course_init.py",
+      "sha256": "1e58ad843b30dbeb7b3ed734941c9f7f7623d0582dd2297297fc2e3467e580ea",
+      "size": 14185
+    },
+    {
+      "path": "scripts/package_release.py",
+      "sha256": "561099844fe804bfda04980a723ba1fae18f2fb2d1a75f8f913775e6ca0f1a42",
+      "size": 24961
+    },
+    {
+      "path": "templates/one-page/.gitbook.yaml",
+      "sha256": "8f449ea9886de4357193691e88ed8b92bd6aec464e1c78b0e9c29815c502f10f",
+      "size": 62
+    },
+    {
+      "path": "templates/one-page/.gitbook/assets/calendar-2000-2050.xlsx",
+      "sha256": "a0811fb64a2d28772a38a753f59bab5eb11f5c6ffff9244e0ebaf3bfa83fe6c3",
+      "size": 155337
+    },
+    {
+      "path": "templates/one-page/.gitbook/includes/one-page-academic-integrity.md",
+      "sha256": "c7d0218d5cbe7456e217151c3ca918d8a22562fad093c7d3cb32703f3fd1c806",
+      "size": 260
+    },
+    {
+      "path": "templates/one-page/.gitbook/includes/one-page-assumed-knowledge.md",
+      "sha256": "b3a402467d8215cc14c25537d2d2cb6a342df9984035abe7d66e617a96b389f7",
+      "size": 230
+    },
+    {
+      "path": "templates/one-page/.gitbook/includes/one-page-content-summary.md",
+      "sha256": "31c17a695d47f58bc6bd88585041389bf8a8ee2f65e9eefcad6633ba7efd0409",
+      "size": 230
+    },
+    {
+      "path": "templates/one-page/.gitbook/includes/one-page-course-description.md",
+      "sha256": "88b228bbfc459df79f65115ab8a775d8ed73ce60a82d03ea3109eb8fc9dde603",
+      "size": 251
+    },
+    {
+      "path": "templates/one-page/.gitbook/includes/one-page-grading-policy.md",
+      "sha256": "a75d8f39800120baf4a98769c5cfc4528541a52af5c51d2d47d5c59b9c59f9f9",
+      "size": 316
+    },
+    {
+      "path": "templates/one-page/.gitbook/includes/one-page-important-deadlines.md",
+      "sha256": "91e6f5114aa5dc0b02be801b083eeaefbd5d2d448088a181c1941c6531b62d85",
+      "size": 366
+    },
+    {
+      "path": "templates/one-page/.gitbook/includes/one-page-learning-outcomes.md",
+      "sha256": "d851e9b4643bdf941da91ac124981024cde16001bc80d046cead5e92ab1aafe9",
+      "size": 291
+    },
+    {
+      "path": "templates/one-page/.gitbook/includes/one-page-teaching-goals.md",
+      "sha256": "da795f7ce7f6147df5bd40e95c2a59f872e52ab7700a7fb529d154a882bef512",
+      "size": 213
+    },
+    {
+      "path": "templates/one-page/.gitbook/includes/one-page-teaching-schedule.md",
+      "sha256": "1efe0e2c267b4411f783c22b85e7271c4c528f4a90f7d1a8805dcba805aed8f4",
+      "size": 1048
+    },
+    {
+      "path": "templates/one-page/.gitbook/includes/one-page-teaching-team.md",
+      "sha256": "c91dc97f9876da9243b51f92d12cb2e1f9070e695518becda679d8bb3633be47",
+      "size": 536
+    },
+    {
+      "path": "templates/one-page/.gitbook/includes/one-page-textbooks.md",
+      "sha256": "d25ee9c511feb3f2d8376fe94ae9eb1008105cc60f26b6b396c9e254696ab2fe",
+      "size": 393
+    },
+    {
+      "path": "templates/one-page/.gitbook/includes/one-page-university-calendar.md",
+      "sha256": "1f51f44c0c19a70b7fb85e032014a26699bee9be469c0319d68603e0554df155",
+      "size": 619
+    },
+    {
+      "path": "templates/one-page/README.md",
+      "sha256": "4eaad9f73b92bbfd9fcca6f09d4429cb45f061c7e359dc62cb330c2c102e2613",
+      "size": 1672
+    },
+    {
+      "path": "templates/one-page/SUMMARY.md",
+      "sha256": "b8f128b2e176aaed11c464d1b1ff937f718a3c35a6ca4370e0097137bb7b3e32",
+      "size": 60
+    },
+    {
+      "path": "tests/test_course_init.py",
+      "sha256": "7aa8dc136c8cf872b0ecb4fb4045e6b05f5de00f967d2a3f6794170f624bda1a",
+      "size": 14511
+    },
+    {
+      "path": "tests/test_package_release.py",
+      "sha256": "e1a58a85fb5597b44d9fb5c8f1e33d227de809bf1a19bb47ffaf406495d2b9f0",
+      "size": 23703
+    },
+    {
+      "path": "tests/test_template.py",
+      "sha256": "930c35f37e29671e6a90a736f10c8803ba4e065967ea11a7979377af303aecf5",
+      "size": 7129
+    }
+  ],
+  "license": "MIT",
+  "manifest_self_exclusion": "APP-MANIFEST.json",
+  "schema": "asteach-app-source/v2",
+  "status": "release-candidate"
+}
