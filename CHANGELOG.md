@@ -1,5 +1,16 @@
 # Changes
 
+## Term snapshot guidance — 2026-09-14, unreleased
+
+- Document the private reusable Teacher Home, ordinary term snapshots and
+  independent Student copies, with exact confirmed-None omission and supplied
+  policies only. Teacher Landing/Wide and all thirteen resource bodies are retained.
+- Document historical/Student Docs/default presentation, annual materials links,
+  explicit target-owned Library calendar exceptions and separate native,
+  published, full-export, source Library and route checks.
+- Preserve the complete twenty-file course payload, tooling and both versions.
+  App v0.1 and guide v0.1.1 remain unreleased; exact-candidate acceptance is pending.
+
 ## Co-Requisite reusable correction — 2026-09-14, unreleased
 
 - Move the existing Co-Requisite Courses body verbatim into its own reusable

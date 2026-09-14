@@ -15,8 +15,8 @@
     {
       "mode": "0644",
       "path": "CHANGELOG.md",
-      "sha256": "c12a58059263f48f35a8cd430450eb31dbcf83e969477b8e4b5a42ee5770ad55",
-      "size": 2473
+      "sha256": "91d84c42cacd8df7b0363da3ddc55883c016cbf06e314e93e102327d16c51948",
+      "size": 2998
     },
     {
       "mode": "0644",
@@ -93,14 +93,14 @@
     {
       "mode": "0644",
       "path": "calendar-and-files.md",
-      "sha256": "98edec3c650e70fdd3a079121fe6e4694076e29893e9ef586c880a69af31b901",
-      "size": 2869
+      "sha256": "eac83ec3c5d16b4313d47c6c767fdf0aa9a511a19e099a1eb09ac928dce81071",
+      "size": 4183
     },
     {
       "mode": "0644",
       "path": "course-home-reference.md",
-      "sha256": "ebc454a29df44e5c1ec894fe08e4a40d11c5a57ebda2d01779a4473ddd6d9c07",
-      "size": 3101
+      "sha256": "17bcbea8e6f81fdced274f7fbe9a9ba3871ccd291580d14e2ec0d4dace1ab3bb",
+      "size": 3445
     },
     {
       "mode": "0644",
@@ -111,20 +111,20 @@
     {
       "mode": "0644",
       "path": "one-page-course.md",
-      "sha256": "39f00b61d493715338006be856cd0f9a3c0af6aea552d7a95dcdf45161ea597b",
-      "size": 3724
+      "sha256": "1bc7d07c52836f912f4ad9d02474f5c793b9680acf01f3a70efba644adcda610",
+      "size": 5761
     },
     {
       "mode": "0644",
       "path": "review-and-sharing.md",
-      "sha256": "eb72c948b5fcbb114e6180814fde0eb329667394c95ef0604cf04c4224f0afd0",
-      "size": 2844
+      "sha256": "cb0f3cd1bbca70c467892d21d24845ac465984fe3a7c388d90f05449531cad3a",
+      "size": 3759
     },
     {
       "mode": "0644",
       "path": "schedule-and-deadlines.md",
-      "sha256": "d6388bb7b8a2e5f933e79db5effbf1816bfd06faf9f1aae4a6634f638a255dce",
-      "size": 2181
+      "sha256": "3153b30006a6264928a354a7ff35a4c033971e108c011a108e7e155a64336cb2",
+      "size": 2238
     },
     {
       "mode": "0644",
@@ -135,14 +135,14 @@
     {
       "mode": "0644",
       "path": "troubleshooting.md",
-      "sha256": "0cae59c08f516af7e6682aef604df70228eeda983eaf0103cbe206569c5ae5ec",
-      "size": 3497
+      "sha256": "229d4e16abc4fe381ef27c98ae0d5c18b448715d35b539155c937657103782e0",
+      "size": 4408
     },
     {
       "mode": "0644",
       "path": "version-and-scope.md",
-      "sha256": "ec8a9a503f92fdb631f0b5adf2f263bdbc4555d0743425400de26257cb5b1aa4",
-      "size": 4306
+      "sha256": "bde9364f123f60e5d42b494e92aaed4c86bbab139cb7a29ba8c22751aad83659",
+      "size": 4817
     }
   ],
   "license": "CC-BY-4.0",

@@ -13,8 +13,44 @@ Recommended Textbook(s); Teaching Schedule; Important Deadlines.
 Each of the thirteen sections includes its own resource under
 `.gitbook/includes/`. Learning Outcomes contains replaceable outcome-writing
 guidance and a bullet placeholder. Co-Requisite Courses has its own resource
-with concurrent-course guidance and a bullet placeholder. Keep all thirteen resources as includes; a flattened
-Markdown page would change the editing contract.
+with concurrent-course guidance and a bullet placeholder. Keep all thirteen
+resources as includes on the private Teacher Home; flattening that editing source
+would change the contract. Teacher Home retains its Landing/Wide default.
+
+## Term and Student copies
+
+Each `Year Season` term snapshot is ordinary detached content, with no reusable
+includes. Preserve the accepted title, description, wording, list structure,
+schedule and links. Historical term pages use Docs presentation at default width.
+The Student page also uses Docs/default width and is independently owned: no
+Teacher reusable or Teacher asset references. This is a manual content workflow;
+the initial seventeen mapped files and twenty-file workspace remain unchanged.
+No term generator, existing-course updater or Teacher-to-Student publisher is
+included.
+
+Omit an entire section from a term only when the instructor confirms its complete
+answer is exactly `None`. Blank, unknown, ambiguous or partly answered sections
+do not qualify. Keep the Teacher heading, resource and supplied answer intact.
+Never supply missing policy or course facts; a late-submission rule requires the
+instructor's supplied wording.
+
+Use ordinary links to annual top-level folders in a separate materials repository.
+GitHub blob/PDF file-view and download links are distinct from inline images;
+private GitHub image access cannot serve anonymous readers. An explicitly
+approved Library calendar exception uses an image owned by the target Space,
+meaningful alt text, rights/attribution checks and verified full-size rendering.
+A Student copy needs its own asset, even when the pixels match the Teacher image.
+Materials access is checked separately from page publication.
+
+Before a transfer or update, reconcile the full saved export, source Library
+edits, open drafts/comments and current repository. A Git diff alone cannot
+establish native resource state. After saving, compare the complete exported
+inventory and body with the accepted source, inspect native and published views
+separately, and test existing routes as well as new ones. An unchanged filename
+does not prove that its native URL remains unchanged. Preserve source and stop
+for reconciliation on unexplained drift; do not reimport or overwrite a course.
+
+## Supplied template and acceptance
 
 The supplied paragraphs, bullets, people fields, book patterns, module headings,
 class entries and deadlines are replacement guidance. They supply no course facts.

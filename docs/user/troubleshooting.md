@@ -16,6 +16,10 @@ does not repair an edited course; a baseline difference can simply be your work.
 | Module links do not reach the module | Use Teaching Schedule and scroll. Included module deep links are outside v0.1 scope. |
 | Workbook link does not download | Open the included workbook locally. Hosted download remains unverified; add separately tested delivery only if needed. |
 | File opens for you but not a reader | Check the file host's access using the intended reader account. Do not change repository visibility to make one link work without reviewing its contents and history. |
+| GitHub calendar is blank | A blob/file-view URL is not an inline image, and private GitHub images cannot render anonymously. Use the explicitly approved target-owned Library calendar exception only after rights, alt text and full-size checks. |
+| Student content depends on Teacher resources | Preserve the Teacher inputs. Detach only the Student page instances and use independently Student-owned assets; verify the saved export and native ownership. |
+| A former page URL stops resolving | Compare the actual native route and page identity with saved source, even when Git filenames are unchanged. Preserve drafts and obtain a reviewed page-local correction; do not reimport the course. |
+| Native image fails while published image works | Record both results separately, reopen the saved page and inspect its own Library asset. Do not claim native acceptance or upload duplicates to conceal the failure. |
 | Internal include files appear in navigation | Check the mapped course directory and SUMMARY. Do not accept the import until only the intended Home appears. |
 | Initializer reports changed files | Compare with the saved course and your edits. Preserve differences; it has no overwrite or reset workflow. |
 | GitHub or GitBook has newer changes | Reconcile the full saved export, repository commit and open drafts before later local edits. Do not replace them with the starter. |

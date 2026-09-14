@@ -21,6 +21,17 @@ HEADINGS = (
 
 
 class TemplateTests(unittest.TestCase):
+    def test_term_guidance_preserves_entire_fresh_course_payload(self):
+        # Frozen before the term/Student guide revision, independently of source
+        # manifests. No sample snapshots, policy, changed input body or layout may
+        # enter the blank course through this documentation-only revision.
+        snapshot, _ = init.verify_app(ROOT)
+        payload = init.workspace_payload(snapshot)
+        self.assertEqual(len(payload), 20)
+        records = [init.record(name, payload[name]) for name in sorted(payload)]
+        self.assertEqual(init.digest(init.canonical(records)),
+                         "28c8b806ee1eaf9a1eb8566f1fa6961d68e5cb68f687927e4406daeedb0e66a8")
+
     def test_exact_template_inventory(self):
         files, directories = init.tree_inventory(TEMPLATE)
         self.assertEqual(files, set(init.TEMPLATE_FILES))

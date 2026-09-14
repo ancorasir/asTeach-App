@@ -2,10 +2,18 @@
 
 One-Page GitBook Course Template by SONG Chaoyang ([songcy@ieee.org](mailto:songcy@ieee.org)) @ Design and Learning Research Group ([https://AncoraSIR.com](https://AncoraSIR.com)).
 
-Create one course Home and edit its reusable sections directly in GitBook.
+Create one private Teacher Home and edit its reusable sections directly in GitBook.
 The template supplies visible replacement guidance; the instructor supplies the
 course content, dates, people, grading and policies. Ordinary editing requires
 no agent, generator or Python.
+
+Keep the Teacher Home's thirteen reusable sections as the editing source. Prepare
+each `Year Season` term as an ordinary-content snapshot, then review an independent
+Student copy for sharing. Historical term and Student pages use Docs presentation
+at default width; Teacher Home retains its Landing/Wide default. The
+[manual term workflow](docs/user/one-page-course.md)
+explains preservation, independent assets and review. The initializer creates only
+the fresh Teacher workspace; it does not generate terms or update Student content.
 
 This release-candidate source includes asTeach Docs v0.1.1 in `docs/user/`. A packaged cohort's
 external RELEASE-MANIFEST.json records the exact integrated App source commit and

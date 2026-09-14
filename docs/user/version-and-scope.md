@@ -42,11 +42,18 @@ earlier candidate cohorts separately and never replace their ZIP files.
 Included: a course-only Home with thirteen headings and thirteen reusable
 blocks, the generic calendar workbook, manual schedule/deadline editing,
 fresh-workspace setup, this ten-page guide and six original schematics.
+The guide also describes manually preparing detached term snapshots and
+independent Student pages. Teacher Home keeps thirteen reusable inputs and
+Landing/Wide presentation; historical term and Student pages use Docs/default
+width. No new runtime or automatic transfer is included.
 
 Still pending: a complete fresh GitBook import of these bytes, all resource
 ownership checks, Learning Outcomes and Co-Requisite Courses reusable-body
 editing, title/description Home-container round trips, saved export reconciliation, calendar
 image editing and native download checks, and a new user's full walkthrough.
+For term/Student use, also reconcile full saved exports and Library edits, verify
+independent asset ownership, existing routes and native/published rendering.
+Prior course observations do not certify these exact candidate bytes.
 
 GitBook's current README/Git Sync warning makes container editing a specific
 acceptance gate. The intended ordinary workflow remains direct reusable-body

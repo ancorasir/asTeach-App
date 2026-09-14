@@ -1,5 +1,14 @@
 # Changelog
 
+## Term snapshot guidance — 2026-09-14, unreleased
+
+Explain manual private Teacher, ordinary term and independent Student workflows,
+confirmed-None omission, instructor-supplied policies, annual materials links,
+target-owned Library calendar exceptions and separate saved/native/published
+checks. Teacher Landing/Wide stays; historical/Student pages use Docs/default
+width. No generated course content or new runtime is included. App v0.1 and
+Docs v0.1.1 remain unreleased, with exact-candidate native acceptance pending.
+
 ## Co-Requisite reusable correction — 2026-09-14, unreleased
 
 Updated the guide and three schematics for thirteen reusable sections, including

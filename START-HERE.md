@@ -68,6 +68,17 @@ set a Space's visibility. See the matched guide for save and sharing checks.
 
 ## Preserve later edits
 
+Keep one private Teacher Home with all thirteen reusable inputs and its existing
+Landing/Wide presentation. For each `Year Season`, manually prepare an ordinary
+term snapshot with no reusable includes. Historical term and independent Student
+pages use Docs presentation at default width. Remove a whole term section only
+when its complete answer is the confirmed literal `None`; preserve that Teacher
+input. Supply no missing facts or policies, including late-submission rules.
+Review the [term and Student workflow](docs/user/one-page-course.md),
+[calendar ownership](docs/user/calendar-and-files.md) and
+[complete saved-result checks](docs/user/review-and-sharing.md) before transfer.
+The optional initializer does not perform these later steps.
+
 After editing, `check` reports changed, missing or additional files as authored
 drift. It does not validate teaching content or repair anything. Keep your course's
 own backups/history. If initialization is interrupted, preserve that partial

@@ -15,8 +15,8 @@
     },
     {
       "path": "CHANGELOG.md",
-      "sha256": "0df81e3d5720ecfebbae59e07ccf8ddab243da15861fa5542f07cf3be2d64c07",
-      "size": 2772
+      "sha256": "ef0648cde7f826bacf510f5e38c7140797aff774c927366e9bd33a59ef398b16",
+      "size": 3442
     },
     {
       "path": "LICENSE",
@@ -30,13 +30,13 @@
     },
     {
       "path": "README.md",
-      "sha256": "86c25a2c1256c9071bac2737ae457af98eccb55e249a68a158ecd552af9cb914",
-      "size": 2613
+      "sha256": "b35ba105d456841e71f05aeef73800bd38dcaeb1f6b4eebeddf572b5e31442de",
+      "size": 3159
     },
     {
       "path": "START-HERE.md",
-      "sha256": "f5d71b9bec2326cbc803450c2a69e19e557a7322de102a27c0fb271e8bfff54e",
-      "size": 4369
+      "sha256": "be1bcccf3f2b064b9e4efc936a8c883108f800890319a9ccc779026404571c79",
+      "size": 5118
     },
     {
       "path": "VERSION",
@@ -75,8 +75,8 @@
     },
     {
       "path": "docs/technical/one-page-course.md",
-      "sha256": "d3d0f475b04b18055964092ee3c4ed4bea26da9037f37e6b7ecd87c7111c6ad9",
-      "size": 2659
+      "sha256": "a2458a05914d8276be2a42e007e6ddae7feeac23719ac639192263c8d84733c2",
+      "size": 4803
     },
     {
       "path": "docs/technical/release-packaging.md",
@@ -90,12 +90,12 @@
     },
     {
       "path": "docs/user/CHANGELOG.md",
-      "sha256": "c12a58059263f48f35a8cd430450eb31dbcf83e969477b8e4b5a42ee5770ad55",
-      "size": 2473
+      "sha256": "91d84c42cacd8df7b0363da3ddc55883c016cbf06e314e93e102327d16c51948",
+      "size": 2998
     },
     {
       "path": "docs/user/DOCS-MANIFEST.json",
-      "sha256": "6df36232aec296b4ce428550a0157325c8824fed634bba1c024eae394b88cfa8",
+      "sha256": "9878d24f39696861a13bf00d271948cef4578184b5c27598cb907da1648285e7",
       "size": 4477
     },
     {
@@ -160,13 +160,13 @@
     },
     {
       "path": "docs/user/calendar-and-files.md",
-      "sha256": "98edec3c650e70fdd3a079121fe6e4694076e29893e9ef586c880a69af31b901",
-      "size": 2869
+      "sha256": "eac83ec3c5d16b4313d47c6c767fdf0aa9a511a19e099a1eb09ac928dce81071",
+      "size": 4183
     },
     {
       "path": "docs/user/course-home-reference.md",
-      "sha256": "ebc454a29df44e5c1ec894fe08e4a40d11c5a57ebda2d01779a4473ddd6d9c07",
-      "size": 3101
+      "sha256": "17bcbea8e6f81fdced274f7fbe9a9ba3871ccd291580d14e2ec0d4dace1ab3bb",
+      "size": 3445
     },
     {
       "path": "docs/user/getting-started.md",
@@ -175,18 +175,18 @@
     },
     {
       "path": "docs/user/one-page-course.md",
-      "sha256": "39f00b61d493715338006be856cd0f9a3c0af6aea552d7a95dcdf45161ea597b",
-      "size": 3724
+      "sha256": "1bc7d07c52836f912f4ad9d02474f5c793b9680acf01f3a70efba644adcda610",
+      "size": 5761
     },
     {
       "path": "docs/user/review-and-sharing.md",
-      "sha256": "eb72c948b5fcbb114e6180814fde0eb329667394c95ef0604cf04c4224f0afd0",
-      "size": 2844
+      "sha256": "cb0f3cd1bbca70c467892d21d24845ac465984fe3a7c388d90f05449531cad3a",
+      "size": 3759
     },
     {
       "path": "docs/user/schedule-and-deadlines.md",
-      "sha256": "d6388bb7b8a2e5f933e79db5effbf1816bfd06faf9f1aae4a6634f638a255dce",
-      "size": 2181
+      "sha256": "3153b30006a6264928a354a7ff35a4c033971e108c011a108e7e155a64336cb2",
+      "size": 2238
     },
     {
       "path": "docs/user/setup-gitbook.md",
@@ -195,13 +195,13 @@
     },
     {
       "path": "docs/user/troubleshooting.md",
-      "sha256": "0cae59c08f516af7e6682aef604df70228eeda983eaf0103cbe206569c5ae5ec",
-      "size": 3497
+      "sha256": "229d4e16abc4fe381ef27c98ae0d5c18b448715d35b539155c937657103782e0",
+      "size": 4408
     },
     {
       "path": "docs/user/version-and-scope.md",
-      "sha256": "ec8a9a503f92fdb631f0b5adf2f263bdbc4555d0743425400de26257cb5b1aa4",
-      "size": 4306
+      "sha256": "bde9364f123f60e5d42b494e92aaed4c86bbab139cb7a29ba8c22751aad83659",
+      "size": 4817
     },
     {
       "path": "scripts/check_docs.py",
@@ -320,8 +320,8 @@
     },
     {
       "path": "tests/test_template.py",
-      "sha256": "9d7843fd6983a823a49f53616e25058c0db991c6472ba88a5b52bccfc8366c79",
-      "size": 9491
+      "sha256": "92759513255e4776f0806dd8fd4ac9280ec6eab8e269d0969e65a943af3783c8",
+      "size": 10178
     }
   ],
   "license": "MIT",

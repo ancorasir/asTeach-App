@@ -61,6 +61,41 @@ resource body and reopened Home as with every other reusable section.
 
 The guidance supplies a format, not course facts. Leave a section blank if you
 have no confirmed information, and remove unreplaced guidance before sharing.
+Missing information does not mean `None`, and no policy may be inferred.
+
+## Prepare a term snapshot
+
+Keep one private Teacher Home with all thirteen reusable sections. Its existing
+Landing/Wide presentation stays in place. Prepare each `Year Season` as a separate
+ordinary-content snapshot under its term Group. Detach only the copied instances:
+the Teacher Home and its source resources remain the editable inputs. Check that
+the term contains no reusable includes or live resource bindings.
+
+Preserve the accepted title, plain description, wording, lists, schedule and
+links. Remove a whole term section only when the instructor has confirmed that
+its complete answer is exactly `None`. Do not treat blank, unknown, ambiguous or
+partly answered content as `None`. Keep the corresponding Teacher heading,
+resource and answer intact. Add a late-submission policy only from supplied
+instructor wording; a request to finish the course is not a policy.
+
+Historical term pages use Docs presentation at default width. Before replacing
+an existing term, reconcile its saved source, newer edits, comments and drafts.
+This guide describes manual preparation; the initializer never updates a course.
+
+## Prepare an independent Student copy
+
+Use the reviewed term snapshot as the source for the matching Student page.
+Use ordinary content with Docs presentation at default width, with no Teacher
+reusable or Teacher asset references. Verify ownership of each retained or
+inserted image in the Student Space itself; copying visible content does not
+prove independent ownership. Follow the [calendar and file checks](calendar-and-files.md).
+Do not remove unrelated Student Library entries just because their old page
+instances were detached.
+
+Compare the whole saved Student body and every link with the accepted term.
+Check its native editor and published reader view separately, including the
+full calendar and old page routes. Use [Save, Check and Share](review-and-sharing.md)
+before merging; an existing published Site may update immediately.
 
 Use [Course Home Reference](course-home-reference.md) for the full section order,
 [Schedule and Deadlines](schedule-and-deadlines.md) for manual dates, and

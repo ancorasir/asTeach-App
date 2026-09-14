@@ -39,6 +39,7 @@ Edit the separate Important Deadlines reusable block. Use the field shape
 `Date, Day, Time: DeadlineEvent`, replacing all fields with your own submission
 information. Check consistency with the schedule and grading policy.
 
-There is no default late-submission policy. Add one only when you supply or
-request it. Preserve omissions or ambiguities in supplied course material
+There is no default late-submission policy. Add one only from the instructor's
+supplied wording. A request to complete a course is not a policy. Preserve
+omissions or ambiguities in supplied course material
 until you decide them; the template does not resolve policy conflicts.
