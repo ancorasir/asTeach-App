@@ -10,10 +10,10 @@ Content Summary; Assumed Knowledge; Co-Requisite Courses; Course Instructor &
 Teaching Team; Grading Policy; Academic Integrity; University Calendar;
 Recommended Textbook(s); Teaching Schedule; Important Deadlines.
 
-Each section except Co-Requisite Courses includes its own resource under
+Each of the thirteen sections includes its own resource under
 `.gitbook/includes/`. Learning Outcomes contains replaceable outcome-writing
-guidance and a bullet placeholder. Co-Requisite Courses is ordinary Home content
-with concurrent-course guidance and a bullet placeholder. Keep all twelve resources as includes; a flattened
+guidance and a bullet placeholder. Co-Requisite Courses has its own resource
+with concurrent-course guidance and a bullet placeholder. Keep all thirteen resources as includes; a flattened
 Markdown page would change the editing contract.
 
 The supplied paragraphs, bullets, people fields, book patterns, module headings,
@@ -29,13 +29,13 @@ same mapped course. The original workbook bytes are retained. It is a generic
 editable calendar, not an official university schedule. Use a local customized
 copy and replace guidance with your approved screenshots and alternative text.
 
-Initialization creates sixteen course files plus three workspace files outside
+Initialization creates seventeen course files plus three workspace files outside
 the mapping. Map only `course/`; configuration inside it uses `root: ./`,
 `readme: README.md`, `summary: SUMMARY.md`. No private preparation, generator,
 ownership state or future feature ships in the mapped course.
 
 Static tests verify the template and source-relative references. New native
-GitBook import, all twelve resources' independent ownership, rich-editor
+GitBook import, all thirteen resources' independent ownership, rich-editor
 editing, saved/exported layout and actual workbook downloads still need acceptance
 against the exact released files. ZIP import and Space duplication are not
 accepted substitutes for this contract. Setup does not choose reader permissions.

@@ -53,11 +53,11 @@ After verifying its ownership and editability, replace the guidance and
 `LearningOutcome` placeholder with your measurable learning outcomes as bullets.
 Use observable action verbs to state what learners should be able to do.
 
-Co-Requisite Courses follows Assumed Knowledge and is ordinary Home content,
-without a reusable block. Replace its guidance and `CourseCode — CourseTitle`
+Co-Requisite Courses follows Assumed Knowledge and has its own reusable block.
+After verifying its ownership and editability, replace its guidance and `CourseCode — CourseTitle`
 placeholder with the codes and titles of courses studied concurrently. Write
-`None` only if you have confirmed that no co-requisites apply. This edits the
-Home container and requires the separate README check above.
+`None` only if you have confirmed that no co-requisites apply. Verify its saved
+resource body and reopened Home as with every other reusable section.
 
 The guidance supplies a format, not course facts. Leave a section blank if you
 have no confirmed information, and remove unreplaced guidance before sharing.

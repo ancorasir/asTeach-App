@@ -17,7 +17,7 @@ not a signature or authenticity system.
 
 `plan` is read-only. It requires an absent destination and an existing parent.
 Its deterministic `plan_id` binds the absolute destination, parent directory
-identity, complete manifest hash, template payload and all nineteen file writes.
+identity, complete manifest hash, template payload and all twenty file writes.
 The source manifest uses `asteach-app-source/v3`, `release-candidate` status and
 `external-release-manifest` commit binding. It has no own-commit field. The
 cohort's external RELEASE-MANIFEST.json records the exact App source commit,
@@ -27,7 +27,7 @@ or its identical extracted archive without Git or a local ownership database.
 
 `apply` recomputes that plan from freshly verified source and accepts only its
 exact SHA-256 identifier. It creates one new workspace containing the MIT license
-and minimal root instructions, with sixteen files in `course/`. It refuses source
+and minimal root instructions, with seventeen files in `course/`. It refuses source
 overlap, symlink paths, existing changed files, partial workspaces and stale plans.
 Files are created exclusively; there is no replacement or merge path.
 An identical completed replay is a read-only no-op. Retain the original package

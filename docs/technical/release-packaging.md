@@ -102,7 +102,8 @@ App ZIP; retain the original separate Docs ZIP and all three handoff files.
 The new verifier identifies v1 and gives this recovery instruction. New build
 rejects legacy two-root flags explicitly; it never silently drops a Docs input.
 
-Initializer commands and the nineteen-file workspace output are unchanged.
+Initializer commands are unchanged. The current workspace output has twenty
+files, including the Co-Requisite Courses reusable resource.
 Pending old plans require their original App package, or a fresh plan from the
 new package for a new absent destination. Manifest binding is not relaxed.
 

@@ -10,9 +10,20 @@ The integration starts from App commit
 the new source's own commit or a claim that changed files retain old hashes.
 The guide's pages, local schematics, attribution and full license have been
 integrated under `docs/user/`; paths, metadata and packaging prose were revised.
-Original schematic and legal-code bytes remain unchanged. App technical guides
-now live in `docs/technical/` with references at their previous paths. The course
-template and complete nineteen-file initialized workspace remain byte-identical.
+That integration retained the original schematic and legal-code bytes. App
+technical guides moved to `docs/technical/` with references at their previous
+paths; the course template and nineteen-file workspace were then byte-identical.
+
+The subsequent 2026-09-14 unreleased correction moves the existing Co-Requisite
+Courses body verbatim from Home into its own titled reusable resource. All
+thirteen sections now have includes; the mapped template has seventeen files
+and initialization creates twenty. The other twelve resource files, calendar,
+navigation, configuration and workspace license/instructions are unchanged;
+the workspace README and current guides/schematics describe the revised contract.
+The preserved 267-byte Co-Requisite body has SHA-256
+`5a106d2a0919dca1f9bddc5caedbba58f7c44abce9233b5788956b9e686ed7a8`.
+App v0.1 and guide v0.1.1 remain unreleased candidates, with exact bytes identified
+by their refreshed manifests and later external source pin.
 
 This release-candidate source was prepared without copied Git history.
 APP-MANIFEST.json records every source payload file's size and SHA-256 and

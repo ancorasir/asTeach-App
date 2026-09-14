@@ -9,7 +9,7 @@ claimed. Keep the original App package and its checksum for recovery.
 ## Create a fresh course
 
 The resulting workspace contains `LICENSE`, `README.md` and `AGENTS.md` at its
-root, with all sixteen mapped course files under `course/`. Only `course/` is
+root, with all seventeen mapped course files under `course/`. Only `course/` is
 mapped to GitBook. Keep its hidden `.gitbook/` folder and `.gitbook.yaml` file.
 
 For a manual setup, create a new empty workspace, copy this App's `LICENSE` and
@@ -26,7 +26,7 @@ python3 -B scripts/course_init.py verify
 python3 -B scripts/course_init.py plan --destination ../my-course
 ```
 
-Read the printed destination and all nineteen proposed files. Copy the printed
+Read the printed destination and all twenty proposed files. Copy the printed
 `plan_id` exactly into the following command, replacing `PASTE_PLAN_ID_HERE`:
 
 ```bash
@@ -48,11 +48,11 @@ repository and GitBook setup are separate user-controlled steps. Follow the
 matched [Docs guide](docs/user/setup-gitbook.md) for the walkthrough and verify the actual mapping before use.
 The App package itself is never the course mapping.
 
-Check the course title, plain term description, all thirteen headings and twelve
+Check the course title, plain term description, all thirteen headings and thirteen
 independent reusable resources before editing. Change `[CourseCode] CourseName`
 in Home and its SUMMARY navigation label together; change `Year Season` in the
-description. Learning Outcomes is reusable; Co-Requisite Courses is ordinary
-page content. Both now contain brief replaceable guidance and a bullet placeholder.
+description. Learning Outcomes and Co-Requisite Courses each have their own
+reusable resource with brief replaceable guidance and a bullet placeholder.
 Replace the visible guidance
 with your own course information. See [the section contract](docs/technical/one-page-course.md).
 

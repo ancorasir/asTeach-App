@@ -66,13 +66,13 @@ class InitializerTests(unittest.TestCase):
         first, payload = self.plan()
         self.assertEqual(first, self.plan()[0])
         self.assertFalse(self.target.exists())
-        self.assertEqual(len(payload), 19)
+        self.assertEqual(len(payload), 20)
         self.assertEqual(first["mapped_directory"], "course/")
         self.assertEqual(set(payload) - {"course/" + p for p in init.TEMPLATE_FILES}, {"LICENSE", "README.md", "AGENTS.md"})
 
     def test_apply_then_check_and_identical_no_op(self):
         plan, payload = self.plan()
-        self.assertEqual(self.apply(plan_id=plan["plan_id"])["writes"], 19)
+        self.assertEqual(self.apply(plan_id=plan["plan_id"])["writes"], 20)
         before = {p: (self.target / p).stat().st_mtime_ns for p in payload}
         self.assertEqual(init.compare_workspace(self.target, payload)["status"], "unchanged")
         self.assertEqual(self.apply(plan_id=plan["plan_id"])["writes"], 0)

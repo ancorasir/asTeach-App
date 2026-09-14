@@ -14,7 +14,7 @@ own future commit. Hosted import, resource ownership, editor round trip and
 publication acceptance remain pending. No published release or tag is claimed.
 
 Start with [START-HERE.md](START-HERE.md). The
-[course contract](docs/technical/one-page-course.md) describes thirteen sections and twelve
+[course contract](docs/technical/one-page-course.md) describes thirteen sections and thirteen
 reusable resources. [Optional initialization](docs/technical/initializer.md) creates a
 fresh local workspace and preserves every existing course.
 

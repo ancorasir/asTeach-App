@@ -1,5 +1,15 @@
 # Changelog
 
+## Co-Requisite reusable correction — 2026-09-14, unreleased
+
+Updated the guide and three schematics for thirteen reusable sections, including
+Co-Requisite Courses, with seventeen mapped files and twenty workspace files.
+Its existing guidance is unchanged. Ownership and saved-edit verification now
+include this resource; title/description editing remains a separate Home check.
+App v0.1 and Docs v0.1.1 remain unreleased candidates. Earlier entries below
+describe their original candidate state and do not claim this correction passed
+native acceptance.
+
 ## Docs v0.1.1 for App v0.1 — release candidate
 
 Prepared 2026-09-13. No release tag or publication.

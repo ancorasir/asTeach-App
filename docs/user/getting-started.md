@@ -36,8 +36,8 @@ The repositories remain private, and no public release URL or tag is announced.
 | This guide | Instructions for the template; no second form to fill in. |
 | Separate private planning | Personal notes or other restricted work, outside this course repository and mapping. |
 
-The initial course payload has sixteen files: Home, navigation, GitBook
-configuration, twelve reusable Markdown files and one calendar workbook.
+The initial course payload has seventeen files: Home, navigation, GitBook
+configuration, thirteen reusable Markdown files and one calendar workbook.
 The initializer adds three workspace-root files outside `course/`: a license,
 README and AGENTS. These are setup/reuse records, not course pages.
 

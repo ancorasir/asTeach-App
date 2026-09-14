@@ -1,5 +1,16 @@
 # Changes
 
+## Co-Requisite reusable correction — 2026-09-14, unreleased
+
+- Move the existing Co-Requisite Courses body verbatim into its own reusable
+  resource. All thirteen headings now map to thirteen independent includes.
+- Fresh courses contain seventeen mapped files and twenty workspace files.
+  Existing courses require a separately reviewed preservation-aware change;
+  the initializer still only creates fresh workspaces.
+- Align guides, schematics, source inventories and preservation/parity tests.
+  App v0.1 and guide v0.1.1 remain release candidates; native acceptance and
+  publication are pending. Earlier entries below retain their historical scope.
+
 ## v0.1 — release candidate, 2026-09-13
 
 - One-Page course Home with thirteen headings and twelve reusable resources,

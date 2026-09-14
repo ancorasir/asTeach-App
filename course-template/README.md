@@ -11,8 +11,8 @@ remains yours, subject to the rights and policies that apply to it.
 
 Replace the title in Home and SUMMARY together, set the term description, and
 edit the reusable sections directly on Home. All dates, names, requirements,
-grading and policies must come from you. Learning Outcomes is reusable;
-Co-Requisite Courses is ordinary page content. Both contain replaceable guidance
+grading and policies must come from you. Learning Outcomes and Co-Requisite
+Courses each have their own reusable resource. Both contain replaceable guidance
 and a bullet placeholder, not supplied course requirements. Replace or remove
 visible guidance before sharing. Keep private preparation outside this mapped
 course folder.

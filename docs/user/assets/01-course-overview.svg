@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 650" role="img" aria-labelledby="title description">
   <title id="title">One course, one Home</title>
-  <desc id="description">Schematic: one Home has a course title and term, thirteen sections, and twelve reusable blocks; Co-Requisite Courses is ordinary content. This is a schematic, not a screenshot.</desc>
+  <desc id="description">Schematic: one Home has a course title and term, thirteen sections, and thirteen reusable blocks, including Co-Requisite Courses. This is a schematic, not a screenshot.</desc>
   <rect width="680" height="650" fill="#f5f3ed"/>
   <g font-family="Arial, Helvetica, sans-serif">
     <text x="34" y="38" font-size="16" font-weight="700" letter-spacing="1.2" fill="#385a53">ASTEACH · SCHEMATIC</text>
@@ -21,12 +21,12 @@
     <circle cx="66" cy="370" r="17" fill="#245e50"/>
     <text x="66" y="376" text-anchor="middle" font-size="18" font-weight="700" fill="#ffffff">3</text>
     <text x="100" y="372" font-size="24" font-weight="700" fill="#17372f">Thirteen sections</text>
-    <text x="100" y="402" font-size="21" fill="#314c45">Twelve reusable content blocks</text>
+    <text x="100" y="402" font-size="21" fill="#314c45">Thirteen reusable content blocks</text>
     <path d="M 340 431 v 10 m -5 -4 l 5 5 l 5 -5" fill="none" stroke="#52766b" stroke-width="2"/>
     <rect x="34" y="448" width="612" height="88" rx="12" fill="#ffffff" stroke="#9dafaa" stroke-width="1.5"/>
     <circle cx="66" cy="481" r="17" fill="#245e50"/>
     <text x="66" y="487" text-anchor="middle" font-size="18" font-weight="700" fill="#ffffff">4</text>
-    <text x="100" y="483" font-size="24" font-weight="700" fill="#17372f">One ordinary section</text>
+    <text x="100" y="483" font-size="24" font-weight="700" fill="#17372f">Every section is reusable</text>
     <text x="100" y="513" font-size="21" fill="#314c45">Co-Requisite Courses</text>
     <text x="34" y="596" font-size="17" fill="#314c45">App v0.1 · Docs v0.1.1 · Local candidate</text>
     <text x="34" y="623" font-size="17" fill="#314c45">Not a screenshot. Native acceptance is pending.</text>

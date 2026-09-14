@@ -33,19 +33,19 @@ does not establish native acceptance or publish the product.
 Guide revisions can change independently while remaining for App v0.1. A future
 guide-only revision would be Docs v0.1.2. A template, tool or asset change needs
 a new reviewed App identity and a compatibility check; the same release label
-must not silently point to different bytes. This packaging integration preserves
+must not silently point to different bytes. This unreleased candidate correction preserves
 App v0.1 and Docs v0.1.1 under a new exact candidate commit and manifest; keep
 earlier candidate cohorts separately and never replace their ZIP files.
 
 ## Included and pending
 
-Included: a course-only Home with thirteen headings and twelve reusable
+Included: a course-only Home with thirteen headings and thirteen reusable
 blocks, the generic calendar workbook, manual schedule/deadline editing,
 fresh-workspace setup, this ten-page guide and six original schematics.
 
 Still pending: a complete fresh GitBook import of these bytes, all resource
-ownership checks, Learning Outcomes guidance editing, title/description and
-Co-Requisite/Home-container round trips, saved export reconciliation, calendar
+ownership checks, Learning Outcomes and Co-Requisite Courses reusable-body
+editing, title/description Home-container round trips, saved export reconciliation, calendar
 image editing and native download checks, and a new user's full walkthrough.
 
 GitBook's current README/Git Sync warning makes container editing a specific

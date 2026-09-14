@@ -15,7 +15,7 @@ GitBook import and editing walkthrough remain unverified. Read
 handoff identifies the exact integrated App source commit and archive; this guide does not
 announce a public release.
 
-![Schematic: one Home has a course title and term, thirteen sections, and twelve reusable blocks; Co-Requisite Courses is ordinary content.](assets/01-course-overview.svg)
+![Schematic: one Home has a course title and term, thirteen sections, and thirteen reusable blocks, including Co-Requisite Courses.](assets/01-course-overview.svg)
 
 Figure 1. Course structure schematic for App v0.1; not a GitBook screenshot or
 evidence that the candidate has imported successfully.

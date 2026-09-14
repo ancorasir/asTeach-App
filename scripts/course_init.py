@@ -31,7 +31,7 @@ USER_FILES = tuple(sorted(USER_PAGES + (
 ) + tuple("assets/" + name for name in USER_ASSETS)))
 RESOURCES = (
     "course-description", "teaching-goals", "learning-outcomes", "content-summary",
-    "assumed-knowledge", "teaching-team", "grading-policy", "academic-integrity",
+    "assumed-knowledge", "co-requisite-courses", "teaching-team", "grading-policy", "academic-integrity",
     "university-calendar", "textbooks", "teaching-schedule", "important-deadlines",
 )
 TEMPLATE_FILES = tuple(sorted((

@@ -24,26 +24,38 @@ class TemplateTests(unittest.TestCase):
     def test_exact_template_inventory(self):
         files, directories = init.tree_inventory(TEMPLATE)
         self.assertEqual(files, set(init.TEMPLATE_FILES))
-        self.assertEqual(len(files), 16)
+        self.assertEqual(len(files), 17)
         self.assertEqual(directories, init.parent_paths(files))
 
-    def test_initialized_workspace_preserves_original_v01_bytes(self):
-        # Canonical record digest from App a735bf349d14d146ae6936441ff1cde890ffee98.
+    def test_initialized_workspace_preserves_unaffected_v01_bytes(self):
+        # Original App payload, excluding only Home and the updated setup README.
+        # This frozen digest guards the other twelve resources, workbook, mapping,
+        # navigation, license and root instructions independently of new manifests.
         snapshot, _ = init.verify_app(ROOT)
         payload = init.workspace_payload(snapshot)
-        records = [init.record(name, payload[name]) for name in sorted(payload)]
-        self.assertEqual(len(records), 19)
+        self.assertEqual(len(payload), 20)
+        changed = {"README.md", "course/README.md",
+                   "course/.gitbook/includes/one-page-co-requisite-courses.md"}
+        records = [init.record(name, payload[name]) for name in sorted(payload)
+                   if name not in changed]
+        self.assertEqual(len(records), 17)
         self.assertEqual(init.digest(init.canonical(records)),
-                         "a415acb23e513e6a502ac1f73122153c5f4057d097b677cc3e7630b4361afcd4")
+                         "f0994cfd1f156cd78258e40490226974c88b47255cd073c83ebb435b185556ba")
 
-    def test_thirteen_sections_and_twelve_ordered_includes(self):
+    def test_thirteen_sections_and_thirteen_ordered_includes(self):
         home = (TEMPLATE / "README.md").read_text()
         self.assertEqual(tuple(re.findall(r"^## (.+)$", home, re.M)), HEADINGS)
         includes = re.findall(r'{% include "([^"]+)" %}', home)
         self.assertEqual(includes, [".gitbook/includes/one-page-" + name + ".md" for name in init.RESOURCES])
-        self.assertEqual(len(set(includes)), 12)
-        for name in includes:
-            self.assertTrue((TEMPLATE / name).is_file())
+        self.assertEqual(len(set(includes)), 13)
+        snapshot, _ = init.verify_app(ROOT)
+        payload = init.workspace_payload(snapshot)
+        sections = re.split(r"^## .+\n", home, flags=re.M)[1:]
+        for heading, section, name in zip(HEADINGS, sections, includes):
+            with self.subTest(heading=heading):
+                self.assertEqual(section.strip(), '{% include "' + name + '" %}')
+                self.assertTrue((TEMPLATE / name).is_file())
+                self.assertEqual(payload["course/" + name], (TEMPLATE / name).read_bytes())
 
     def test_title_description_layout_and_navigation(self):
         home = (TEMPLATE / "README.md").read_text()
@@ -53,18 +65,33 @@ class TemplateTests(unittest.TestCase):
         self.assertEqual((TEMPLATE / "SUMMARY.md").read_text(), "# Table of contents\n\n* [[CourseCode] CourseName](README.md)\n")
         self.assertEqual((TEMPLATE / ".gitbook.yaml").read_text(), "root: ./\nstructure:\n  readme: README.md\n  summary: SUMMARY.md\n")
 
-    def test_learning_outcomes_guided_reusable_and_corequisite_guided_ordinary(self):
+    def test_learning_outcomes_and_corequisite_are_guided_reusables(self):
         resource = TEMPLATE / ".gitbook/includes/one-page-learning-outcomes.md"
         body = resource.read_text()
         self.assertTrue(body.startswith("---\ntitle: one-page-learning-outcomes\n---\n\n"))
         self.assertIn("observable action verb", body)
         self.assertIn("- LearningOutcome", body)
-        home = (TEMPLATE / "README.md").read_text()
-        corequisite = home.split("## Co-Requisite Courses\n", 1)[1].split("\n## ", 1)[0]
+        corequisite = (TEMPLATE / ".gitbook/includes/one-page-co-requisite-courses.md").read_text()
+        self.assertTrue(corequisite.startswith("---\ntitle: one-page-co-requisite-courses\n---\n\n"))
         self.assertIn("take concurrently", corequisite)
         self.assertIn('"None" only if you have confirmed', corequisite)
         self.assertIn("- CourseCode — CourseTitle", corequisite)
         self.assertNotIn("{% include", corequisite)
+
+    def test_corequisite_body_and_reconstructed_home_preserve_original_bytes(self):
+        # Hashes captured before the extraction, independently of refreshed manifests.
+        resource = (TEMPLATE / ".gitbook/includes/one-page-co-requisite-courses.md").read_bytes()
+        prefix = b"---\ntitle: one-page-co-requisite-courses\n---\n\n"
+        self.assertTrue(resource.startswith(prefix))
+        body = resource[len(prefix):]
+        self.assertEqual(len(body), 267)
+        self.assertEqual(init.digest(body),
+                         "5a106d2a0919dca1f9bddc5caedbba58f7c44abce9233b5788956b9e686ed7a8")
+        home = (TEMPLATE / "README.md").read_bytes()
+        directive = b'{% include ".gitbook/includes/one-page-co-requisite-courses.md" %}\n'
+        self.assertEqual(home.count(directive), 1)
+        self.assertEqual(init.digest(home.replace(directive, body)),
+                         "4eaad9f73b92bbfd9fcca6f09d4429cb45f061c7e359dc62cb330c2c102e2613")
 
     def test_every_resource_identity_unique(self):
         titles = []

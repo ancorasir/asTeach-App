@@ -396,7 +396,7 @@ def smoke_initializer(exported):
         applied = run("apply", "--destination", target, "--plan-id", plan["plan_id"])
         replayed = run("apply", "--destination", target, "--plan-id", plan["plan_id"])
         checked = run("check", "--destination", target)
-        if applied["writes"] != 19 or replayed["writes"] != 0 or checked["status"] != "unchanged":
+        if applied["writes"] != 20 or replayed["writes"] != 0 or checked["status"] != "unchanged":
             raise ReleaseError("unpacked initializer behavior differs")
 
 

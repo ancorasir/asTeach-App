@@ -10,7 +10,7 @@ does not repair an edited course; a baseline difference can simply be your work.
 | Reusable text is read-only | Inspect the resource's parent Space/section and your edit permission. Continue only when it is owned by your course and editable there. |
 | A reusable block keeps loading | Wait, reopen the same saved page and inspect its Library entry. Persistent failure or missing ownership means import acceptance has failed. |
 | Learning Outcomes still shows guidance or appears empty | The starter contains replaceable guidance. Verify the dedicated resource belongs to this course and is editable, then replace the guidance with your own measurable outcomes. If text is unexpectedly missing, compare the saved source before editing. |
-| Co-Requisite Courses has no reusable block | Expected: this is ordinary Home content. Editing it requires the separate container round-trip check. |
+| Co-Requisite Courses has no reusable block | The current candidate requires its own reusable resource. Inspect the source include and destination ownership; preserve authored work and resolve the import before editing. |
 | Title or navigation shows the wrong name | Compare the page title, plain description and navigation caption with your intended values and saved source. Preserve the draft if a local/native mismatch exists. |
 | Duplicate Home or README conflict | GitBook's current configuration guidance warns about README editing with Git Sync. Stop the container edit, compare draft and saved source, and seek a reviewed correction. Do not rename or flatten to conceal it. |
 | Module links do not reach the module | Use Teaching Schedule and scroll. Included module deep links are outside v0.1 scope. |

@@ -18,7 +18,7 @@ For manual setup, reproduce the same layout from the exact App candidate:
 copy its root `LICENSE` and its `course-template/README.md` and
 `course-template/AGENTS.md` to your new workspace root. Copy the contents
 of `templates/one-page/`, including hidden files, into `course/`.
-Do not copy the whole App into the course folder. Confirm all sixteen course
+Do not copy the whole App into the course folder. Confirm all seventeen course
 files against the App inventory. The result is:
 
 ```text
@@ -31,7 +31,7 @@ my-course/
     README.md
     SUMMARY.md
     .gitbook/
-      includes/    (12 reusable Markdown files)
+      includes/    (13 reusable Markdown files)
       assets/      (calendar-2000-2050.xlsx)
 ```
 
@@ -48,7 +48,7 @@ as a local repository; if it has no Git repository, use Desktop's prompt to
 create one at that folder. Review the path and files before continuing. Do not
 generate a replacement README or license over the copied files.
 
-In Changes, select the nineteen intended files, enter a short commit summary,
+In Changes, select the twenty intended files, enter a short commit summary,
 and commit to the current branch. Select Publish repository, choose your own
 account or organization, and keep the repository private. Open View on GitHub
 and inspect `course/`, including `.gitbook/` and `.gitbook.yaml`. Record
@@ -69,7 +69,7 @@ The intended mapping is:
 | Setting | Value for this layout |
 | --- | --- |
 | Repository | Your own new course repository |
-| Branch | The branch containing the inspected nineteen-file workspace |
+| Branch | The branch containing the inspected twenty-file workspace |
 | Space-level Project directory | `course/` |
 | Configuration found there | `course/.gitbook.yaml` with `root: ./` |
 | First page / navigation | `README.md` / `SUMMARY.md`, within `course/` |
@@ -97,17 +97,17 @@ requests writes commits to the connected branch; repository commits sync back.
 
 Wait for synchronization to finish, then open Home and allow reusable content
 to load. Expect one Home in navigation, the full placeholder course title,
-plain `Year Season` description, thirteen section headings and twelve
+plain `Year Season` description, thirteen section headings and thirteen
 reusable resources. Internal include files, root instructions and private
 preparation must not appear as pages.
 
 Open the reusable-content panel or Library and inspect the owning Space/section
-of all twelve resources. They must belong to this destination, including the
-Learning Outcomes block with replaceable guidance. Merely seeing text or a
+of all thirteen resources. They must belong to this destination, including the
+Learning Outcomes and Co-Requisite Courses blocks with replaceable guidance. Merely seeing text or a
 resource count does not prove ownership. A foreign, read-only, missing or persistently loading block
 means the import has not passed.
 
-![Schematic: Home references twelve resources owned by the same course Space; Learning Outcomes has replaceable guidance in its reusable resource, while Co-Requisite Courses has guidance in ordinary Home content.](assets/03-resource-ownership.svg)
+![Schematic: Home references thirteen resources owned by the same course Space; Learning Outcomes and Co-Requisite Courses each have replaceable guidance in their own reusable resource.](assets/03-resource-ownership.svg)
 
 Figure 3. Required ownership relationship; a schematic of the acceptance check.
 
