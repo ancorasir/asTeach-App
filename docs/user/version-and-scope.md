@@ -43,9 +43,10 @@ Included: a course-only Home with thirteen headings and thirteen reusable
 blocks, the generic calendar workbook, manual schedule/deadline editing,
 fresh-workspace setup, this ten-page guide and six original schematics.
 The guide also describes manually preparing detached term snapshots and
-independent Student pages. Teacher Home keeps thirteen reusable inputs and
-Landing/Wide presentation; historical term and Student pages use Docs/default
-width. No new runtime or automatic transfer is included.
+independent Student pages. Fresh Teacher Home keeps thirteen reusable inputs and
+uses Product Docs/default width, as do historical term and Student pages. Existing
+courses are not updated by this candidate. No new runtime or automatic transfer
+is included.
 
 Still pending: a complete fresh GitBook import of these bytes, all resource
 ownership checks, Learning Outcomes and Co-Requisite Courses reusable-body

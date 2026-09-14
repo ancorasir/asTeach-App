@@ -48,7 +48,8 @@ repository and GitBook setup are separate user-controlled steps. Follow the
 matched [Docs guide](docs/user/setup-gitbook.md) for the walkthrough and verify the actual mapping before use.
 The App package itself is never the course mapping.
 
-Check the course title, plain term description, all thirteen headings and thirteen
+Check Product Docs presentation at default width, the course title, plain term
+description, all thirteen headings and thirteen
 independent reusable resources before editing. Change `[CourseCode] CourseName`
 in Home and its SUMMARY navigation label together; change `Year Season` in the
 description. Learning Outcomes and Co-Requisite Courses each have their own
@@ -68,8 +69,8 @@ set a Space's visibility. See the matched guide for save and sharing checks.
 
 ## Preserve later edits
 
-Keep one private Teacher Home with all thirteen reusable inputs and its existing
-Landing/Wide presentation. For each `Year Season`, manually prepare an ordinary
+Keep one private Teacher Home with all thirteen reusable inputs. Fresh courses use
+Product Docs presentation at default width. For each `Year Season`, manually prepare an ordinary
 term snapshot with no reusable includes. Historical term and independent Student
 pages use Docs presentation at default width. Remove a whole term section only
 when its complete answer is the confirmed literal `None`; preserve that Teacher
@@ -78,6 +79,8 @@ Review the [term and Student workflow](docs/user/one-page-course.md),
 [calendar ownership](docs/user/calendar-and-files.md) and
 [complete saved-result checks](docs/user/review-and-sharing.md) before transfer.
 The optional initializer does not perform these later steps.
+Existing courses retain their saved layout until a separately reviewed change;
+the initializer does not update them.
 
 After editing, `check` reports changed, missing or additional files as authored
 drift. It does not validate teaching content or repair anything. Keep your course's

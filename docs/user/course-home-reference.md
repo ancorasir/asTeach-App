@@ -25,11 +25,9 @@ source contract; native rendering and ownership remain separate acceptance check
 
 The literal title is `[CourseCode] CourseName`; the separate plain description
 is `Year Season`. Replace those fields with your own information.
-The source uses a wide layout with visible title and description; paragraphs
-need not stretch to the full screen. Confirm the candidate's native layout
-after import instead of relying on a local preview. This is the private Teacher
-Home's Landing/Wide presentation. Historical term and Student pages instead use
-Docs presentation at default width with ordinary detached content. Their section
+Fresh Teacher Home uses Product Docs presentation at default width. Confirm the
+candidate's native layout, title and description after import. Historical term
+and Student pages also use Docs at default width with ordinary detached content. Their section
 set can omit a whole section only for a complete confirmed `None` answer; all
 thirteen Teacher inputs remain. See the [term workflow](one-page-course.md).
 

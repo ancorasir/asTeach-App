@@ -8,6 +8,8 @@ Create one course Home, then maintain its course description, goals, schedule
 and other sections in GitBook. After one-time setup, the intended everyday
 workflow is to edit your own reusable content directly. No agent, JSON form
 or class generator is needed for ordinary course-content editing.
+Fresh Teacher Home uses Product Docs presentation at default width and retains
+all thirteen reusable sections.
 
 This release candidate is supplied for private evaluation. Its complete fresh
 GitBook import and editing walkthrough remain unverified. Read

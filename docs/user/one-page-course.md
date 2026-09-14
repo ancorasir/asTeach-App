@@ -65,8 +65,9 @@ Missing information does not mean `None`, and no policy may be inferred.
 
 ## Prepare a term snapshot
 
-Keep one private Teacher Home with all thirteen reusable sections. Its existing
-Landing/Wide presentation stays in place. Prepare each `Year Season` as a separate
+Keep one private Teacher Home with all thirteen reusable sections. Fresh courses
+use Product Docs presentation at default width; an existing course's saved layout
+requires a separately reviewed change. Prepare each `Year Season` as a separate
 ordinary-content snapshot under its term Group. Detach only the copied instances:
 the Teacher Home and its source resources remain the editable inputs. Check that
 the term contains no reusable includes or live resource bindings.

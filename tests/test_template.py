@@ -18,16 +18,43 @@ HEADINGS = (
     "Grading Policy", "Academic Integrity", "University Calendar", "Recommended Textbook(s)",
     "Teaching Schedule", "Important Deadlines",
 )
+# Exact pre-correction layout, frozen independently of refreshed manifests.
+# Reinsert only these bytes to compare the full payload against its prior digest.
+PRIOR_HOME_LAYOUT = b"""layout:
+  width: wide
+  title:
+    visible: true
+  description:
+    visible: true
+  tableOfContents:
+    visible: false
+  outline:
+    visible: false
+  pagination:
+    visible: true
+  metadata:
+    visible: false
+  tags:
+    visible: true
+  actions:
+    visible: false
+"""
 
 
 class TemplateTests(unittest.TestCase):
-    def test_term_guidance_preserves_entire_fresh_course_payload(self):
-        # Frozen before the term/Student guide revision, independently of source
-        # manifests. No sample snapshots, policy, changed input body or layout may
-        # enter the blank course through this documentation-only revision.
+    def prior_home(self, home):
+        prefix = b"---\ndescription: Year Season\n"
+        self.assertTrue(home.startswith(prefix + b"---\n\n"))
+        return prefix + PRIOR_HOME_LAYOUT + home[len(prefix):]
+
+    def test_docs_layout_preserves_entire_prior_fresh_course_payload(self):
+        # Retain the digest frozen before the term/Student guide revision. The
+        # only allowed payload change is removal of the exact prior Home layout;
+        # all twenty files, including description and full Home body, stay bound.
         snapshot, _ = init.verify_app(ROOT)
         payload = init.workspace_payload(snapshot)
         self.assertEqual(len(payload), 20)
+        payload["course/README.md"] = self.prior_home(payload["course/README.md"])
         records = [init.record(name, payload[name]) for name in sorted(payload)]
         self.assertEqual(init.digest(init.canonical(records)),
                          "28c8b806ee1eaf9a1eb8566f1fa6961d68e5cb68f687927e4406daeedb0e66a8")
@@ -72,7 +99,8 @@ class TemplateTests(unittest.TestCase):
         home = (TEMPLATE / "README.md").read_text()
         self.assertIn("# [CourseCode] CourseName\n", home)
         self.assertIn("description: Year Season\n", home)
-        self.assertIn("layout:\n  width: wide\n", home)
+        self.assertEqual(home.split("---\n", 2)[:2], ["", "description: Year Season\n"])
+        self.assertNotIn("layout:", home)
         self.assertEqual((TEMPLATE / "SUMMARY.md").read_text(), "# Table of contents\n\n* [[CourseCode] CourseName](README.md)\n")
         self.assertEqual((TEMPLATE / ".gitbook.yaml").read_text(), "root: ./\nstructure:\n  readme: README.md\n  summary: SUMMARY.md\n")
 
@@ -101,7 +129,7 @@ class TemplateTests(unittest.TestCase):
         home = (TEMPLATE / "README.md").read_bytes()
         directive = b'{% include ".gitbook/includes/one-page-co-requisite-courses.md" %}\n'
         self.assertEqual(home.count(directive), 1)
-        self.assertEqual(init.digest(home.replace(directive, body)),
+        self.assertEqual(init.digest(self.prior_home(home).replace(directive, body)),
                          "4eaad9f73b92bbfd9fcca6f09d4429cb45f061c7e359dc62cb330c2c102e2613")
 
     def test_every_resource_identity_unique(self):

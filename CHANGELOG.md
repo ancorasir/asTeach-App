@@ -1,5 +1,15 @@
 # Changes
 
+## Product Docs layout correction — 2026-09-15, unreleased
+
+- Use Product Docs presentation at default width for fresh Teacher Home by
+  removing its explicit layout override. Preserve its description and full body,
+  all thirteen reusable resources and every other course payload byte.
+- Align current guides and retain the independently frozen full-payload checks.
+  Existing courses require a separately reviewed change. App v0.1 and guide
+  v0.1.1 remain unreleased; native acceptance and publication remain pending.
+- Earlier dated entries describe their original candidate state.
+
 ## Term snapshot guidance — 2026-09-14, unreleased
 
 - Document the private reusable Teacher Home, ordinary term snapshots and

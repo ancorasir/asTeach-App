@@ -2,8 +2,9 @@
 
 The [template Home](../../templates/one-page/README.md) is a static, directly editable
 course with one navigation entry. It preserves the literal title
-`[CourseCode] CourseName`, separate plain `Year Season` description and wide
-layout settings. Update Home and SUMMARY titles together.
+`[CourseCode] CourseName` and separate plain `Year Season` description. Home has
+no explicit layout override and uses GitBook's Product Docs/default-width
+presentation. Update Home and SUMMARY titles together.
 
 The fixed section order is Course Description; Teaching Goals; Learning Outcomes;
 Content Summary; Assumed Knowledge; Co-Requisite Courses; Course Instructor &
@@ -15,7 +16,7 @@ Each of the thirteen sections includes its own resource under
 guidance and a bullet placeholder. Co-Requisite Courses has its own resource
 with concurrent-course guidance and a bullet placeholder. Keep all thirteen
 resources as includes on the private Teacher Home; flattening that editing source
-would change the contract. Teacher Home retains its Landing/Wide default.
+would change the contract. Fresh Teacher Home uses Product Docs at default width.
 
 ## Term and Student copies
 
@@ -24,7 +25,10 @@ includes. Preserve the accepted title, description, wording, list structure,
 schedule and links. Historical term pages use Docs presentation at default width.
 The Student page also uses Docs/default width and is independently owned: no
 Teacher reusable or Teacher asset references. This is a manual content workflow;
-the initial seventeen mapped files and twenty-file workspace remain unchanged.
+the initial inventory remains seventeen mapped files and twenty workspace files.
+The layout correction removes only Home's prior layout override; its description,
+full body and all other course payload bytes are retained. Existing courses need
+a separately reviewed layout change.
 No term generator, existing-course updater or Teacher-to-Student publisher is
 included.
 

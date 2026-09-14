@@ -1,5 +1,13 @@
 # Changelog
 
+## Product Docs layout correction — 2026-09-15, unreleased
+
+Fresh Teacher Home now uses Product Docs presentation at default width, retaining
+all thirteen reusable inputs. Align setup and manual term/Student guidance;
+existing courses need a separately reviewed layout change. App v0.1 and Docs
+v0.1.1 remain unreleased, with exact-candidate native acceptance pending.
+Earlier dated entries retain their historical layout statements.
+
 ## Term snapshot guidance — 2026-09-14, unreleased
 
 Explain manual private Teacher, ordinary term and independent Student workflows,

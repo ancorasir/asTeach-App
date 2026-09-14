@@ -15,8 +15,8 @@
     {
       "mode": "0644",
       "path": "CHANGELOG.md",
-      "sha256": "91d84c42cacd8df7b0363da3ddc55883c016cbf06e314e93e102327d16c51948",
-      "size": 2998
+      "sha256": "6d40d5957b937ba12e41a967cb0e29a956479202ad6c7782192c0157d0da8512",
+      "size": 3435
     },
     {
       "mode": "0644",
@@ -33,8 +33,8 @@
     {
       "mode": "0644",
       "path": "README.md",
-      "sha256": "984f4b9186f5ac8d83edc5bd430a49268e9bfab34c90775ca3ea48d925a52953",
-      "size": 2106
+      "sha256": "d8c56293ab80ef36f1ad2fde6c117147288c32d2defa581a9958e387fcacfd01",
+      "size": 2217
     },
     {
       "mode": "0644",
@@ -99,8 +99,8 @@
     {
       "mode": "0644",
       "path": "course-home-reference.md",
-      "sha256": "17bcbea8e6f81fdced274f7fbe9a9ba3871ccd291580d14e2ec0d4dace1ab3bb",
-      "size": 3445
+      "sha256": "e12bc67305f65be8eaf1659c2025dce90935b4375605a511ac432de2664b1778",
+      "size": 3306
     },
     {
       "mode": "0644",
@@ -111,8 +111,8 @@
     {
       "mode": "0644",
       "path": "one-page-course.md",
-      "sha256": "1bc7d07c52836f912f4ad9d02474f5c793b9680acf01f3a70efba644adcda610",
-      "size": 5761
+      "sha256": "7f4e2e0e0e94ee58a0a8a8366fb0ec379f57df9c5b433d5ea9052c619f4db906",
+      "size": 5841
     },
     {
       "mode": "0644",
@@ -141,8 +141,8 @@
     {
       "mode": "0644",
       "path": "version-and-scope.md",
-      "sha256": "bde9364f123f60e5d42b494e92aaed4c86bbab139cb7a29ba8c22751aad83659",
-      "size": 4817
+      "sha256": "03dae5cbb67b456f15413777594fbc07c17f3c15b4f02dbe592d3253f7631efe",
+      "size": 4864
     }
   ],
   "license": "CC-BY-4.0",

@@ -9,8 +9,8 @@ no agent, generator or Python.
 
 Keep the Teacher Home's thirteen reusable sections as the editing source. Prepare
 each `Year Season` term as an ordinary-content snapshot, then review an independent
-Student copy for sharing. Historical term and Student pages use Docs presentation
-at default width; Teacher Home retains its Landing/Wide default. The
+Student copy for sharing. Fresh Teacher Home, historical term and Student pages
+use GitBook's Product Docs presentation at default width. The
 [manual term workflow](docs/user/one-page-course.md)
 explains preservation, independent assets and review. The initializer creates only
 the fresh Teacher workspace; it does not generate terms or update Student content.
