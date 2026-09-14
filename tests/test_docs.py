@@ -43,7 +43,7 @@ class GuideTests(unittest.TestCase):
         self.assertEqual(result["status"], "pass")
         self.assertEqual(result["guide_pages"], 10)
         self.assertEqual(result["schematics"], 6)
-        self.assertEqual(result["native_acceptance"], "pending")
+        self.assertEqual(result["native_acceptance"], "external-release-manifest")
         self.assertEqual(guide.init.user_version()["docs_version"], "v0.1.1")
 
     def test_guide_cannot_claim_native_acceptance_or_different_version(self):

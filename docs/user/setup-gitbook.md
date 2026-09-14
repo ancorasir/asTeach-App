@@ -1,10 +1,10 @@
 # Set Up Your Course
 
-Docs v0.1.1 · for App v0.1 · release candidate
+Docs v0.1.1 · for App v0.1
 
-This is the planned fresh-course walkthrough. The exact candidate still needs
-a hosted run that proves its import, ownership and editing behavior. Use a new
-empty restricted destination for that evaluation.
+Follow this fresh-course walkthrough in your own new, empty restricted
+destination. Verify its import, ownership and editing behavior; another
+installation's acceptance does not establish your destination's access or state.
 
 ## 1. Prepare a fresh course workspace
 
@@ -14,7 +14,7 @@ verification, a fresh-destination plan, application of that exact plan and a
 read-only baseline check. Review the destination before applying. It creates
 local files only; it does not create a Git repository, connect accounts or sync.
 
-For manual setup, reproduce the same layout from the exact App candidate:
+For manual setup, reproduce the same layout from the exact App release:
 copy its root `LICENSE` and its `course-template/README.md` and
 `course-template/AGENTS.md` to your new workspace root. Copy the contents
 of `templates/one-page/`, including hidden files, into `course/`.
@@ -114,7 +114,7 @@ Figure 3. Required ownership relationship; a schematic of the acceptance check.
 GitBook explains [parent ownership and reusable editing](https://gitbook.com/docs/create-content/reusable-content).
 Perform the small edit and reopened-result check in
 [Edit Your Course](one-page-course.md), then inspect the saved export. Keep a
-record of the actual candidate digest, course source commit and observations.
+record of the actual package digest, course source commit and observations.
 
 ZIP import and Space duplication are not supported alternative setup routes
-for this candidate. Continue only when the intended resource ownership is clear.
+for v0.1. Continue only when the intended resource ownership is clear.

@@ -18,11 +18,11 @@ not a signature or authenticity system.
 `plan` is read-only. It requires an absent destination and an existing parent.
 Its deterministic `plan_id` binds the absolute destination, parent directory
 identity, complete manifest hash, template payload and all twenty file writes.
-The source manifest uses `asteach-app-source/v3`, `release-candidate` status and
+The source manifest uses `asteach-app-source/v3`, `release-source` status and
 `external-release-manifest` commit binding. It has no own-commit field. The
 cohort's external RELEASE-MANIFEST.json records the exact App source commit,
-tree hashes and archive hashes, independently of source content. Native acceptance
-and publication remain pending. The initializer works from that committed source
+tree hashes and archive hashes, independently of source content. Acceptance and
+publication are external records, not initializer results. The initializer works from that committed source
 or its identical extracted archive without Git or a local ownership database.
 
 `apply` recomputes that plan from freshly verified source and accepts only its

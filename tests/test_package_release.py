@@ -122,6 +122,111 @@ class PackagingTests(unittest.TestCase):
                 self.assertEqual(release.verify_bundle(bundle)["status"], "verified")
         self.assertEqual(sorted(p.name for p in bundle.iterdir()), list(release.BUNDLE_FILES))
 
+    def official_args(self):
+        fixture_git(self.app, "tag", "v0.1", self.app_commit)
+        return dict(release_mode="official", release_tag="v0.1",
+                    accepted_template_sha256=release.template_digest(self.payloads["app"]),
+                    authorize_publication=True)
+
+    def test_official_build_exact_tag_digest_and_portable_verification(self):
+        args = self.official_args()
+        built = self.build(**args)
+        again = self.build(output_name="official-again", **args)
+        one, two = Path(built["destination"]), Path(again["destination"])
+        for name in release.BUNDLE_FILES:
+            self.assertEqual((one / name).read_bytes(), (two / name).read_bytes())
+        with mock.patch.object(release, "git", side_effect=AssertionError("offline verification")):
+            checked = release.verify_bundle(one)
+        self.assertEqual(checked["publication"], "authorized")
+        self.assertEqual(checked["native_acceptance"]["status"], "maintainer-attested")
+        manifest = json.loads((one / "RELEASE-MANIFEST.json").read_bytes())
+        self.assertEqual(manifest["schema"], "asteach-release/v3")
+        self.assertEqual(manifest["release"]["tag"], "v0.1")
+        self.assertEqual(manifest["release"]["repository"], release.OFFICIAL_REPOSITORY)
+        self.assertEqual(manifest["sources"]["app"]["commit"], self.app_commit)
+
+    def test_official_requires_all_explicit_gate_values(self):
+        args = self.official_args()
+        for changes in ({"authorize_publication": False}, {"release_tag": None},
+                        {"release_tag": "v0.2"}, {"accepted_template_sha256": None},
+                        {"accepted_template_sha256": "0" * 64}, {"release_mode": "unknown"}):
+            with self.subTest(changes=changes), self.assertRaises(release.ReleaseError):
+                self.build(**dict(args, **changes))
+            self.assertFalse((self.base / "bundle").exists())
+
+    def test_candidate_cannot_claim_official_gate_values(self):
+        for changes in ({"release_tag": "v0.1"}, {"authorize_publication": True},
+                        {"accepted_template_sha256": "0" * 64}):
+            with self.subTest(changes=changes), self.assertRaises(release.ReleaseError):
+                self.build(**changes)
+
+    def test_official_missing_and_noncommit_tag_refused(self):
+        args = self.official_args()
+        fixture_git(self.app, "tag", "-d", "v0.1")
+        with self.assertRaises(release.ReleaseError):
+            self.build(**args)
+        fixture_git(self.app, "tag", "v0.1", self.app_commit + "^{tree}")
+        with self.assertRaises(release.ReleaseError):
+            self.build(**args)
+        self.assertFalse((self.base / "bundle").exists())
+
+    def test_official_tag_change_during_assembly_refused_before_writes(self):
+        args = self.official_args()
+        def changed_tag(_exported):
+            fixture_git(self.app, "tag", "-d", "v0.1")
+        with mock.patch.object(release, "smoke_initializer", side_effect=changed_tag):
+            with self.assertRaises(release.ReleaseError):
+                self.build(**args)
+        self.assertFalse((self.base / "bundle").exists())
+
+    def test_official_forged_acceptance_repository_and_publication_refused(self):
+        good = release.assemble(self.payloads, self.sources, True,
+                                release.template_digest(self.payloads["app"]))
+        for field, value in (("publication", "published"),
+                             ("native_acceptance", {"status": "passed"}),
+                             ("release", {"repository": "https://example.invalid", "tag": "v0.1"}),
+                             ("schema", "asteach-release/v99")):
+            payload = dict(good)
+            manifest = json.loads(payload["RELEASE-MANIFEST.json"])
+            manifest[field] = value
+            payload["RELEASE-MANIFEST.json"] = release.json_bytes(manifest)
+            payload["SHA256SUMS.txt"] = release.checksums({k: v for k, v in payload.items() if k != "SHA256SUMS.txt"})
+            with self.subTest(field=field), self.assertRaises(release.ReleaseError):
+                release.verify_bundle_bytes(payload)
+
+    def candidate_source_payload(self):
+        payload = dict(self.payloads["app"])
+        prefix = release.init.USER_ROOT + "/"
+        payload[prefix + "VERSION.json"] = release.json_bytes(release.init.user_version("release-candidate"))
+        media = json.loads(payload[prefix + "assets/manifest.json"])
+        media["status"] = "release-candidate"
+        payload[prefix + "assets/manifest.json"] = release.json_bytes(media)
+        guide = release.init.user_metadata("release-candidate")
+        guide["files"] = [dict(release.init.record(p, payload[prefix + p]), mode="0644") for p in release.init.USER_FILES]
+        payload[prefix + release.init.USER_MANIFEST] = release.json_bytes(guide)
+        app = release.init.app_metadata("release-candidate")
+        app["files"] = [release.init.record(p, payload[p]) for p in release.init.APP_FILES]
+        payload[release.init.MANIFEST] = release.json_bytes(app)
+        return payload
+
+    def test_old_coupled_candidate_profile_remains_verifiable(self):
+        app = self.candidate_source_payload()
+        source = dict(self.sources["app"], tree=release.tree_hash(app),
+                      source_manifest_sha256=release.verify_source_bytes("app", app))
+        bundle = release.assemble({"app": app}, {"app": source})
+        self.assertEqual(release.verify_bundle(self.write_bundle(bundle))["native_acceptance"], "pending")
+        official = release.assemble({"app": app}, {"app": source}, True, release.template_digest(app))
+        with self.assertRaisesRegex(release.ReleaseError, "release-source"):
+            release.verify_bundle_bytes(official)
+
+    def test_mixed_source_profiles_refused_even_with_correct_hashes(self):
+        app = self.candidate_source_payload()
+        manifest = release.init.app_metadata("release-source")
+        manifest["files"] = [release.init.record(p, app[p]) for p in release.init.APP_FILES]
+        app[release.init.MANIFEST] = release.json_bytes(manifest)
+        with self.assertRaisesRegex(release.ReleaseError, "user guide"):
+            release.verify_source_bytes("app", app)
+
     def test_exact_full_lowercase_commit_required(self):
         for commit in ("HEAD", "main", self.app_commit[:12], "A" * 40, "z" * 40, None):
             with self.subTest(commit=commit), self.assertRaises(release.ReleaseError):

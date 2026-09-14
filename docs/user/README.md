@@ -11,16 +11,15 @@ or class generator is needed for ordinary course-content editing.
 Fresh Teacher Home uses Product Docs presentation at default width and retains
 all thirteen reusable sections.
 
-This release candidate is supplied for private evaluation. Its complete fresh
-GitBook import and editing walkthrough remain unverified. Read
-[Version and Scope](version-and-scope.md) before hosted evaluation. The private
-handoff identifies the exact integrated App source commit and archive; this guide does not
-announce a public release.
+Get the [official App v0.1 release](https://github.com/ancorasir/asTeach-App/releases/tag/v0.1).
+Its handoff identifies the exact integrated source commit, archive and acceptance
+attestation. Read [Version and Scope](version-and-scope.md), then verify your own
+GitBook import, resource ownership and saved editing result before course use.
 
 ![Schematic: one Home has a course title and term, thirteen sections, and thirteen reusable blocks, including Co-Requisite Courses.](assets/01-course-overview.svg)
 
 Figure 1. Course structure schematic for App v0.1; not a GitBook screenshot or
-evidence that the candidate has imported successfully.
+evidence that your destination has imported successfully.
 
 Begin with [Before You Start](getting-started.md), then follow
 [Set Up Your Course](setup-gitbook.md). Once your own resources have passed the

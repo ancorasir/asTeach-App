@@ -1,6 +1,6 @@
 # Calendar and Files
 
-Docs v0.1.1 · for App v0.1 · release candidate
+Docs v0.1.1 · for App v0.1
 
 The generic workbook is in your course workspace at
 `course/.gitbook/assets/calendar-2000-2050.xlsx`. Open it locally from the
@@ -32,9 +32,11 @@ Figure 5. Calendar preparation and accessibility workflow; schematic, not an
 image of an institutional calendar or GitBook controls.
 
 The included workbook link is a local source-relative link. A successful local
-open does not prove a hosted download. Native workbook downloads and the new
-image editing round trip remain pending for this candidate. Do not rely on the
-starter workbook link as a student delivery method.
+open does not prove a hosted download. Git Sync may serialize this link as a
+GitHub file-view URL, so its access follows the course repository. It is not
+automatically a GitBook Library attachment. Use the copy supplied in the App
+archive and verify your own calendar-image editing and reader access. Do not
+rely on a private course-repository link as a student delivery method.
 
 ## Choose how to deliver other files
 
@@ -50,7 +52,7 @@ Uploading a file and adding a link to an existing file are different actions.
 A private GitHub link requires an authorized account. Making course materials
 accessible does not require making course source public: separate materials
 storage is an option you choose. Review the rights and metadata of each file,
-then test the actual intended audience. This candidate does not create storage,
+then test the actual intended audience. This template does not create storage,
 upload materials or change their access.
 
 ## Separate download links from inline images

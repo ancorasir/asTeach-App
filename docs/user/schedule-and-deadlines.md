@@ -1,6 +1,6 @@
 # Schedule and Deadlines
 
-Docs v0.1.1 · for App v0.1 · release candidate
+Docs v0.1.1 · for App v0.1
 
 Edit Teaching Schedule's existing reusable block. First Class and Final Class
 are the opening and closing groups. Between them, use level-three module

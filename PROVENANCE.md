@@ -1,4 +1,4 @@
-# Source provenance — App v0.1 candidate
+# Source provenance — App v0.1
 
 Creator: SONG Chaoyang ([songcy@ieee.org](mailto:songcy@ieee.org)) @ Design and Learning Research Group ([https://AncoraSIR.com](https://AncoraSIR.com)).
 Prepared 2026-09-13; integrated distribution revised 2026-09-14.
@@ -22,17 +22,20 @@ navigation, configuration and workspace license/instructions are unchanged;
 the workspace README and current guides/schematics describe the revised contract.
 The preserved 267-byte Co-Requisite body has SHA-256
 `5a106d2a0919dca1f9bddc5caedbba58f7c44abce9233b5788956b9e686ed7a8`.
-App v0.1 and guide v0.1.1 remain unreleased candidates, with exact bytes identified
-by their refreshed manifests and later external source pin.
+That correction was prepared before release; its original identity remains in
+historical packages. Release preparation on 2026-09-15 preserves all seventeen
+mapped template files and updates metadata, setup guidance and schematic footnotes.
+Current bytes are bound by refreshed manifests and the external release source pin.
 
-This release-candidate source was prepared without copied Git history.
+This release source was prepared without copied private Git history.
 APP-MANIFEST.json records every source payload file's size and SHA-256 and
 explicitly excludes itself. It has no own-commit or baseline-commit requirement.
 An external RELEASE-MANIFEST.json records the exact integrated App commit, exported Git
 tree hash and archive hash after the source is committed. This avoids a
 circular requirement for a source commit to contain its own hash. Source changes
 require refreshed manifests and review before another pinned build. Native
-acceptance, tags and publication remain separate pending gates.
+acceptance and publication are external attestations and hosted actions, not
+results inferred from an offline build.
 
 The template was selected from the preserved development working tree based on
 commit `0b45a4521a12f8b9111376dc2889aa1d359da0de`, including the uncommitted
@@ -85,4 +88,4 @@ or authorize a repository/Space visibility change.
 
 Local integrity, path and link checks cannot certify publisher authenticity,
 independent native reusable ownership, editor save/export fidelity, institutional
-permissions or audience access. Those remain explicit release acceptance gates.
+permissions or audience access. Check the bounded release attestation and repeat destination-specific checks.

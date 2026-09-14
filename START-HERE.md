@@ -1,10 +1,12 @@
 # Start here — App v0.1
 
-This release candidate includes [asTeach Docs v0.1.1](docs/user/README.md).
+This release includes [asTeach Docs v0.1.1](docs/user/README.md).
 The external cohort RELEASE-MANIFEST.json binds the exact integrated App commit
 and archive hash.
-Native acceptance and publication remain pending; no published release or tag is
-claimed. Keep the original App package and its checksum for recovery.
+Use the [official v0.1 release](https://github.com/ancorasir/asTeach-App/releases/tag/v0.1)
+and compare its exact tag, manifest and checksums. Native acceptance is a
+maintainer attestation about the tested template, not your new destination.
+Keep the original App package and its checksum for recovery.
 
 ## Create a fresh course
 

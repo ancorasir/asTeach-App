@@ -1,6 +1,6 @@
 # Course Home Reference
 
-Docs v0.1.1 · for App v0.1 · release candidate
+Docs v0.1.1 · for App v0.1
 
 The source contains thirteen section headings and thirteen reusable blocks.
 Every section has its own reusable resource, including Learning Outcomes and
@@ -26,7 +26,7 @@ source contract; native rendering and ownership remain separate acceptance check
 The literal title is `[CourseCode] CourseName`; the separate plain description
 is `Year Season`. Replace those fields with your own information.
 Fresh Teacher Home uses Product Docs presentation at default width. Confirm the
-candidate's native layout, title and description after import. Historical term
+template's native layout, title and description after import. Historical term
 and Student pages also use Docs at default width with ordinary detached content. Their section
 set can omit a whole section only for a complete confirmed `None` answer; all
 thirteen Teacher inputs remain. See the [term workflow](one-page-course.md).

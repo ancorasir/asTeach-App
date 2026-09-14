@@ -57,7 +57,7 @@ class InitializerTests(unittest.TestCase):
     def test_release_source_metadata_does_not_embed_its_own_commit(self):
         metadata = json.loads((self.app / init.MANIFEST).read_text())
         self.assertEqual(metadata["schema"], "asteach-app-source/v3")
-        self.assertEqual(metadata["status"], "release-candidate")
+        self.assertEqual(metadata["status"], "release-source")
         self.assertEqual(metadata["commit_binding"], "external-release-manifest")
         self.assertNotIn("app_commit", metadata)
         self.assertNotIn("source_baseline_commit", metadata)

@@ -1,6 +1,6 @@
 # Troubleshooting
 
-Docs v0.1.1 · for App v0.1 · release candidate
+Docs v0.1.1 · for App v0.1
 
 Preserve your current draft and saved source when a check fails. The initializer
 does not repair an edited course; a baseline difference can simply be your work.
@@ -10,7 +10,7 @@ does not repair an edited course; a baseline difference can simply be your work.
 | Reusable text is read-only | Inspect the resource's parent Space/section and your edit permission. Continue only when it is owned by your course and editable there. |
 | A reusable block keeps loading | Wait, reopen the same saved page and inspect its Library entry. Persistent failure or missing ownership means import acceptance has failed. |
 | Learning Outcomes still shows guidance or appears empty | The starter contains replaceable guidance. Verify the dedicated resource belongs to this course and is editable, then replace the guidance with your own measurable outcomes. If text is unexpectedly missing, compare the saved source before editing. |
-| Co-Requisite Courses has no reusable block | The current candidate requires its own reusable resource. Inspect the source include and destination ownership; preserve authored work and resolve the import before editing. |
+| Co-Requisite Courses has no reusable block | The current template requires its own reusable resource. Inspect the source include and destination ownership; preserve authored work and resolve the import before editing. |
 | Title or navigation shows the wrong name | Compare the page title, plain description and navigation caption with your intended values and saved source. Preserve the draft if a local/native mismatch exists. |
 | Duplicate Home or README conflict | GitBook's current configuration guidance warns about README editing with Git Sync. Stop the container edit, compare draft and saved source, and seek a reviewed correction. Do not rename or flatten to conceal it. |
 | Module links do not reach the module | Use Teaching Schedule and scroll. Included module deep links are outside v0.1 scope. |
@@ -28,10 +28,11 @@ See the current [GitBook content configuration guidance](https://gitbook.com/doc
 for README behavior and [reusable content](https://gitbook.com/docs/create-content/reusable-content)
 for ownership rules.
 
-## Report a candidate issue
+## Report an issue
 
-Use the person or channel that supplied the candidate; no public issue tracker
-or support address is announced yet. Include:
+Use the [App issue tracker](https://github.com/ancorasir/asTeach-App/issues) for
+sanitized reports. Send private/security concerns to
+[songcy@ieee.org](mailto:songcy@ieee.org), not a public issue. Include:
 
 - App and Docs versions, source commit pins and the handoff archive digests.
 - Which step failed, what you expected, and what you observed.

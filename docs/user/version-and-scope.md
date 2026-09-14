@@ -4,83 +4,80 @@ Docs v0.1.1 · for App v0.1
 
 Created by SONG Chaoyang ([songcy@ieee.org](mailto:songcy@ieee.org)) @ Design and Learning Research Group ([https://AncoraSIR.com](https://AncoraSIR.com)).
 
-| Field | Candidate value |
+| Field | Release value |
 | --- | --- |
 | Product | One-Page GitBook Course Template |
-| App version | v0.1 |
+| App version / tag | v0.1 |
 | Docs version | v0.1.1 |
-| Status | Release candidate for private evaluation; not published |
-| Integrated App source commit | Exact pin in the handoff's external `RELEASE-MANIFEST.json` |
-| Release URLs and tags | Not announced or required for this private handoff |
-| Native acceptance | Pending for the exact candidate |
-| Original App tooling, template and workbook license | MIT |
-| Guide, original diagrams and adapted `scripts/check_docs.py` license | CC BY 4.0 |
+| Distribution | [Official GitHub release](https://github.com/ancorasir/asTeach-App/releases/tag/v0.1) |
+| Source integrity | App commit/tree and SHA-256 in RELEASE-MANIFEST.json and SHA256SUMS.txt |
+| Native acceptance | Bounded maintainer attestation; not an offline verifier result |
+| Original tooling, template and workbook | MIT |
+| Guide, diagrams and adapted guide checker | CC BY 4.0 |
 
-The matched handoff contains `asTeach-App-v0.1.zip`,
-`START-HERE.md`, `RELEASE-MANIFEST.json` and `SHA256SUMS.txt`. The external manifest
-binds the actual integrated App source commit to its archive digest. User guide
-v0.1.1 lives in `docs/user/`, and App technical notes live in `docs/technical/`.
-Committed
-source carries both versions, release-candidate status and positive file inventories;
-it does not embed its own future Git commit. Follow the handoff's verification
-instructions and keep its files together. Do not substitute earlier archives
-or treat a versioned filename as proof of matching contents.
+Keep the four release files together: asTeach-App-v0.1.zip, START-HERE.md,
+RELEASE-MANIFEST.json and SHA256SUMS.txt. Compare their checksums with the
+publisher's trusted release record before running code. A filename or matching
+self-supplied checksum does not authenticate the sender.
 
-The source is intended for eventual public reuse. Repository visibility remains
-private until separately approved. A clean commit or verified local package
-does not establish native acceptance or publish the product.
+Source records both versions and positive inventories using release-source
+metadata; it does not embed its own future commit. Official bundle schema v3
+binds the actual App commit/tree, canonical repository/tag and exact mapped
+template digest covered by the acceptance attestation. Publication is recorded
+as authorized at build time; verify the hosted release separately.
 
-Guide revisions can change independently while remaining for App v0.1. A future
-guide-only revision would be Docs v0.1.2. A template, tool or asset change needs
-a new reviewed App identity and a compatibility check; the same release label
-must not silently point to different bytes. This unreleased candidate correction preserves
-App v0.1 and Docs v0.1.1 under a new exact candidate commit and manifest; keep
-earlier candidate cohorts separately and never replace their ZIP files.
+## Supported v0.1 scope
 
-## Included and pending
+One private Teacher Home has thirteen headings and thirteen reusable blocks,
+including Learning Outcomes and Co-Requisite Courses. Instructors directly edit
+the reusable bodies. Replace visible guidance before use. Fresh Home uses
+Product Docs/default width. Included: the generic 2000–2050 calendar workbook,
+manual schedule/deadlines, optional fresh-workspace initializer, ten guide pages
+and six original schematics.
 
-Included: a course-only Home with thirteen headings and thirteen reusable
-blocks, the generic calendar workbook, manual schedule/deadline editing,
-fresh-workspace setup, this ten-page guide and six original schematics.
-The guide also describes manually preparing detached term snapshots and
-independent Student pages. Fresh Teacher Home keeps thirteen reusable inputs and
-uses Product Docs/default width, as do historical term and Student pages. Existing
-courses are not updated by this candidate. No new runtime or automatic transfer
-is included.
+Term snapshots and independent Student copies are a documented manual workflow,
+not an automated publisher. The initializer never updates existing courses.
+Each destination retains its own content, assets, ownership and access.
 
-Still pending: a complete fresh GitBook import of these bytes, all resource
-ownership checks, Learning Outcomes and Co-Requisite Courses reusable-body
-editing, title/description Home-container round trips, saved export reconciliation, calendar
-image editing and native download checks, and a new user's full walkthrough.
-For term/Student use, also reconcile full saved exports and Library edits, verify
-independent asset ownership, existing routes and native/published rendering.
-Prior course observations do not certify these exact candidate bytes.
+## Acceptance scope and limitations
 
-GitBook's current README/Git Sync warning makes container editing a specific
-acceptance gate. The intended ordinary workflow remains direct reusable-body
-editing. Earlier observations and offline diagrams do not establish this
-candidate's native acceptance. No screenshots or GIFs of the candidate are
-claimed; each figure is explicitly a schematic.
+The release checks local integrity, deterministic fresh initialization and the
+saved GitBook template: thirteen own-Space resources, Product Docs/default layout,
+and a reversible Co-Requisite reusable-body and Home-description edit, merge,
+GitHub export, reopen and restoration. The exact mapped-template digest binds
+the tested content even when release-only documentation/tooling has a later
+App commit. These checks do not prove every edit or destination behaves alike.
 
-Module deep links inside reusable content, ZIP import, Space duplication,
-automatic date calculation, per-class generation, a teacher-to-student publisher
-and batch repository creation are outside the supported v0.1 surface.
+For each new course, verify fresh import, ownership, title/navigation/description,
+rich-content editing, calendar images, links and intended-reader access. Calendar
+image insertion and a new user's whole walkthrough depend on that destination.
+A source-relative workbook link can become a GitHub file-view link and follow
+repository access; it is not automatically a Library upload. Use the workbook
+copy supplied in the App archive.
 
-Future direction: Multi-Page, then project-based iterations of both formats with
-student-team GitHub repository creation, then an asTeach plugin for developing
-asMagicBrain. These are plans, not commands or available features.
+GitBook's [content configuration guidance](https://gitbook.com/docs/docs-as-code/git-sync/content-configuration)
+warns about README editing conflicts or duplicate pages. Preserve source/drafts
+and stop on an unexpected change; do not rename Home or flatten reusable content
+to bypass it. Verify native and published rendering separately. All guide figures
+are schematics, not screenshots or GIFs.
 
-## Attribution and sources
+ZIP import, Space duplication, automated dates, class-page generation, automatic
+Teacher-to-Student publishing, team repositories and plugins are outside v0.1.
+The roadmap is Multi-Page, project-based iterations with student team repositories,
+then possible asMagicBrain integration; these are not available commands.
 
-The original guide text and diagrams are licensed under
-[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/), with its
-[complete legal code](https://creativecommons.org/licenses/by/4.0/legalcode)
-also included in the repository's license directory. Retain appropriate credit,
-license information and change notices when reusing the material. The license
-includes warranty and liability terms. External materials retain their own
-terms; instructor/student contributions are not licensed by this guide.
+## Version maintenance and support
 
-The native workflow references official GitBook and GitHub documentation
-checked on 2026-09-13. Service controls may differ from the screenshots or terms
-used in older documentation; the fresh candidate walkthrough must verify the
-controls actually presented. Start again at [Home](README.md).
+Keep the v0.1 tag and its assets fixed. Do not replace or retarget them. Guide-only
+updates for App v0.1 increment the guide to v0.1.2. Product/template/tool changes
+need a new reviewed App release. Preserve previous candidate packages separately.
+
+Use the [issue tracker](https://github.com/ancorasir/asTeach-App/issues) for
+sanitized feedback, or [songcy@ieee.org](mailto:songcy@ieee.org) for private/security
+concerns. No response-time guarantee is implied.
+
+The guide/diagrams use [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/);
+retain attribution, license and change notices. Original App tooling/template/
+workbook use MIT. Neither claims instructor/student contributions or external
+materials. Service controls may change: follow [Set Up Your Course](setup-gitbook.md)
+and verify the controls actually presented. Return to [Home](README.md).

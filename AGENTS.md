@@ -15,7 +15,7 @@ Preserve unknown files and all authored inputs. Use apply_patch for source edits
 Regenerate the content manifest after authorized changes, then run the full suite
 shown in START-HERE.md and verify the complete distribution inventory.
 
-This is release-candidate source. Its own commit identity belongs only in the
+This is release source. Its own commit identity belongs only in the
 external RELEASE-MANIFEST.json; source manifests never embed their future commit.
 Use scripts/package_release.py for reviewed offline packaging from the independent,
 clean App Git root at its exact commit. See docs/technical/release-packaging.md.
@@ -26,7 +26,8 @@ component inventories and license scopes aligned. Refresh the user manifest firs
 then App's manifest. Preserve the twenty-file course payload and the existing
 templates/one-page/ GitBook mapping. Guide hosting is separate. Private development
 records and history never belong in this source or package.
-Native acceptance and publication remain pending; packaging does not perform them.
+Native acceptance and publication are recorded in the external release manifest;
+packaging does not perform them or establish publisher authenticity.
 Keep GitBook import, reusable ownership, editor fidelity and intended reader
 access as separate acceptance checks. No tool or instruction here grants remote
 creation, mapping, publishing, access changes or permission to send user content.

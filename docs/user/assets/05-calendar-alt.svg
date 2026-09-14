@@ -28,7 +28,7 @@
     <text x="66" y="487" text-anchor="middle" font-size="18" font-weight="700" fill="#ffffff">4</text>
     <text x="100" y="483" font-size="24" font-weight="700" fill="#17372f">Insert in the calendar block</text>
     <text x="100" y="513" font-size="21" fill="#314c45">Alt text + equivalent dates as text</text>
-    <text x="34" y="596" font-size="17" fill="#314c45">App v0.1 · Docs v0.1.1 · Local candidate</text>
-    <text x="34" y="623" font-size="17" fill="#314c45">Not a screenshot. Native acceptance is pending.</text>
+    <text x="34" y="596" font-size="17" fill="#314c45">App v0.1 · Docs v0.1.1 · Reference guide</text>
+    <text x="34" y="623" font-size="17" fill="#314c45">Schematic; verify your own GitBook setup.</text>
   </g>
 </svg>

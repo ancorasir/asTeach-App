@@ -15,14 +15,14 @@
     {
       "mode": "0644",
       "path": "CHANGELOG.md",
-      "sha256": "6d40d5957b937ba12e41a967cb0e29a956479202ad6c7782192c0157d0da8512",
-      "size": 3435
+      "sha256": "a08ff4efe6a5b6e358d9b1b9d358db8f7d49e7b36bb765db826281347904db97",
+      "size": 3744
     },
     {
       "mode": "0644",
       "path": "LICENSE.md",
-      "sha256": "5b98add67547ae72cddadd2b1bedc08798fa1089c39f1d6d6f72c69fef7d1d58",
-      "size": 2134
+      "sha256": "a8128a374497dbe14928a4da013afdc5366560f038cb8b40ed734a9c128d6d53",
+      "size": 2349
     },
     {
       "mode": "0644",
@@ -33,8 +33,8 @@
     {
       "mode": "0644",
       "path": "README.md",
-      "sha256": "d8c56293ab80ef36f1ad2fde6c117147288c32d2defa581a9958e387fcacfd01",
-      "size": 2217
+      "sha256": "4876dbed514559a459229dd0bc37885bf345e03bd9dd9ac81c773bad8b83d467",
+      "size": 2221
     },
     {
       "mode": "0644",
@@ -45,104 +45,104 @@
     {
       "mode": "0644",
       "path": "VERSION.json",
-      "sha256": "72627d1d8583510bc6c8024efa61328e812a212ed38d38956c9233b6141f8642",
-      "size": 460
+      "sha256": "4884beb79813c961314e7cda67585caaa047691efb644c701b6745d2d7e8dba9",
+      "size": 475
     },
     {
       "mode": "0644",
       "path": "assets/01-course-overview.svg",
-      "sha256": "79ec08fb1b9c4fe011c6feca7f9e839d3b1ea1636e3a08b49a6a74289968fa04",
-      "size": 3008
+      "sha256": "337a1b4745a283b2523220d8394bb9ca2c68efcef95361d2ecdb43cb0e88b061",
+      "size": 3002
     },
     {
       "mode": "0644",
       "path": "assets/02-setup-mapping.svg",
-      "sha256": "2d0eeebf20205a77434ca8473231e98086f0ff08ed9c18767de6d86adee5201e",
-      "size": 3114
+      "sha256": "147181ccfc1b91a553b3e0e198c0e6c77fda530539081b6fe9605b645971b6f8",
+      "size": 3108
     },
     {
       "mode": "0644",
       "path": "assets/03-resource-ownership.svg",
-      "sha256": "f31332511338ba77f09ecdcb1730f5fbfeefa7f7e2562c6aab8d5e0b18292c30",
-      "size": 3130
+      "sha256": "a937997a28d82b9b92d88d4a6bcd80671b0388d654c46f6e22453aec297bd059",
+      "size": 3124
     },
     {
       "mode": "0644",
       "path": "assets/04-title-description.svg",
-      "sha256": "79e2e8a9066747780c35da6075939dd56ba06fef76cb22a42e80ffae6702dec6",
-      "size": 3035
+      "sha256": "9d6dc76c6ec78d56cd7e7540c67f213037a632bff63eb09ec8d4a22047ebd092",
+      "size": 3029
     },
     {
       "mode": "0644",
       "path": "assets/05-calendar-alt.svg",
-      "sha256": "aa7e54da183c3cedc57d8f54932e388689fe63769823fc842b145017a54f3128",
-      "size": 3123
+      "sha256": "44601953124bae9c2ad334a1f20315dc5b6958ff0fb9c42f92df63f7170a90b3",
+      "size": 3117
     },
     {
       "mode": "0644",
       "path": "assets/06-save-review.svg",
-      "sha256": "c168e093da61461a5b9873a2741ce33e1fc37b8e6e1d53ba7ef3675ef71876e2",
-      "size": 3102
+      "sha256": "388f0b29aec4fec0d8e4aa663f36f17328fa3decff8a7028b48d650a5593547f",
+      "size": 3096
     },
     {
       "mode": "0644",
       "path": "assets/manifest.json",
-      "sha256": "fa8bb60cccfa5f23e6fa3e1be049abf78db536c07047baa881f6ecd731520a3e",
-      "size": 5356
+      "sha256": "2583bed0c47a67473469f78cb5a0d3f072b76328fb34628749df8b03aab5bae8",
+      "size": 5341
     },
     {
       "mode": "0644",
       "path": "calendar-and-files.md",
-      "sha256": "eac83ec3c5d16b4313d47c6c767fdf0aa9a511a19e099a1eb09ac928dce81071",
-      "size": 4183
+      "sha256": "65d4501fe873967fc29d67eee7808dabafd6c4d5cf8ddb464091678088759ee4",
+      "size": 4332
     },
     {
       "mode": "0644",
       "path": "course-home-reference.md",
-      "sha256": "e12bc67305f65be8eaf1659c2025dce90935b4375605a511ac432de2664b1778",
-      "size": 3306
+      "sha256": "a01080b578c017b1beae7f1b3fccb5e1605b89a9074d689791d72879c03cf54b",
+      "size": 3284
     },
     {
       "mode": "0644",
       "path": "getting-started.md",
-      "sha256": "1975c3a1b0edf03e0b8b9dc6ea7190de681a469e50d19d07737b1ce73437cb50",
-      "size": 2793
+      "sha256": "d9f7d3e8ef1eca9b9905de88d875618b37d6ec06b53930cb520055ac2b11c055",
+      "size": 2885
     },
     {
       "mode": "0644",
       "path": "one-page-course.md",
-      "sha256": "7f4e2e0e0e94ee58a0a8a8366fb0ec379f57df9c5b433d5ea9052c619f4db906",
-      "size": 5841
+      "sha256": "fee78f8303860822cd4f10998b0bfedd6db477f131a54c39fe9b5a0fe4ccb63b",
+      "size": 5867
     },
     {
       "mode": "0644",
       "path": "review-and-sharing.md",
-      "sha256": "cb0f3cd1bbca70c467892d21d24845ac465984fe3a7c388d90f05449531cad3a",
-      "size": 3759
+      "sha256": "4ddff6b57aa2151e9f0f7fb60e8dda6a9f2274b255eef5ab36dec0fc98644ca7",
+      "size": 3746
     },
     {
       "mode": "0644",
       "path": "schedule-and-deadlines.md",
-      "sha256": "3153b30006a6264928a354a7ff35a4c033971e108c011a108e7e155a64336cb2",
-      "size": 2238
+      "sha256": "f6b7113059b8aa36a27fc3d0750a8a7c247d85e6ba6461662f228a430ceb0058",
+      "size": 2217
     },
     {
       "mode": "0644",
       "path": "setup-gitbook.md",
-      "sha256": "eac0e56801199fbadb198645a0b9cb5cbb4ad4436fccbf98b5d9731fea6ceda9",
-      "size": 6218
+      "sha256": "3be9d499bcc8f65f9a4a79c45cb359b38fd81dabe5c0564394dcdd5b7a3f0d22",
+      "size": 6200
     },
     {
       "mode": "0644",
       "path": "troubleshooting.md",
-      "sha256": "229d4e16abc4fe381ef27c98ae0d5c18b448715d35b539155c937657103782e0",
-      "size": 4408
+      "sha256": "484c4d82c75311a0df3d00e8970f403b3f112078eb5f4663fced7a515e5df4cb",
+      "size": 4458
     },
     {
       "mode": "0644",
       "path": "version-and-scope.md",
-      "sha256": "03dae5cbb67b456f15413777594fbc07c17f3c15b4f02dbe592d3253f7631efe",
-      "size": 4864
+      "sha256": "f2ede35a0fe9cd1ca87ed818c67ede0a0ec4fc7575d96d67cd7b9c9d926e7763",
+      "size": 4643
     }
   ],
   "license": "CC-BY-4.0",
@@ -150,5 +150,5 @@
   "self_excluded": [
     "DOCS-MANIFEST.json"
   ],
-  "status": "release-candidate"
+  "status": "release-source"
 }

@@ -18,6 +18,6 @@ visible guidance before sharing. Keep private preparation outside this mapped
 course folder.
 
 Retain the original App package and matched Docs v0.1.1 guide. The source used
-here is a local candidate, with hosted acceptance and release publication still
-pending. Set up your repository, GitBook mapping, backups and sharing separately.
+here is identified by the original package's release manifest and checksum.
+Set up your repository, GitBook mapping, backups and sharing separately.
 Ordinary editing does not require running an initializer or an agent again.

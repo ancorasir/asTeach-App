@@ -49,14 +49,16 @@ def contained(path, root):
 
 def check_metadata(manifest, version):
     require(isinstance(manifest, dict), "Inventory must be an object")
-    require(set(manifest) == set(EXPECTED_MANIFEST_METADATA) | {"files"},
+    expected_manifest = init.user_metadata(manifest.get("status"))
+    expected_version = init.user_version(manifest.get("status"))
+    require(set(manifest) == set(expected_manifest) | {"files"},
             "Unexpected inventory metadata fields")
-    for key, value in EXPECTED_MANIFEST_METADATA.items():
+    for key, value in expected_manifest.items():
         require(type(manifest[key]) is type(value) and manifest[key] == value,
                 "Unexpected inventory metadata: " + key)
-    require(isinstance(version, dict) and set(version) == set(EXPECTED_VERSION),
+    require(isinstance(version, dict) and set(version) == set(expected_version),
             "Unexpected version metadata fields")
-    for key, value in EXPECTED_VERSION.items():
+    for key, value in expected_version.items():
         require(type(version[key]) is type(value) and version[key] == value,
                 "Unexpected version metadata: " + key)
 
@@ -118,7 +120,7 @@ def check():
     require(not (APP_ROOT / ".gitbook.yaml").exists(), "Ambiguous App-root config")
     media = json.loads((docs / "assets/manifest.json").read_text(encoding="utf-8"),
                        object_pairs_hook=init.reject_duplicates)
-    require(media["status"] == "release-candidate", "Unexpected media status")
+    require(media["status"] == version["status"], "Unexpected media status")
     require(media["native_captures"] == [], "No native captures have been accepted")
     require(len(media["assets"]) == 6, "Expected six schematics")
     asset_paths = {a["path"] for a in media["assets"]}
@@ -191,7 +193,7 @@ def check():
                       "guide_pages": len(pages), "schematics": len(asset_paths),
                       "local_references": local_references,
                       "external_urls_to_check": sorted(external_urls),
-                      "native_acceptance": "pending"}, indent=2))
+                      "native_acceptance": version["native_acceptance"]}, indent=2))
 
 
 if __name__ == "__main__":

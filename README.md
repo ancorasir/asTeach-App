@@ -15,11 +15,13 @@ use GitBook's Product Docs presentation at default width. The
 explains preservation, independent assets and review. The initializer creates only
 the fresh Teacher workspace; it does not generate terms or update Student content.
 
-This release-candidate source includes asTeach Docs v0.1.1 in `docs/user/`. A packaged cohort's
+This release source includes asTeach Docs v0.1.1 in `docs/user/`. A packaged cohort's
 external RELEASE-MANIFEST.json records the exact integrated App source commit and
 archive hash. Source manifests record content integrity without embedding their
-own future commit. Hosted import, resource ownership, editor round trip and
-publication acceptance remain pending. No published release or tag is claimed.
+own future commit. Use the [official v0.1 release](https://github.com/ancorasir/asTeach-App/releases/tag/v0.1)
+for the pinned archive, acceptance scope and checksums. The manifest records
+maintainer-attested acceptance; offline verification does not test your own
+GitBook instance or prove that a hosted release exists.
 
 Start with [START-HERE.md](START-HERE.md). The
 [course contract](docs/technical/one-page-course.md) describes thirteen sections and thirteen

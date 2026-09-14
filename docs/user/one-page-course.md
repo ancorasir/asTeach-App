@@ -1,6 +1,6 @@
 # Edit Your Course
 
-Docs v0.1.1 · for App v0.1 · release candidate
+Docs v0.1.1 · for App v0.1
 
 The intended normal workflow is to edit Home's reusable bodies in GitBook.
 No JSON, agent, local generator or second preparation form is needed.
@@ -25,7 +25,8 @@ First complete the [setup ownership checks](setup-gitbook.md).
 
 A reusable resource has one parent that controls editing, and merged changes
 propagate to its uses. [GitBook's reusable-content documentation](https://gitbook.com/docs/create-content/reusable-content)
-describes this behavior. This candidate's exact saved round trip is still pending.
+describes this behavior. The release records the tested template's acceptance;
+repeat the saved-result check in your own Space.
 
 ## Set the title and term
 
@@ -38,10 +39,10 @@ not proof that all three are correct.
 
 Figure 4. Intended title and description relationship; not a screenshot.
 
-These container edits need separate native acceptance. GitBook's current
+Verify these container edits separately from reusable-body edits. GitBook's
 [configuration guidance](https://gitbook.com/docs/docs-as-code/git-sync/content-configuration)
 warns that editing `README.md` through GitBook with Git Sync can create conflicts
-or duplicate pages. The candidate retains its agreed Home filename. If a
+or duplicate pages. The template retains its agreed Home filename. If a
 duplicate or conflict appears, preserve the draft and saved source, stop that
 edit, and use [Troubleshooting](troubleshooting.md); do not rename the container
 or flatten resources as a workaround.

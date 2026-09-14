@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build or verify an offline, exact-source asTeach release-candidate bundle."""
+"""Build or verify an offline, exact-source asTeach candidate or official bundle."""
 
 import argparse
 import hashlib
@@ -27,6 +27,8 @@ ASSETS = tuple(sorted((*ARCHIVES.values(), "START-HERE.md")))
 BUNDLE_FILES = tuple(sorted((*ASSETS, "RELEASE-MANIFEST.json", "SHA256SUMS.txt")))
 ZIP_DATE = (1980, 1, 1, 0, 0, 0)
 MAX_ARCHIVE_BYTES = 16 * 1024 * 1024
+OFFICIAL_REPOSITORY = "https://github.com/ancorasir/asTeach-App"
+OFFICIAL_TAG = "v0.1"
 LEGACY_MESSAGE = ("Legacy asteach-release/v1 bundle: verify it with the trusted "
                   "scripts/package_release.py inside its original App ZIP; retain all five original files.")
 
@@ -52,8 +54,8 @@ def check_values(value, expected, context):
         raise ReleaseError("unsupported " + context + " metadata")
 
 
-def app_metadata():
-    return init.app_metadata()
+def app_metadata(status="release-source"):
+    return init.app_metadata(status)
 
 
 def verify_source_bytes(kind, payload):
@@ -61,7 +63,9 @@ def verify_source_bytes(kind, payload):
     if set(payload) != set(allowlist) | {manifest_name}:
         raise ReleaseError(kind + " inventory does not match the complete positive allowlist")
     metadata = parse_json(payload[manifest_name])
-    expected = app_metadata()
+    if not isinstance(metadata, dict):
+        raise ReleaseError("source manifest must be an object")
+    expected = app_metadata(metadata.get("status"))
     exact_fields(metadata, (*expected, "files"), kind + " source manifest")
     check_values(metadata, expected, kind + " source manifest")
     entries = metadata["files"]
@@ -77,7 +81,7 @@ def verify_source_bytes(kind, payload):
         raise ReleaseError(kind + " source manifest inventory or checksum mismatch")
     if payload["VERSION"] != b"v0.1\n":
         raise ReleaseError("App VERSION mismatch")
-    init.verify_user_source(payload)
+    init.verify_user_source(payload, metadata["status"])
     return init.digest(payload[manifest_name])
 
 
@@ -297,10 +301,40 @@ def read_archive(kind, data):
     return payload
 
 
-def start_here(sources):
-    return ("# asTeach private release candidate\n\n"
+def template_digest(payload):
+    return init.digest(init.canonical([
+        init.record(name, payload["templates/one-page/" + name]) for name in init.TEMPLATE_FILES
+    ]))
+
+
+def release_metadata(official=False, template_sha256=None):
+    common = {"app_version": init.VERSION, "docs_version": init.DOCS_VERSION,
+              "self_excluded": ["RELEASE-MANIFEST.json", "SHA256SUMS.txt"]}
+    if not official:
+        return dict(common, schema="asteach-release/v2", status="private-release-candidate",
+                    native_acceptance="pending", publication="pending")
+    if not isinstance(template_sha256, str) or not re.fullmatch(r"[0-9a-f]{64}", template_sha256):
+        raise ReleaseError("official release requires the accepted template SHA-256")
+    return dict(common, schema="asteach-release/v3", status="official-release",
+                publication="authorized", native_acceptance={
+                    "status": "maintainer-attested", "scope": "template-editor-round-trip",
+                    "template_sha256": template_sha256}, release={
+                    "repository": OFFICIAL_REPOSITORY, "tag": OFFICIAL_TAG,
+                    "url": OFFICIAL_REPOSITORY + "/releases/tag/" + OFFICIAL_TAG})
+
+
+def start_here(sources, official=False):
+    introduction = ("# asTeach App v0.1 — official release\n\n"
+                    "App v0.1 includes the Docs v0.1.1 user guide in one archive.\n"
+                    "Release: " + OFFICIAL_REPOSITORY + "/releases/tag/" + OFFICIAL_TAG + "\n"
+                    "The manifest records maintainer-attested template acceptance and authorization\n"
+                    "to publish. Offline verification checks integrity, not the live release or\n"
+                    "your own GitBook instance. Verify the tag and assets at the release URL.\n\n"
+                    if official else
+                    "# asTeach private release candidate\n\n"
             "App v0.1 includes the Docs v0.1.1 user guide in one archive. Native GitBook\n"
-            "acceptance and publication remain pending. No tag or hosted release is claimed.\n\n"
+            "acceptance and publication remain pending. No tag or hosted release is claimed.\n\n")
+    return (introduction +
             "- App source commit: `" + sources["app"]["commit"] + "`\n\n"
             "Compare SHA256SUMS.txt with a trusted publisher record before running code.\n"
             "Checksums verify integrity; they do not authenticate the publisher.\n"
@@ -323,14 +357,11 @@ def checksums(payload):
     return "".join(init.digest(payload[name]) + "  " + name + "\n" for name in sorted(payload)).encode()
 
 
-def assemble(payloads, sources):
+def assemble(payloads, sources, official=False, accepted_template_sha256=None):
     payload = {ARCHIVES[kind]: archive_bytes(kind, payloads[kind]) for kind in COMPONENTS}
-    payload["START-HERE.md"] = start_here(sources)
-    manifest = {"schema": "asteach-release/v2", "status": "private-release-candidate",
-                "app_version": init.VERSION, "docs_version": init.DOCS_VERSION,
-                "native_acceptance": "pending", "publication": "pending", "sources": sources,
-                "assets": [init.record(name, payload[name]) for name in ASSETS],
-                "self_excluded": ["RELEASE-MANIFEST.json", "SHA256SUMS.txt"]}
+    payload["START-HERE.md"] = start_here(sources, official)
+    manifest = dict(release_metadata(official, accepted_template_sha256), sources=sources,
+                    assets=[init.record(name, payload[name]) for name in ASSETS])
     payload["RELEASE-MANIFEST.json"] = json_bytes(manifest)
     payload["SHA256SUMS.txt"] = checksums(payload)
     return payload
@@ -344,10 +375,12 @@ def verify_bundle_bytes(payload):
     if set(payload) != set(BUNDLE_FILES):
         raise ReleaseError("bundle must contain exactly the four release files")
     manifest = parse_json(payload["RELEASE-MANIFEST.json"])
-    fixed = {"schema": "asteach-release/v2", "status": "private-release-candidate",
-             "app_version": init.VERSION, "docs_version": init.DOCS_VERSION,
-             "native_acceptance": "pending", "publication": "pending",
-             "self_excluded": ["RELEASE-MANIFEST.json", "SHA256SUMS.txt"]}
+    if not isinstance(manifest, dict):
+        raise ReleaseError("release manifest must be an object")
+    official = manifest.get("schema") == "asteach-release/v3"
+    acceptance = manifest.get("native_acceptance")
+    template_sha256 = acceptance.get("template_sha256") if isinstance(acceptance, dict) else None
+    fixed = release_metadata(official, template_sha256)
     exact_fields(manifest, (*fixed, "sources", "assets"), "release manifest")
     check_values(manifest, fixed, "release manifest")
     exact_fields(manifest["sources"], COMPONENTS, "source pins")
@@ -365,7 +398,12 @@ def verify_bundle_bytes(payload):
                     "tree": tree_hash(exported[kind]),
                     "source_manifest_sha256": verify_source_bytes(kind, exported[kind])}
         check_values(source, expected, "source pin")
-    if payload["START-HERE.md"] != start_here(manifest["sources"]):
+    if official:
+        if parse_json(exported["app"][init.MANIFEST])["status"] != "release-source":
+            raise ReleaseError("official bundle requires release-source metadata")
+        if template_digest(exported["app"]) != template_sha256:
+            raise ReleaseError("accepted template differs from packaged template")
+    if payload["START-HERE.md"] != start_here(manifest["sources"], official):
         raise ReleaseError("handoff instructions differ from the source cohort")
     return exported, manifest
 
@@ -412,7 +450,8 @@ def verify_bundle(bundle):
     payload = {name: init.read_regular(bundle / name) for name in BUNDLE_FILES}
     exported, manifest = verify_bundle_bytes(payload)
     smoke_initializer(exported)
-    return {"status": "verified", "native_acceptance": "pending", "publication": "pending",
+    return {"status": "verified", "native_acceptance": manifest["native_acceptance"],
+            "publication": manifest["publication"],
             "sources": manifest["sources"], "files": len(payload), "initializer": "verified"}
 
 
@@ -430,7 +469,23 @@ def output_path(parent, name, roots):
     return target
 
 
-def build(app_root, app_commit, output_parent, output_name):
+def verify_official_tag(root, commit, tag):
+    if tag != OFFICIAL_TAG:
+        raise ReleaseError("official release tag must be v0.1")
+    target = git(root, "rev-parse", "--verify", "refs/tags/" + tag + "^{commit}").decode().strip()
+    if target != commit:
+        raise ReleaseError("official tag does not match the exact App commit")
+
+
+def build(app_root, app_commit, output_parent, output_name, release_mode="candidate",
+          release_tag=None, accepted_template_sha256=None, authorize_publication=False):
+    if release_mode not in ("candidate", "official"):
+        raise ReleaseError("unknown release mode")
+    official = release_mode == "official"
+    if official and authorize_publication is not True:
+        raise ReleaseError("official build requires explicit publication authorization")
+    if not official and (release_tag is not None or accepted_template_sha256 is not None or authorize_publication):
+        raise ReleaseError("official metadata cannot be attached to a candidate")
     roots = {"app": init.inspect_path(app_root)}
     target = output_path(output_parent, output_name, roots.values())
     identity = {"device": target.parent.stat().st_dev, "inode": target.parent.stat().st_ino}
@@ -438,16 +493,21 @@ def build(app_root, app_commit, output_parent, output_name):
     payloads, sources = {}, {}
     for kind in COMPONENTS:
         payloads[kind], sources[kind] = pinned_source(roots[kind], commits[kind], kind)
-    payload = assemble(payloads, sources)
+    if official:
+        verify_official_tag(roots["app"], app_commit, release_tag)
+    payload = assemble(payloads, sources, official, accepted_template_sha256)
     exported, _ = verify_bundle_bytes(payload)
     smoke_initializer(exported)
     # Reconcile again after assembly, before any output writes.
     for kind in COMPONENTS:
         if pinned_source(roots[kind], commits[kind], kind) != (payloads[kind], sources[kind]):
             raise ReleaseError("source changed while assembling the release")
+    if official:
+        verify_official_tag(roots["app"], app_commit, release_tag)
     init.create_exclusive(target, payload, identity)
     return {"status": "created", "destination": str(target), "sources": sources,
-            "files": len(payload), "native_acceptance": "pending", "publication": "pending"}
+            "files": len(payload), "native_acceptance": parse_json(payload["RELEASE-MANIFEST.json"])["native_acceptance"],
+            "publication": "authorized" if official else "pending"}
 
 
 def main(argv=None):
@@ -458,6 +518,10 @@ def main(argv=None):
         command.add_argument("--" + name, required=True)
     command.add_argument("--docs-root", help=argparse.SUPPRESS)
     command.add_argument("--docs-commit", help=argparse.SUPPRESS)
+    command.add_argument("--release-mode", choices=("candidate", "official"), default="candidate")
+    command.add_argument("--release-tag")
+    command.add_argument("--accepted-template-sha256")
+    command.add_argument("--authorize-publication", action="store_true")
     command = commands.add_parser("verify", help="verify a complete bundle and its unpacked initializer")
     command.add_argument("--bundle", required=True)
     command = commands.add_parser("refresh-app-manifest", help="refresh an explicitly edited positive App source inventory")
@@ -469,7 +533,9 @@ def main(argv=None):
         if args.command == "build":
             if args.docs_root is not None or args.docs_commit is not None:
                 raise ReleaseError("Two-root builds are legacy v1. Use the original pinned v1 builder for old sources; v2 builds only the integrated App.")
-            result = build(args.app_root, args.app_commit, args.output_parent, args.output_name)
+            result = build(args.app_root, args.app_commit, args.output_parent, args.output_name,
+                           args.release_mode, args.release_tag, args.accepted_template_sha256,
+                           args.authorize_publication)
         elif args.command == "verify":
             result = verify_bundle(args.bundle)
         elif args.command == "refresh-user-manifest":

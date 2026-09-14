@@ -29,7 +29,11 @@ does not license instructor or student contributions.
 Integration change notice, 2026-09-14: the guide was moved into the combined App
 source; paths, packaging instructions and metadata were updated. The guide
 version remains v0.1.1 for App v0.1; original diagrams and legal-code bytes are
-unchanged. Native acceptance and publication remain pending.
+unchanged at that integration checkpoint.
+
+Release preparation notice, 2026-09-15: current guide instructions, metadata and
+schematic footnotes are updated for v0.1. Attribution and the complete legal code
+remain unchanged. Diagrams remain schematics, not native UI captures.
 
 The unmodified English legal-code file was retrieved from
 [Creative Commons](https://creativecommons.org/licenses/by/4.0/legalcode.txt)

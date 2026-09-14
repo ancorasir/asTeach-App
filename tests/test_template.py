@@ -49,12 +49,19 @@ class TemplateTests(unittest.TestCase):
 
     def test_docs_layout_preserves_entire_prior_fresh_course_payload(self):
         # Retain the digest frozen before the term/Student guide revision. The
-        # only allowed payload change is removal of the exact prior Home layout;
-        # all twenty files, including description and full Home body, stay bound.
+        # exact layout and release-notice substitutions are reconstructed;
+        # all twenty files, including every course body, remain bound.
         snapshot, _ = init.verify_app(ROOT)
         payload = init.workspace_payload(snapshot)
         self.assertEqual(len(payload), 20)
         payload["course/README.md"] = self.prior_home(payload["course/README.md"])
+        # Release-only setup notice is the sole additional workspace change.
+        current = (b"here is identified by the original package's release manifest and checksum.\n"
+                   b"Set up your repository, GitBook mapping, backups and sharing separately.")
+        previous = (b"here is a local candidate, with hosted acceptance and release publication still\n"
+                    b"pending. Set up your repository, GitBook mapping, backups and sharing separately.")
+        self.assertEqual(payload["README.md"].count(current), 1)
+        payload["README.md"] = payload["README.md"].replace(current, previous)
         records = [init.record(name, payload[name]) for name in sorted(payload)]
         self.assertEqual(init.digest(init.canonical(records)),
                          "28c8b806ee1eaf9a1eb8566f1fa6961d68e5cb68f687927e4406daeedb0e66a8")

@@ -1,6 +1,6 @@
 # Save, Check and Share
 
-Docs v0.1.1 · for App v0.1 · release candidate
+Docs v0.1.1 · for App v0.1
 
 Review the saved course from the view its intended readers will use.
 A local file or editor draft does not establish the saved result.
@@ -65,4 +65,4 @@ does not promise a separate staging or student-publishing step.
 App v0.1 does not automate transfer into a Student copy. Follow the manual
 [term and Student workflow](one-page-course.md) with
 reviewed ordinary content and independently owned assets.
-For candidate acceptance limits, see [Version and Scope](version-and-scope.md).
+For release acceptance scope and limits, see [Version and Scope](version-and-scope.md).

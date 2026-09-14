@@ -1,8 +1,9 @@
 # Offline release packaging
 
-The builder creates a private release candidate from App v0.1, including the
-Docs v0.1.1 guide under `docs/user/`. Native acceptance and publication remain
-pending. Course creation follows [START-HERE](../../START-HERE.md); packaging is
+The builder creates a candidate or explicitly authorized official App v0.1 bundle,
+including guide v0.1.1 under `docs/user/`. Acceptance is an external maintainer
+attestation, not something this offline tool performs. Course creation follows
+[START-HERE](../../START-HERE.md); packaging is
 a separate developer operation and creates no repositories, commits, tags,
 releases, mappings or access settings.
 
@@ -34,7 +35,7 @@ preservation. Refresh does not grant source approval. Review and commit through
 the authorized development workflow; build never repairs or commits a dirty tree.
 
 App uses `asteach-app-source/v3`; guide manifest/version metadata use schema 3.
-Both retain release-candidate status, App v0.1/Docs v0.1.1 and external commit
+Current source uses release-source status, App v0.1/Docs v0.1.1 and external commit
 binding. The guide manifest excludes itself; App's manifest includes it and
 excludes only itself. No source file contains its own future commit. App's default
 MIT license has explicit CC-BY-4.0 overrides for `docs/user/` and the adapted
@@ -77,8 +78,45 @@ identifies objects; SHA-256 checks integrity. Neither authenticates the publishe
 ZIP entries are sorted regular files with fixed 1980 timestamps and stored
 compression. No host paths, build times, Git metadata or private records enter
 the archive. Identical commits produce identical bundles regardless of output
-name. The builder has no accepted/public mode. Reviewed candidate files must
+name. The default mode remains a private candidate. Reviewed candidate files must
 already have been promoted into independent App history before a pinned build.
+
+## Official release mode
+
+After independent source review and native acceptance, create the local immutable
+tag `v0.1` at the exact approved App commit. Record the accepted mapped-template
+SHA-256 using the sorted path/size/hash records defined by `template_digest`.
+This digest covers all seventeen files under `templates/one-page/`, not
+release-only tooling or prose. It must equal the packaged template bytes.
+
+```bash
+python3 -B scripts/package_release.py build \\
+  --app-root /absolute/path/to/asTeach-App \\
+  --app-commit APP_FULL_40_HEX_COMMIT \\
+  --output-parent /absolute/path/to/release-output \\
+  --output-name official-v0.1 \\
+  --release-mode official --release-tag v0.1 \\
+  --accepted-template-sha256 ACCEPTED_TEMPLATE_64_HEX_SHA256 \\
+  --authorize-publication
+```
+
+These flags are explicit maintainer attestations, not self-issued permission or
+proof of native tests. Official v3 requires coupled release-source metadata,
+the canonical repository/tag, exact local tag-to-commit binding and the accepted
+template digest. It rechecks the tag and complete source before writing output.
+Missing/unknown values, changed tags, mixed profiles and stale pins are refused.
+
+The four-file cohort stays unchanged in shape. Official metadata records
+`status: official-release`, `publication: authorized`, the canonical release
+URL and `native_acceptance.status: maintainer-attested`. Assembly cannot claim
+the GitHub release is already published. Verify the real hosted tag and assets
+separately. Assemble a GitHub Release draft, verify all uploaded hashes, then
+publish under current owner authority. Never replace a published tag or asset.
+
+The verifier accepts prior strict v2 candidate cohorts, including their coupled
+release-candidate source profile. Original v1 cohorts still need their original
+verifier. It rejects unknown or mixed metadata; no ownership/adoption bypass is
+introduced. Portable output repeats recorded acceptance, not a new native test.
 
 ## Portable verification and compatibility
 

@@ -66,31 +66,41 @@ def record(path, data):
     return {"path": path, "size": len(data), "sha256": digest(data)}
 
 
-def app_metadata():
+SOURCE_STATUSES = ("release-source", "release-candidate")
+
+
+def source_status(status):
+    if status not in SOURCE_STATUSES:
+        raise InitError("unsupported source status")
+    return status
+
+
+def app_metadata(status="release-source"):
     return {"schema": "asteach-app-source/v3", "app_version": VERSION,
-            "docs_version": DOCS_VERSION, "status": "release-candidate",
+            "docs_version": DOCS_VERSION, "status": source_status(status),
             "commit_binding": "external-release-manifest", "manifest_self_exclusion": MANIFEST,
             "license": "MIT", "license_overrides": {USER_ROOT + "/": "CC-BY-4.0",
                                                        "scripts/check_docs.py": "CC-BY-4.0"}}
 
 
-def user_metadata():
+def user_metadata(status="release-source"):
     return {"schema_version": 3, "component": "asTeach-User-Guide",
-            "status": "release-candidate", "docs_version": DOCS_VERSION,
+            "status": source_status(status), "docs_version": DOCS_VERSION,
             "app_version": VERSION, "commit_binding": "external-release-manifest",
             "content_root": USER_ROOT + "/", "license": "CC-BY-4.0", "creator": CREATOR,
             "self_excluded": [USER_MANIFEST]}
 
 
-def user_version():
+def user_version(status="release-source"):
     return {"schema_version": 3, "component": "asTeach-User-Guide", "docs_version": DOCS_VERSION,
-            "for_app_version": VERSION, "creator": CREATOR, "status": "release-candidate",
-            "commit_binding": "external-release-manifest", "native_acceptance": "pending",
+            "for_app_version": VERSION, "creator": CREATOR, "status": source_status(status),
+            "commit_binding": "external-release-manifest",
+            "native_acceptance": "pending" if status == "release-candidate" else "external-release-manifest",
             "license": "CC-BY-4.0", "content_root": USER_ROOT + "/",
             "guide_page_count": 10, "schematic_figure_count": 6}
 
 
-def verify_user_source(payload):
+def verify_user_source(payload, status="release-source"):
     """Check the guide component independently within the positive App payload."""
     prefix = USER_ROOT + "/"
     guide = {name[len(prefix):]: data for name, data in payload.items() if name.startswith(prefix)}
@@ -101,10 +111,10 @@ def verify_user_source(payload):
         version = json.loads(guide["VERSION.json"], object_pairs_hook=reject_duplicates)
     except (ValueError, UnicodeError) as error:
         raise InitError("invalid user guide metadata: " + str(error))
-    expected = user_metadata()
+    expected = user_metadata(status)
     expected["files"] = [dict(record(name, guide[name]), mode="0644") for name in USER_FILES]
     # Canonical bytes distinguish booleans from numbers in nested metadata.
-    if canonical(metadata) != canonical(expected) or canonical(version) != canonical(user_version()):
+    if canonical(metadata) != canonical(expected) or canonical(version) != canonical(user_version(status)):
         raise InitError("user guide version, manifest or checksum mismatch")
     return digest(guide[USER_MANIFEST])
 
@@ -209,7 +219,7 @@ def verify_app(root):
     fields = set(app_metadata()) | {"files"}
     if not isinstance(metadata, dict) or set(metadata) != fields:
         raise InitError("unsupported App manifest fields")
-    expected_metadata = app_metadata()
+    expected_metadata = app_metadata(metadata.get("status"))
     if any(metadata[key] != value for key, value in expected_metadata.items()):
         raise InitError("unsupported version, status or provenance metadata")
     entries = metadata["files"]
@@ -227,7 +237,7 @@ def verify_app(root):
     snapshot = {path: read_regular(root / path) for path in APP_FILES}
     if entries != [record(path, snapshot[path]) for path in APP_FILES]:
         raise InitError("App checksum mismatch; preserve source and obtain a verified package")
-    verify_user_source(snapshot)
+    verify_user_source(snapshot, metadata["status"])
     return snapshot, digest(manifest_bytes)
 
 

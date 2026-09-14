@@ -1,5 +1,14 @@
 # Changes
 
+## v0.1 — official release, 2026-09-15
+
+One-Page Course with thirteen guided reusable sections, Product Docs/default
+width, optional fresh initialization and bundled guide v0.1.1. Official packaging
+binds exact tag/commit and a bounded acceptance attestation; candidate verification
+is retained. All seventeen mapped files remain unchanged. The workspace README
+now refers to release provenance rather than an obsolete candidate-only notice.
+No automated terms, Student release or Multi-Page runtime. Earlier entries are history.
+
 ## Product Docs layout correction — 2026-09-15, unreleased
 
 - Use Product Docs presentation at default width for fresh Teacher Home by

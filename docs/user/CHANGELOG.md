@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.1.1 for App v0.1 — official release, 2026-09-15
+
+Align setup/support instructions and schematic footnotes with the official
+release, exact verification and destination-specific limits. Ten guide pages and
+six original schematics; no universal native-compatibility claim. Earlier entries are history.
+
 ## Product Docs layout correction — 2026-09-15, unreleased
 
 Fresh Teacher Home now uses Product Docs presentation at default width, retaining

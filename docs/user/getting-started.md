@@ -1,10 +1,10 @@
 # Before You Start
 
-Docs v0.1.1 · for App v0.1 · release candidate
+Docs v0.1.1 · for App v0.1
 
-You need the matching App candidate, permission to create and edit a restricted
+You need the matching App release, permission to create and edit a restricted
 GitBook Space, and a GitHub account able to host your course repository and
-authorize its GitBook connection. Keep the candidate restricted while checking
+authorize its GitBook connection. Keep your course restricted while checking
 the first import. GitBook may use “section” for the content container that owns
 reusable resources; this guide uses “course Space” for the destination you select.
 
@@ -15,7 +15,7 @@ supports macOS or Linux with Python 3.9 or later, with no additional Python
 packages. Manual copying is platform-independent. An agent is optional help
 with setup.
 
-Obtain the matching private handoff: `asTeach-App-v0.1.zip`,
+Obtain the matching release handoff: `asTeach-App-v0.1.zip`,
 `START-HERE.md`, `RELEASE-MANIFEST.json` and
 `SHA256SUMS.txt`. Follow that `START-HERE.md` to verify the bundle before setup.
 The external manifest records the exact integrated App source commit, both
@@ -24,7 +24,8 @@ Source inventories identify their contents without
 embedding their own Git commit. Check the checksums against the handoff from
 your trusted supplier; a matching hash alone does not identify the sender.
 Stop if a required file or commit pin is missing, or versions or digests differ.
-The repositories remain private, and no public release URL or tag is announced.
+Download the four files from the [official v0.1 release](https://github.com/ancorasir/asTeach-App/releases/tag/v0.1).
+The public product repository is not your private course-authoring repository.
 
 ## What belongs where
 
